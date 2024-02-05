@@ -3,9 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
     <title>AhorrADAS</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <h1>AHORRADAS</h1>
+            <!-- enlaces para pantalla de computadora -->
+           
+
+            <ul class="enlacesSecciones">
+                <li class="">
+                    <a href="" tabindex="0">
+                        <i class="fas fa-chart-line mr-2" aria-hidden="true">BALANCE</i>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" tabindex="0">
+                        <i class="fas fa-tag mr-2" aria-hidden="true">CATEGORIAS</i>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" tabindex="0">
+                        <i class="fas fa-chart-pie mr-2" aria-hidden="true">REPORTES</i>
+                    </a>
+                </li>
+                    <li class="">
+                        <a href="" tabindex="0">
+                            <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true">MODO OSCURO</i>
+                        </a>
+                    </li>
+            </ul>
+                <!-- Inicio - Esta parte que continua es para enlaces para mobile con menú hamburguesa y ventana modal -->
+                <a href="#modal" class="modal" tabindex="-1">
+                    <div id="menuHamburg"><i class="fas fa-bars" aria-hidden="true"></i> <!-- icono menú hamburguesa -->
+                    </div>
+                </a>
+                <div id="contenedorModal" class="contenedorModal">
+                    <div class="modalbox tamañoModal">
+                        <a href="#close" title="Cerrar" class="cerrar" tabindex="-1">X</a>
+                        <ul class="enlacesHamburguesa">
+                            <li class="liModal">
+                                <a href="" tabindex="-1">
+                                    <i class="fas fa-chart-line mr-2" aria-hidden="true">BALANCE</i>
+                                </a>
+                            </li>
+                            <li class="liModal">
+                                <a href="" tabindex="-1">
+                                    <i class="fas fa-tag mr-2" aria-hidden="true">CATEGORIAS</i>
+                                </a>
+                            </li>
+                            <li class="liModal">
+                                <a href="" tabindex="-1">
+                                    <i class="fas fa-chart-pie mr-2" aria-hidden="true">REPORTES</i>
+                                </a>
+                            </li>
+                            <li class="liModal">
+                                <a href="" tabindex="-1">
+                                    <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true">MODO OSCURO</i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Fin - Esta parte es para enlaces para mobile con menú hamburguesa y ventana modal -->
+            </nav>
+        </header>
+        <main>
+            <!-- ------------------------------------- -->
+            <!-- Inicio sección Balance-Filtro-Reporte -->
+            <!-- ------------------------------------- -->
+            <section id="seccionBalance"> <!-- Inicio sección Balance-Filtro-Reporte -->
+                <div class="espacioBalanceFiltros"> <!-- Este div contiene a sección Balance y sección Filtros nos permitirá modificar para que aparezcan en primera columna al hacer el corte @media -->
+                    <!-- Espacio para reflejar BALANCE -->
+                    <div class="contenedorBalance">
+                        <h2>BALANCE</h2>
+                        <div  id="contenedorGanancias" class="contenedor">
+                            <h3>Ganancias</h3>
+                            <h3 id="importeGanancias"></h3>
+                        </div>
+                        <div  id="contenedorGastos" class="contenedor">
+                            <h3>Gastos</h3>
+                            <h3 id="importeGastos"></h3>
+                        </div>
+                        <div  id="contenedorTotal" class="contenedor"></div>
+                            <h2>Total</h2>
+                            <h2 id="importeTotal"></h2>
+                        </div>
+                    </div>
+                    <!-- Espacio para reflejar FILTROS -->
+                    <div class="contenedorFiltros">
+                        <div class="encabezadoFiltros">
+                            <h2>FILTROS</h2>
+                            <a href="">Ocultar Filtros</a>
+                        </div>
+                        <div class="tipoFiltro">
+                            <label for="opcionTipo">Tipo</label>
+                            <select id="opcionTipo" name="" tabindex="0" aria-label="Opciones de tipos de filtro">
+                                <option value="" tabindex="1" aria-label="Todos">Todos</option>
+                                <option value="" tabindex="2" aria-label="Gasto">Gasto</option>
+                                <option value="" tabindex="3" aria-label="Ganancia">Ganancia</option>
+                            </select>
+                        </div>
+                        <div class="tipoCategoria">
+                            <label for="opcionCategoria">Categoría</label>
+                            <select id="opcionCategoria" name="" tabindex="0" aria-label="Opciones de categorías"> <!-- Estas categorías son trabajadas desde javaS -->
+                                <option value="" tabindex="0" aria-label="Todas">Todas</option>
+                                <option value="" tabindex="0" aria-label="Comidas">Comidas</option>
+                                <option value="" tabindex="0" aria-label="Servicios">Servicios</option>
+                                <option value="" tabindex="0" aria-label="Salidas">Salidas</option>
+                                <option value="" tabindex="0" aria-label="Educación">Educación</option>
+                                <option value="" tabindex="0" aria-label="Transporte">Transporte</option>
+                                <option value="" tabindex="0" aria-label="Trabajo">Servicios</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="fecha">Desde</label>
+                            <input type="date" id="fecha" name="fecha">
+                        </div>
+                        <div class="tipoOrdenamiento">
+                            <label for="opcionOrdenamiento">Tipo</label>
+                            <select id="opcionOrdenamiento" name="" tabindex="0" aria-label="Opciones de ordenamiento">
+                                <option value="" tabindex="1" aria-label="Mas reciente">Más reciente</option>
+                                <option value="" tabindex="2" aria-label="Menos reciente">Menos reciente</option>
+                                <option value="" tabindex="3" aria-label="Mayor monto">Mayor monto</option>
+                                <option value="" tabindex="4" aria-label="Menor monto">Menor monto</option>
+                                <option value="" tabindex="5" aria-label="a a la z">A/Z</option>
+                                <option value="" tabindex="6" aria-label="z a la a">Z/A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="espacioReporte">
+                    <div class="encabezadoFiltros">
+                            <h2>OPERACIONES</h2>
+                            <a href="">
+                                <button>+ Nueva Operación</button>
+                            </a>
+                    </div>
+                    <div> <!-- Este div contendrá los reportes, en su defecto la imagen y los textos -->
+                        <img src="./imagen/proyectoControlGastos.png" alt="imagen de archivo">
+                        <h3>Sin resultados</h3>
+                        <h4>Cambia los filtros o agrega operaciones</h4>
+                    </div>
+                </div>
+            </section>
+            <!-- ---------------------------------- -->
+            <!-- Fin sección Balance-Filtro-Reporte -->
+            <!-- ---------------------------------- -->
+
+            <!-- ---------------------------------------- -->
+            <!--      Inicio sección Nueva Operación      -->
+            <!-- Se muestra con el botón +Nueva Operación -->
+            <!-- ---------------------------------------- -->
+            <section id="nuevaOperacion"> 
+                <div>
+                    <h2>NUEVA  OPERACIÓN</h2>
+                </div>
+                <div id="contenDescripcionOperacion">
+                    <label for="descripcionOperacion">Descripción</label>
+                    <input id="descripcionOperacion" type="text" >
+                </div>
+                <div id="contenMontoOperacion">
+                    <label for="montoOperacion">Monto</label>
+                    <input id="montoOperacion" type="text">
+                </div>
+                <div class="tipoFiltro">
+                    <label for="opcionTipo">Tipo</label>
+                    <select id="opcionTipo" name="" tabindex="0" aria-label="Opciones de tipos de filtro">
+                        <option value="" tabindex="1" aria-label="Todos">Todos</option>
+                        <option value="" tabindex="2" aria-label="Gasto">Gasto</option>
+                        <option value="" tabindex="3" aria-label="Ganancia">Ganancia</option>
+                    </select>
+                </div>
+                <div class="tipoCategoria">
+                    <label for="opcionCategoria">Categoría</label>
+                    <select id="opcionCategoria" name="" tabindex="0" aria-label="Opciones de categorías"> <!-- Estas categorías son trabajadas desde javaS -->
+                        <option value="" tabindex="0" aria-label="Todas">Todas</option>
+                        <option value="" tabindex="0" aria-label="Comidas">Comidas</option>
+                        <option value="" tabindex="0" aria-label="Servicios">Servicios</option>
+                        <option value="" tabindex="0" aria-label="Salidas">Salidas</option>
+                        <option value="" tabindex="0" aria-label="Educación">Educación</option>
+                        <option value="" tabindex="0" aria-label="Transporte">Transporte</option>
+                        <option value="" tabindex="0" aria-label="Trabajo">Servicios</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="fecha">Desde</label>
+                    <input type="date" id="fecha" name="fecha">
+                </div>
+                <div>
+                    <a href="">
+                        <button>Cancelar</button>
+                    </a>
+                    <a href="">
+                        <button>Agregar</button>
+                    </a>
+                </div>
+            </section> 
+            <!-- --------------------------- -->
+            <!-- Fin sección Nueva Operación -->
+            <!-- --------------------------- -->
+
+
+            <!-- ------------------------------------ -->
+            <!--      Inicio sección Categorías       -->
+            <!-- Esta sección se completa desde JavaS -->
+            <!-- ------------------------------------ -->
+            <section id="categorias"> 
+                <div>
+                    <h2>CATEGORÍAS</h2>
+                </div>
+                <div id="contenAltaCategoria">
+                    <label for="nombreCategoria">Nombre</label>
+                    <input id="nombreCategoria" type="text" >
+                    <a href="">
+                        <button>Agregar</button>
+                    </a>
+                </div>
+                <div id="contenListaCategorias"> <!-- Completamiento desde JavaS -->
+                </div>
+            <!-- ---------------------- -->
+            <!-- Fin sección Categorías -->
+            <!-- ---------------------- -->
+
+            <!-- ------------------------------------ -->
+            <!--      Inicio sección Reportes       -->
+            <!-- Esta sección se completa desde JavaS -->
+            <!-- ------------------------------------ -->
+            <section id="reportes"> 
+                <div>
+                    <h2>REPORTES</h2>
+                </div>
+
     
 </body>
 </html>
