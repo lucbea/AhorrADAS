@@ -12,52 +12,83 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
+
+		<!-- TailWind CSS  -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="tailwind.config.js"></script>
+
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<!-- ***************************** BODY *********************************** -->
-	<body>
-		<header>
-			<div>
-				<div>
-					<div>
-						<h1>
+	<body class="bg-gray-100">
+		<header class="w-full">
+			<div
+				class="bg-colPpal dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row items-center"
+			>
+				<div class="flex flex-row w-full md:w-[45%]">
+					<div class="w-[80%] min-w-[50px] pl-2.5">
+						<h1 class="font-Lora lg:text-5xl flex flex-row items-center">
 							<i class="fa-solid fa-wallet tamanio-ADA"></i>
-							<p>AhorrADAs</p>
+							<p class="pl-3 tamanio-ADA">AhorrADAs</p>
 						</h1>
 					</div>
 
-					<div>
-						<!--  abrir menú hamb  -->
-						<button>
+					<div class="w-[15%] text-white text-xl flex items-center justify-end">
+						<button class="md:hidden" id="abrir">
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</button>
-
-						<!--  cerrar menú hamb  -->
-						<button>
+						<button class="hidden md:hidden" id="cerrar">
 							<i class="fa fa-times-circle" aria-hidden="true"></i>
 						</button>
 					</div>
 				</div>
-				<div>
-					<div>
-						<a href="#">
+
+				<div
+					class="flex justify-center w-full md:justify-end bg-zinc-200 md:dark:bg-gray-500 md:bg-colPpal hidden md:flex"
+					id="nav"
+				>
+					<div
+						class="flex flex-col md:flex-row font-Lora text-sm md:text-lg items-center md:pr-[20px]"
+					>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							
+						>
 							<i class="fa-solid fa-house"></i>
 							Inicio
 						</a>
-						<a href="#">
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							
+						>
 							<i class="fa-solid fa-chart-line"></i>
 							Balance
 						</a>
 
-						<a href="#">
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							
+						>
 							<i class="fa-solid fa-list"></i>
 							Categorías
 						</a>
 
-						<a href="#">
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							
+						>
 							<i class="fa-solid fa-chart-pie"></i>
 							Reportes
 						</a>
-						<a href="#">
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							
+						>
 							<i class="fa fa-moon-o" aria-hidden="true"></i>
 						</a>
 					</div>
@@ -70,7 +101,7 @@
 			<!-- =================== CONTENEDOR Menú: Inicio  =================== -->
 			<div>
 				<img
-					src="img/ahorros.png"
+					src="imagen/ahorros.png"
 					alt="Imagen de portada"
 					aria-label="Imagen de portada, mujer ahorrando"
 				/>
@@ -110,9 +141,9 @@
 					<h2>Operaciones</h2>
 					<div>
 						<img
-							src="img/operaciones.svg"
-							alt="Imagen de Reportes"
-							aria-label="Imagen de reportes"
+							src="imagen/operaciones.svg"
+							alt="Imagen de Operaciones"
+							aria-label="Imagen de operaciones"
 						/>
 					</div>
 					<p>
