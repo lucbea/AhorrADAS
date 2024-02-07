@@ -1,12 +1,29 @@
-/* ================== Menú   ================ */
-
+/* ================== Menú  - y Menú Hambburguesa  ================ */
+const nav = document.getElementById("nav");
+const abrir = document.getElementById("abrir");
+const cerrar = document.getElementById("cerrar");
 
 const menuInicio = document.getElementById("menu-inicio");
 const menuBalance = document.getElementById("menu-balance");
 const menuCategorias = document.getElementById("menu-categorias");
 const menuReportes = document.getElementById("menu-reportes");
 
+abrir.addEventListener("click", () => {
+	nav.classList.remove("hidden");
+	cerrar.classList.remove("hidden");
+	abrir.classList.add("hidden");
+});
 
+function cerrarNav() {
+	nav.classList.add("hidden");
+	cerrar.classList.add("hidden");
+	abrir.classList.remove("hidden");
+}
+cerrar.addEventListener("click", cerrarNav);
+menuInicio.addEventListener("click", cerrarNav);
+menuBalance.addEventListener("click", cerrarNav);
+menuCategorias.addEventListener("click", cerrarNav);
+menuReportes.addEventListener("click", cerrarNav);
 
 const contenedor_menuInicio = document.getElementById("cont-menu-inicio");
 const contenedor_menuBalance = document.getElementById("cont-menu-balance");
