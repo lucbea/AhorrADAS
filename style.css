@@ -1,0 +1,27 @@
+/* Fuente par TÍTULOS - Lora*/
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+
+/* Fuente par TEXTOS - Raleway */
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+   .tamanio-ADA {
+      font-size: clamp(1rem, 0.1713rem + 4.4199vw, 3rem);
+   }
+   .tamanio-frase {
+      font-size: clamp(0.5rem, -0.0698rem + 3.0387vw, 1.875rem);
+      line-height: 2.25rem;
+   }
+}
+
+.fa-sun-o:before {
+   content: "\f185";
+}
+
+.fa-moon-o:before {
+   content: "\f186";
+}

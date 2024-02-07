@@ -17,12 +17,13 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="tailwind.config.js"></script>
 
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<!-- ***************************** BODY *********************************** -->
 	<body class="bg-gray-100">
 		<header class="w-full">
 			<div
-				class="bg-colPpal w-full h-[auto] md:h-[100px] flex flex-col md:flex-row items-center"
+				class="bg-colPpal dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row items-center"
 			>
 				<div class="flex flex-row w-full md:w-[45%]">
 					<div class="w-[80%] min-w-[50px] pl-2.5">
@@ -33,12 +34,9 @@
 					</div>
 
 					<div class="w-[15%] text-white text-xl flex items-center justify-end">
-						<!--  abrir menú hamb  -->
 						<button class="md:hidden" id="abrir">
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</button>
-
-						<!--  cerrar menú hamb  -->
 						<button class="hidden md:hidden" id="cerrar">
 							<i class="fa fa-times-circle" aria-hidden="true"></i>
 						</button>
@@ -46,15 +44,15 @@
 				</div>
 
 				<div
-					class="hidden md:flex justify-center w-full md:justify-end bg-zinc-200 md:bg-colPpal"
-					
+					class="flex justify-center w-full md:justify-end bg-zinc-200 md:dark:bg-gray-500 md:bg-colPpal hidden md:flex"
+					id="nav"
 				>
 					<div
-						class="flex flex-col md:flex-row font-Lora text-sm md:text-lg items-center"
+						class="flex flex-col md:flex-row font-Lora text-sm md:text-lg items-center md:pr-[20px]"
 					>
 						<a
 							href="#"
-							class="px-3 my-1 md:mx-1 md:my-0 py-1"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 							
 						>
 							<i class="fa-solid fa-house"></i>
@@ -62,7 +60,7 @@
 						</a>
 						<a
 							href="#"
-							class="px-3 my-1 md:mx-1 md:my-0 py-1 "
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 							
 						>
 							<i class="fa-solid fa-chart-line"></i>
@@ -71,7 +69,7 @@
 
 						<a
 							href="#"
-							class="px-3 my-1 md:mx-1 md:my-0 py-1 "
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 							
 						>
 							<i class="fa-solid fa-list"></i>
@@ -80,7 +78,7 @@
 
 						<a
 							href="#"
-							class="px-3 my-1 md:mx-1 md:my-0 py-1 "
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 							
 						>
 							<i class="fa-solid fa-chart-pie"></i>
@@ -88,7 +86,7 @@
 						</a>
 						<a
 							href="#"
-							class="px-3 my-1 md:mx-1 md:my-0 py-1"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 							
 						>
 							<i class="fa fa-moon-o" aria-hidden="true"></i>
