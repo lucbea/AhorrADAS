@@ -12,16 +12,19 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
+
+		<!-- TailWind CSS  -->
+		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
 	<!-- ***************************** BODY *********************************** -->
-	<body>
-		<header>
+	<body class="bg-gray-100">
+		<header class="w-full">
 			<div>
-				<div>
-					<div>
-						<h1>
+				<div class="flex flex-row w-full md:w-[45%]">
+					<div class="w-[80%] min-w-[50px] pl-2.5">
+						<h1 class="lg:text-5xl flex flex-row items-center">
 							<i class="fa-solid fa-wallet tamanio-ADA"></i>
-							<p>AhorrADAs</p>
+							<p class="pl-3">AhorrADAs</p>
 						</h1>
 					</div>
 
@@ -37,27 +40,30 @@
 						</button>
 					</div>
 				</div>
-				<div>
+
+				<div
+					class="w-[55%] flex justify-center w-full md:justify-end bg-zinc-200 md:bg-colPpal hidden md:flex"
+				>
 					<div>
-						<a href="#">
+						<a href="#" class="px-3 my-1 md:mx-1 md:my-0 py-1">
 							<i class="fa-solid fa-house"></i>
 							Inicio
 						</a>
-						<a href="#">
+						<a href="#" class="px-3 my-1 md:mx-1 md:my-0 py-1">
 							<i class="fa-solid fa-chart-line"></i>
 							Balance
 						</a>
 
-						<a href="#">
+						<a href="#" class="px-3 my-1 md:mx-1 md:my-0 py-1">
 							<i class="fa-solid fa-list"></i>
 							Categorías
 						</a>
 
-						<a href="#">
+						<a href="#" class="px-3 my-1 md:mx-1 md:my-0 py-1">
 							<i class="fa-solid fa-chart-pie"></i>
 							Reportes
 						</a>
-						<a href="#">
+						<a href="#" class="px-3 my-1 md:mx-1 md:my-0 py-1">
 							<i class="fa fa-moon-o" aria-hidden="true"></i>
 						</a>
 					</div>
