@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>* AhorrADAs *</title>
+		<title>$ AhorrADAs $</title>
 		<!-- STYLE para los iconos  -->
 		<link
 			rel="stylesheet"
@@ -117,12 +117,21 @@
 			<!-- ***************************************************************** -->
 			<!-- =================== CONTENEDOR Menú: Balance  =================== -->
 			<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
-			<div class="hidden" id="cont-menu-balance">
+			<div
+				class="flex flex-col lg:flex-row justify-between w-full max-w-[1200px] hidden"
+				id="cont-menu-balance"
+			>
 				<!-- contenedor BALANCE-FILTROS -->
 				<!-- contenedor BALANCE -->
-				<div>
-					<div>
-						<h2>Balance</h2>
+				<div class="flex flex-col w-full h-full lg:w-[40%]">
+					<div
+						class="bg-zinc-50 dark:bg-gray-300 h-[250px] lg:w-full m-4 p-5 rounded-lg shadow-2xl"
+					>
+						<h2
+							class="text-colSec dark:text-black font-Lora text-4xl font-bold"
+						>
+							Balance
+						</h2>
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
 							recusandae distinctio officiis. Voluptates explicabo aperiam omnis
@@ -131,8 +140,14 @@
 						</p>
 					</div>
 					<!-- contenedor FILTROS -->
-					<div>
-						<h2>Filtros</h2>
+					<div
+						class="bg-zinc-50 dark:bg-gray-300 h-[400px] lg:w-full m-4 p-5 rounded-lg shadow-2xl"
+					>
+						<h2
+							class="text-colSec dark:text-black font-Lora text-4xl font-bold"
+						>
+							Filtros
+						</h2>
 						<p>
 							Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 							Reiciendis quod eos, officiis molestias quibusdam non eius
@@ -143,13 +158,18 @@
 				</div>
 
 				<!-- contenedor OPERACIONES -->
-				<div>
-					<h2>Operaciones</h2>
-					<div>
+				<div
+					class="bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-[55%] m-4 p-5 rounded-lg shadow-2xl"
+				>
+					<h2 class="text-colSecdark:text-black font-Lora text-4xl font-bold">
+						Operaciones
+					</h2>
+					<div class="flex justify-center m-10">
 						<img
+							class="w-[50%] grayscale-0 dark:grayscale"
 							src="imagen/operaciones.svg"
-							alt="Imagen de Operaciones"
-							aria-label="Imagen de operaciones"
+							alt="Imagen de Reportes"
+							aria-label="Imagen de reportes"
 						/>
 					</div>
 					<p>
@@ -179,21 +199,33 @@
 			</div>
 			<!-- ***************************************************************** -->
 			<!-- =================== CONTENEDOR Menú: Reportes  =================== -->
-			<div class="hidden" id="cont-menu-reportes">
-				<h2>Reportes</h2>
-				<div>
+			<div
+				class="bg-zinc-50 dark:bg-gray-300 h-[auto] w-full m-4 p-5 rounded-lg shadow-2xl max-w-[900px] hidden"
+				id="cont-menu-reportes"
+			>
+				<!-- título -->
+				<h2
+					class="text-colSec dark:text-black font-Lora text-4xl font-bold my-5"
+				>
+					Reportes
+				</h2>
+
+				<!-- Esta img se muestra cuando NO hay reportes-->
+				<div
+					class="flex flex-col justify-center items-center m-10"
+					id="cont-sin-reporte"
+				>
 					<img
+						class="w-[50%] grayscale-0 dark:grayscale m-10"
 						src="imagen/reportes.svg"
 						alt="Imagen de Reportes"
 						aria-label="Imagen de reportes"
 					/>
+					<h2 class="text-[red]">
+						No se puede generar REPORTES por falta de "Operaciones".
+					</h2>
+					<h3>Diríjase el menú Balance y comience a registrar operaciones.</h3>
 				</div>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore
-					nesciunt amet odio inventore sequi nulla commodi molestiae ut saepe.
-					Eveniet consequatur autem sunt id odit fugiat repudiandae vel fuga
-					nemo! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-				</p>
 			</div>
 		</main>
 	</body>
