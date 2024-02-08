@@ -1,11 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AhorrADAS</title>
-</head>
-<body>
-    
-</body>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>$ AhorrADAs $</title>
+		<!-- STYLE para los iconos  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<!-- TailWind CSS  -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="tailwind.config.js"></script>
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<!-- ***************************** BODY *********************************** -->
+	<body class="bg-gray-100">
+		<header class="w-full">
+			<div
+				class="bg-colPpal dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row items-center"
+			>
+				<div class="flex flex-row w-full md:w-[45%]">
+					<div class="w-[80%] min-w-[50px] pl-2.5">
+						<h1 class="font-Lora lg:text-5xl flex flex-row items-center">
+							<i class="fa-solid fa-wallet tamanio-ADA"></i>
+							<p class="pl-3 tamanio-ADA">AhorrADAs</p>
+						</h1>
+					</div>
+
+					<div class="w-[15%] text-white text-xl flex items-center justify-end">
+						<button class="md:hidden" id="abrir">
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</button>
+						<button class="hidden md:hidden" id="cerrar">
+							<i class="fa fa-times-circle" aria-hidden="true"></i>
+						</button>
+					</div>
+				</div>
+
+				<div
+					class="flex justify-center w-full md:justify-end bg-zinc-200 md:dark:bg-gray-500 md:bg-colPpal hidden md:flex"
+					id="nav"
+				>
+					<div
+						class="flex flex-col md:flex-row font-Lora text-sm md:text-lg items-center md:pr-[20px]"
+					>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-inicio"
+						>
+							<i class="fa-solid fa-house"></i>
+							Inicio
+						</a>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-balance"
+						>
+							<i class="fa-solid fa-chart-line"></i>
+							Balance
+						</a>
+
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-categorias"
+						>
+							<i class="fa-solid fa-list"></i>
+							Categorías
+						</a>
+
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-reportes"
+						>
+							<i class="fa-solid fa-chart-pie"></i>
+							Reportes
+						</a>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="btn-claro-oscuro"
+						>
+							<i class="fa fa-moon-o" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="w-full h-full flex justify-center">
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Inicio  =================== -->
+			<div
+				class="font-Lora flex flex-col items-center justify-center max-w-[1200px]"
+				id="cont-menu-inicio"
+			>
+				<img
+					class="w-[80%] grayscale-0 dark:grayscale"
+					src="imagen/ahorros.png"
+					alt="Imagen de portada"
+					aria-label="Imagen de portada, mujer ahorrando"
+				/>
+				<p class="tamanio-frase lg:text-3xl">
+					Bienvenidos al Sistema de Control de Gastos e Ingresos
+				</p>
+				<p class="tamanio-frase font-black lg:text-3xl">AhorrADAs</p>
+			</div>
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Balance  =================== -->
+			<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
+			<div
+				class="flex flex-col lg:flex-row justify-between w-full max-w-[1200px] hidden"
+				id="cont-menu-balance"
+			>
+				<!-- contenedor BALANCE-FILTROS -->
+				<!-- contenedor BALANCE -->
+				<div class="flex flex-col w-full h-full lg:w-[40%]">
+					<div
+						class="bg-zinc-50 dark:bg-gray-300 h-[250px] lg:w-full m-4 p-5 rounded-lg shadow-2xl"
+					>
+						<h2
+							class="text-colSec dark:text-black font-Lora text-4xl font-bold"
+						>
+							Balance
+						</h2>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+							recusandae distinctio officiis. Voluptates explicabo aperiam omnis
+							tenetur, vero sequi dolores repellendus, iusto corporis quisquam
+							aliquam minima esse reiciendis modi cupiditate.
+						</p>
+					</div>
+					<!-- contenedor FILTROS -->
+					<div
+						class="bg-zinc-50 dark:bg-gray-300 h-[400px] lg:w-full m-4 p-5 rounded-lg shadow-2xl"
+					>
+						<h2
+							class="text-colSec dark:text-black font-Lora text-4xl font-bold"
+						>
+							Filtros
+						</h2>
+						<p>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+							Reiciendis quod eos, officiis molestias quibusdam non eius
+							adipisci nihil, hic totam accusantium, laudantium quam delectus
+							molestiae voluptas. Minima nisi voluptatibus eos?
+						</p>
+					</div>
+				</div>
+
+				<!-- contenedor OPERACIONES -->
+				<div
+					class="bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-[55%] m-4 p-5 rounded-lg shadow-2xl"
+				>
+					<h2 class="text-colSecdark:text-black font-Lora text-4xl font-bold">
+						Operaciones
+					</h2>
+					<div class="flex justify-center m-10">
+						<img
+							class="w-[50%] grayscale-0 dark:grayscale"
+							src="imagen/operaciones.svg"
+							alt="Imagen de Reportes"
+							aria-label="Imagen de reportes"
+						/>
+					</div>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+						voluptates voluptatibus dolorum expedita eveniet veniam similique
+						provident nam architecto ab esse quis sed eaque quo quod natus,
+						facilis vitae quaerat!
+					</p>
+				</div>
+			</div>
+
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Categorías  =================== -->
+			<div
+				class="hidden bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-full m-4 p-5 rounded-lg shadow-2xl max-w-[1100px]"
+				id="cont-menu-categorias"
+			>
+				<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold">
+					Categorías
+				</h2>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore
+					nesciunt amet odio inventore sequi nulla commodi molestiae ut saepe.
+					Eveniet consequatur autem sunt id odit fugiat repudiandae vel fuga
+					nemo!
+				</p>
+			</div>
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Reportes  =================== -->
+			<div
+				class="bg-zinc-50 dark:bg-gray-300 h-[auto] w-full m-4 p-5 rounded-lg shadow-2xl max-w-[900px] hidden"
+				id="cont-menu-reportes"
+			>
+				<!-- título -->
+				<h2
+					class="text-colSec dark:text-black font-Lora text-4xl font-bold my-5"
+				>
+					Reportes
+				</h2>
+
+				<!-- Esta img se muestra cuando NO hay reportes-->
+				<div
+					class="flex flex-col justify-center items-center m-10"
+					id="cont-sin-reporte"
+				>
+					<img
+						class="w-[50%] grayscale-0 dark:grayscale m-10"
+						src="imagen/reportes.svg"
+						alt="Imagen de Reportes"
+						aria-label="Imagen de reportes"
+					/>
+					<h2 class="text-[red]">
+						No se puede generar REPORTES por falta de "Operaciones".
+					</h2>
+					<h3>Diríjase el menú Balance y comience a registrar operaciones.</h3>
+				</div>
+			</div>
+		</main>
+	</body>
+	<!-- JavaScript -->
+	<script src="script.js"></script>
 </html>
