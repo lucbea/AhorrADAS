@@ -202,6 +202,7 @@
 			</div>
 			<!-- ***************************************************************** -->
 			<!-- =================== CONTENEDOR Menú: Reportes  =================== -->
+
 			<div
 				class="bg-zinc-50 dark:bg-gray-300 h-[auto] w-full m-4 p-5 rounded-lg shadow-2xl max-w-[900px] hidden"
 				id="cont-menu-reportes"
@@ -212,7 +213,6 @@
 				>
 					Reportes
 				</h2>
-
 				<!-- Esta img se muestra cuando NO hay reportes-->
 				<div
 					class="flex flex-col justify-center items-center m-10"
@@ -224,14 +224,85 @@
 						alt="Imagen de Reportes"
 						aria-label="Imagen de reportes"
 					/>
-					<h2 class="text-[red]">
+					<h2 class="text-[red] items-center">
 						No se puede generar REPORTES por falta de "Operaciones".
 					</h2>
 					<h3>Diríjase el menú Balance y comience a registrar operaciones.</h3>
 				</div>
+				<!-- Esta info se muestra cuando SI hay reportes-->
+				<div
+					class="flex flex-col my-10 text-sm sm:text-base md:text-lg hidden"
+					id="cont-con-reporte"
+				>
+					<!--            resumen               -->
+					<div
+						class="flex flex-col mb-5 border-2 rounded-lg border-indigo-100 dark:border-gray-400"
+					>
+						<h4 class="text-3xl m-5">Resumen</h4>
+
+						<div class="flex my-4 ml-3">
+							<div class="w-[57%] text-balance">
+								Categoría con mayor ganancia
+							</div>
+							<div class="w-[20%] flex justify-end">xxxxxxxxx</div>
+							<div class="w-[20%] flex justify-end">999999</div>
+						</div>
+						<div class="flex my-4 ml-3">
+							<div class="w-[57%] text-balance">Categoría con mayor gasto</div>
+							<div class="w-[20%] flex justify-end">xxxxxxxxx</div>
+							<div class="w-[20%] flex justify-end">999999</div>
+						</div>
+						<div class="flex my-4 ml-3">
+							<div class="w-[57%] text-balance">
+								Categoría con mayor balance
+							</div>
+							<div class="w-[20%] flex justify-end">xxxxxxxxx</div>
+							<div class="w-[20%] flex justify-end">999999</div>
+						</div>
+						<div class="flex my-4 ml-3">
+							<div class="w-[57%] text-balance">Mes con mayor ganancia</div>
+							<div class="w-[20%] flex justify-end">xxxxxxxxx</div>
+							<div class="w-[20%] flex justify-end">999999</div>
+						</div>
+						<div class="flex my-4 ml-3">
+							<div class="w-[57%] text-balance">Mes con mayor gasto</div>
+							<div class="w-[20%] flex justify-end">xxxxxxxxx</div>
+							<div class="w-[20%] flex justify-end">999999</div>
+						</div>
+					</div>
+					<!--            total por categorías               -->
+					<div
+						class="mb-5 border-2 rounded-lg border-indigo-100 dark:border-gray-400"
+					>
+						<h4 class="text-3xl m-5">Total por Categorías</h4>
+
+						<div class="flex justify-between mb-10 ml-3">
+							<div class="w-[19%]">Categoría</div>
+							<div class="w-[19%]">Ganancia</div>
+							<div class="w-[19%]">Gastos</div>
+							<div class="w-[19%]">Balance</div>
+						</div>
+					</div>
+
+					<!--            total por MES               -->
+					<div
+						class="border-2 rounded-lg border-indigo-100 dark:border-gray-400"
+					>
+						<h4 class="text-3xl m-5">Total por Mes</h4>
+
+						<div class="flex justify-between mb-10 ml-3">
+							<div class="w-[20%]">Categoría</div>
+							<div class="w-[20%]">Ganancia</div>
+							<div class="w-[20%]">Gastos</div>
+							<div class="w-[20%]">Balance</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			<!-- ***************************************************************** -->
 		</main>
 	</body>
 	<!-- JavaScript -->
 	<script src="script.js"></script>
+	<script src="scriptReportes.js"></script>
 </html>
