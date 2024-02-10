@@ -126,8 +126,8 @@ localStorage.setItem("operaciones", JSON.stringify(l_operaciones));
 
 /* ******* HASTA AQUI DSPS BORRRAAAAAAAAARRRRRRRRRRRRRR */
 
-/* ---------------------------------------------------- */
-/* Función que calcula la Categoría con Mayor GANANCIA y con Mayor GASTO */
+/* ------------------------------------------------ */
+/* "Categoría" con Mayor GANANCIA y con Mayor GASTO */
 function CatMayorGananciaGasto(tipo, mayor) {
 	categorias.forEach((cat) => {
 		const filtrarOperPorCat = operaciones.filter(
@@ -147,8 +147,8 @@ function CatMayorGananciaGasto(tipo, mayor) {
 	});
 }
 
-/* ---------------------------------------------------- */
-/* Función que calcula la Categoría con Mayor BALANCE */
+/* ------------------------------------------------ */
+/* Categoría con Mayor BALANCE */
 function CatMayorBalance(mayor) {
 	categorias.forEach((cat) => {
 		const filtrarOperPorCat = operaciones.filter(
@@ -170,6 +170,47 @@ function CatMayorBalance(mayor) {
 	});
 }
 
+/* ------------------------------------------------ */
+/* "MES" con Mayor GANANCIA y con Mayor GASTO */
+function MesMayorGananciaGasto(tipo, mayor) {
+	let arrayAnioMes = [];
+	operaciones.forEach((oper) => {
+		const fechaOper = new Date(oper.fecha);
+		const anio = fechaOper.getFullYear();
+		const mes = fechaOper.getMonth();
+
+		if (
+			oper.tipo === tipo &&
+			!arrayAnioMes.some((e) => anio === e.anio && mes === e.mes)
+		) {
+			arrayAnioMes.push({
+				anio: fechaOper.getFullYear(),
+				mes: fechaOper.getMonth(),
+			});
+		}
+	});
+
+	arrayAnioMes.forEach((anioMes) => {
+		const filtrarOperPorMes = operaciones.filter(
+			(oper) =>
+				oper.tipo === tipo &&
+				new Date(oper.fecha).getFullYear() === anioMes.anio &&
+				new Date(oper.fecha).getMonth() === anioMes.mes
+		);
+
+		let totalCat = 0;
+		if (filtrarOperPorMes.length !== 0) {
+			totalCat = filtrarOperPorMes.reduce(function (total, oper) {
+				return total + oper.monto;
+			}, 0);
+		}
+		if (totalCat >= mayor.importe) {
+			mayor.importe = totalCat;
+			mayor.mes = `${meses[anioMes.mes]}/${anioMes.anio}`;
+		}
+	});
+}
+
 /* ======================== MOSTRAR CON/SIN REPORTES ========================  */
 /* Mostrar Imagen, y texto SIN REPORTES */
 const cont_sin_reporte = document.getElementById("cont-sin-reporte");
@@ -182,14 +223,35 @@ const cat_may_gast_imp = document.getElementById("cat-may-gast-imp");
 const cat_may_bala_nom = document.getElementById("cat-may-bala-nom");
 const cat_may_bala_imp = document.getElementById("cat-may-bala-imp");
 
+const mes_may_gana_nom = document.getElementById("mes-may-gana-nom");
+const mes_may_gana_imp = document.getElementById("mes-may-gana-imp");
+const mes_may_gast_nom = document.getElementById("mes-may-gast-nom");
+const mes_may_gast_imp = document.getElementById("mes-may-gast-imp");
+
 let categorias = [];
 let operaciones = [];
+const meses = [
+	/* Meses para Mes CON MAYOR ganancia */ "ENERO",
+	"FEBRERO",
+	"MARZO",
+	"ABRIL",
+	"MAYO",
+	"JUNIO",
+	"JULIO",
+	"AGOSTO",
+	"SEPTIEMBRE",
+	"OCTUBRE",
+	"NOVIEMBRE",
+	"DICIEMBRE",
+];
 
+/* ------------------------------------------------ */
 function mostrarSinReportes() {
 	cont_sin_reporte.classList.remove("hidden");
 	cont_con_reporte.classList.add("hidden");
 }
 
+/* ------------------------------------------------ */
 /* Mostrar CON REPORTES */
 function mostrarConReportes() {
 	cont_sin_reporte.classList.add("hidden");
@@ -230,6 +292,30 @@ function mostrarConReportes() {
 	CatMayorBalance(mayor);
 	cat_may_bala_nom.innerHTML = `${mayor.nombreCategoria}`;
 	cat_may_bala_imp.innerHTML = `$: ${mayor.importeCategoria.toLocaleString(
+		"es-ES"
+	)}`;
+
+	/* -------------------------- */
+	/*  Mes CON MAYOR GANANCIA */
+	let mayorAnioMes = {
+		mes: "",
+		importe: 0,
+	};
+	MesMayorGananciaGasto("GANANCIA", mayorAnioMes);
+	mes_may_gana_nom.innerHTML = `${mayorAnioMes.mes}`;
+	mes_may_gana_imp.innerHTML = `$: ${mayorAnioMes.importe.toLocaleString(
+		"es-ES"
+	)}`;
+
+	/* -------------------------- */
+	/*  Mes CON MAYOR GASTO */
+	mayorAnioMes = {
+		mes: "",
+		importe: 0,
+	};
+	MesMayorGananciaGasto("GASTO", mayorAnioMes);
+	mes_may_gast_nom.innerHTML = `${mayorAnioMes.mes}`;
+	mes_may_gast_imp.innerHTML = `-$ ${mayorAnioMes.importe.toLocaleString(
 		"es-ES"
 	)}`;
 }
