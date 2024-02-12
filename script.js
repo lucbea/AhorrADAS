@@ -55,6 +55,7 @@ menuCategorias.addEventListener("click", () => {
 
 menuReportes.addEventListener("click", () => {
 	mostrar(contenedor_menuReportes);
+	mostrarReportes(); /* ver en scriptReporte.js */
 });
 
 /* ======================== CLARO - OSCURO ========================  */

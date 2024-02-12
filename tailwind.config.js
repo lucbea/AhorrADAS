@@ -9,7 +9,7 @@ tailwind.config = {
 		extend: {
 			fontFamily: {
 				Lora: ['"Lora"'],
-				Raleway: ['"Raleway"'],
+				Roboto: ['"Roboto"'],
 			},
 			colors: {
 				colPpal: "#A3C3F2",
