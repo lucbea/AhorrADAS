@@ -1,46 +1,8 @@
-/* *******  DESPUES BORRAR  */
-const l_categorias = [
-	{
-		id: "c377b47a-f80c-4be5-8f9d-ead89cbb0a4a",
-		nombre: "COMIDA ITALIANA",
-	},
-	{
-		id: "42948a68-efd1-4bc2-932c-4a8539823c54",
-		nombre: "SERVICIOS",
-	},
-	{
-		id: "ac295847-93c5-4fc8-b4ab-ecda5e8f4bb0",
-		nombre: "SALIDAS",
-	},
-	{
-		id: "de2a87a2-5eb4-4fe3-a300-d95a33b0e777",
-		nombre: "EDUCACIÓN",
-	},
-	{
-		id: "33bded42-a463-4dd1-a0ee-c115597e7f37",
-		nombre: "TRANSPORTE",
-	},
-	{
-		id: "b6d68d8a-8036-4115-883b-5cb57c1c3813",
-		nombre: "TRABAJO DIARIO ALOCADO",
-	},
-	{
-		id: "e989043c-7d70-4e22-9534-0b3ccdf83be3",
-		nombre: "ALQUILER DE LA CASA",
-	},
-];
-
-const l_operaciones = [];
-
-localStorage.setItem("categorias", JSON.stringify(l_categorias));
-localStorage.setItem("operaciones", JSON.stringify(l_operaciones));
-
-/* ******* HASTA AQUI DSPS BORRRAAAAAAAAARRRRRRRRRRRRRR */
 /* =============================================================== */
 /* "Categoría" con Mayor GANANCIA y con Mayor GASTO */
 function CatMayorGananciaGasto(tipo, mayor) {
-	categorias.forEach((cat) => {
-		const filtrarOperPorCat = operaciones.filter(
+	categReporte.forEach((cat) => {
+		const filtrarOperPorCat = operaReporte.filter(
 			(oper) => oper.tipo === tipo && cat.id === oper.categoria
 		);
 
@@ -60,8 +22,8 @@ function CatMayorGananciaGasto(tipo, mayor) {
 /* =============================================================== */
 /* Categoría con Mayor BALANCE */
 function CatMayorBalance(mayor) {
-	categorias.forEach((cat) => {
-		const filtrarOperPorCat = operaciones.filter(
+	categReporte.forEach((cat) => {
+		const filtrarOperPorCat = operaReporte.filter(
 			(oper) => cat.id === oper.categoria
 		);
 
@@ -84,7 +46,7 @@ function CatMayorBalance(mayor) {
 /* "MES" con Mayor GANANCIA y con Mayor GASTO */
 function MesMayorGananciaGasto(tipo, mayor) {
 	let arrayAnioMes = [];
-	operaciones.forEach((oper) => {
+	operaReporte.forEach((oper) => {
 		const fechaOper = new Date(oper.fecha);
 		const anio = fechaOper.getFullYear();
 		const mes = fechaOper.getMonth();
@@ -101,7 +63,7 @@ function MesMayorGananciaGasto(tipo, mayor) {
 	});
 
 	arrayAnioMes.forEach((anioMes) => {
-		const filtrarOperPorMes = operaciones.filter(
+		const filtrarOperPorMes = operaReporte.filter(
 			(oper) =>
 				oper.tipo === tipo &&
 				new Date(oper.fecha).getFullYear() === anioMes.anio &&
@@ -124,8 +86,8 @@ function MesMayorGananciaGasto(tipo, mayor) {
 /* =============================================================== */
 /*  TOTALES por CATEGORIA (Ganancia-Gasto-Balance) */
 function totalesPorCat(totales) {
-	categorias.forEach((cat) => {
-		const filtrarOperPorCat = operaciones.filter(
+	categReporte.forEach((cat) => {
+		const filtrarOperPorCat = operaReporte.filter(
 			(oper) => cat.id === oper.categoria
 		);
 
@@ -150,7 +112,7 @@ function totalesPorCat(totales) {
 /*  TOTALES por MESES (Ganancia-Gasto-Balance) */
 function totalesPorMes(totales) {
 	let arrayAnioMes = [];
-	operaciones.forEach((oper) => {
+	operaReporte.forEach((oper) => {
 		const fechaOper = new Date(oper.fecha);
 		const anio = fechaOper.getFullYear();
 		const mes = fechaOper.getMonth();
@@ -164,7 +126,7 @@ function totalesPorMes(totales) {
 	});
 
 	arrayAnioMes.forEach((anioMes) => {
-		const filtrarOperPorMes = operaciones.filter(
+		const filtrarOperPorMes = operaReporte.filter(
 			(oper) =>
 				new Date(oper.fecha).getFullYear() === anioMes.anio &&
 				new Date(oper.fecha).getMonth() === anioMes.mes
@@ -217,10 +179,10 @@ const mes_may_gast_imp = document.getElementById("mes-may-gast-imp");
 const totales_por_categoria = document.getElementById("totales-por-categoria");
 const totales_por_mes = document.getElementById("totales-por-mes");
 
-let categorias = [];
-let operaciones = [];
+let categReporte = [];
+let operaReporte = [];
 const meses = [
-	"ENE",
+	/* Meses para Mes CON MAYOR ganancia */ "ENE",
 	"FEB",
 	"MAR",
 	"ABR",
@@ -246,8 +208,8 @@ function mostrarConReportes() {
 	cont_sin_reporte.classList.add("hidden");
 	cont_con_reporte.classList.remove("hidden");
 
-	categorias = JSON.parse(localStorage.getItem("categorias"));
-	operaciones = JSON.parse(localStorage.getItem("operaciones"));
+	categReporte = JSON.parse(localStorage.getItem("categorias"));
+	operaReporte = JSON.parse(localStorage.getItem("operaciones"));
 
 	/* -------------------------- */
 	/*  CATEGORIA CON MAYOR GANANCIA */
