@@ -78,7 +78,7 @@ function MesMayorGananciaGasto(tipo, mayor) {
 		}
 		if (totalCat >= mayor.importe) {
 			mayor.importe = totalCat;
-			mayor.mes = `${meses[anioMes.mes]}/${anioMes.anio}`;
+			mayor.mes = `${meses[anioMes.mes]}-${anioMes.anio}`;
 		}
 	});
 }

@@ -104,7 +104,6 @@ function modoClaroOscuro() {
 /* =============================================================== */
 /* para Operaciones BALANCE Y FILTROS */
 
-/* Carga todas las categorias para selecciona en "Filtros" */
 const filtro_categoria = document.getElementById("filtro-categoria");
 function cargarCategorias() {
 	filtro_categoria.innerHTML = `<option value="TODAS">TODAS</option>`;
@@ -114,7 +113,6 @@ function cargarCategorias() {
 	});
 }
 
-/* Inicializa la fecha con la fecha del día */
 function inicializarFechaFiltro() {
 	var fecha = new Date();
 	document
@@ -122,7 +120,6 @@ function inicializarFechaFiltro() {
 		.setAttribute("value", fecha.toJSON().slice(0, 10));
 }
 
-/* Muestra/Oculta contenedor filtros */
 const ocultar_filtros = document.getElementById("ocultar-filtros");
 const contenedor_filtros = document.getElementById("contenedor-filtros");
 ocultar_filtros.addEventListener("click", () => {
@@ -134,7 +131,7 @@ ocultar_filtros.addEventListener("click", () => {
 	}
 });
 
-/* Para filtrar operaciones */
+/*--------------- Para filtrar operaciones -----------------------*/
 const filtro_tipo = document.getElementById("filtro-tipo");
 const filtro_cate = document.getElementById("filtro-categoria");
 const filtro_fecha = document.getElementById("filtro-fecha");
@@ -153,17 +150,14 @@ function nombreCat(id) {
 	return resultado.nombre;
 }
 
-function toMSeg(dateStr) {
-	const [anio, mes, dia] = dateStr.split("/");
-	return new Date(anio, mes - 1, dia).getTime();
-}
-
 function masReciente(operaFiltro, como) {
 	if (como === "A") {
-		operaFiltro.sort((a, b) => toMSeg(a.fecha) - toMSeg(b.fecha));
+		operaFiltro.sort((a, b) => {
+			return new Date(a.fecha) - new Date(b.fecha);
+		});
 	} else {
-		operaFiltro.sort(function (a, b) {
-			return toMSeg(a.fecha) - toMSeg(b.fecha);
+		operaFiltro.sort((a, b) => {
+			return new Date(b.fecha) - new Date(a.fecha);
 		});
 	}
 }
@@ -210,24 +204,31 @@ function ordenarOperaciones(operaFiltro, orden) {
 	}
 }
 
+function formatFecha(f) {
+	let fc = new Date(f);
+	let ff;
+	fc.getDate() < 10
+		? (ff = "0" + fc.getDate() + "-")
+		: (ff = fc.getDate() + "-");
+	fc.getMonth() + 1 < 10
+		? (ff += "0" + (fc.getMonth() + 1) + "-")
+		: (ff += fc.getMonth() + 1 + "-");
+	ff += fc.getFullYear();
+	return ff;
+}
+
+/* === Función ppal que llmanan TODOS los FILTROS cada vez que hay un cambio ===== */
 function filtrar_oper() {
 	let x;
 	let sumaGana = 0;
 	let sumaGasto = 0;
 	operaFiltro = JSON.parse(localStorage.getItem("operaciones"));
+
 	const tipo = filtro_tipo.value;
 	const cate = filtro_cate.value;
-
-	const fec_sel = new Date(`${filtro_fecha.value}T00:00:00`);
-	const fecha =
-		fec_sel.getFullYear() +
-		"/" +
-		(fec_sel.getMonth() + 1) +
-		"/" +
-		fec_sel.getDate();
+	const fechaDesde = new Date(`${filtro_fecha.value}T00:00:00`);
 	const orden = filtro_orden.value;
 
-	/* Filtrar */
 	if (tipo !== "TODO") {
 		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
 	}
@@ -237,12 +238,12 @@ function filtrar_oper() {
 	}
 
 	operaFiltro = operaFiltro.filter(function (op) {
-		return toMSeg(op.fecha) > toMSeg(fecha);
+		return fechaDesde < new Date(op.fecha);
 	});
 
-	/* Ordenar */
 	ordenarOperaciones(operaFiltro, orden);
 
+	/* Si hay datos después de filtrar... */
 	if (operaFiltro.length > 0) {
 		document.getElementById("cont-sin-oper").classList.add("hidden");
 		cont_con_oper.classList.remove("hidden");
@@ -259,13 +260,11 @@ function filtrar_oper() {
 					Math.abs(op.monto)
 				)} </div>`;
 			}
-			let f = new Date(op.fecha);
-			f = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
 
 			con_oper_listado.innerHTML += `<div class="flex">
-							<div class="w-[30%]">${op.descripcion.toUpperCase() + "-" + op.tipo}</div>
+							<div class="w-[30%]">${op.descripcion.toUpperCase() + " - " + op.tipo}</div>
 							<div class="w-[30%]">${nombreCat(op.categoria)}</div>
-							<div class="w-[15%]">${f}</div>
+							<div class="w-[15%]">${formatFecha(op.fecha)}</div>
 							<div class="w-[16%] flex justify-end">${x}</div>
 							<div class="w-[9%]  flex justify-end"> Edi-Eli</div>
 						</div>`;
