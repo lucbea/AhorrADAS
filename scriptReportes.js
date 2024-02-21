@@ -363,11 +363,17 @@ function mostrarConReportes() {
 /* ------------------------------------------------ */
 /* viene de SCRIPT.JS */
 function mostrarReportes() {
+	let lonCate = 0;
+	let lonOper = 0;
+	if (localStorage.getItem("categorias") !== null) {
+		lonCate = JSON.parse(localStorage.getItem("categorias")).length;
+	}
 	if (localStorage.getItem("operaciones") !== null) {
-		const lon = JSON.parse(localStorage.getItem("operaciones")).length;
-		if (lon > 0) {
-			mostrarConReportes();
-		}
+		lonOper = JSON.parse(localStorage.getItem("operaciones")).length;
+	}
+
+	if (lonCate > 0 && lonOper > 0) {
+		mostrarConReportes();
 	} else {
 		mostrarSinReportes();
 	}
