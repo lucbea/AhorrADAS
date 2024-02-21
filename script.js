@@ -2,6 +2,7 @@
 /* OOOOOOOOOOOOOOO jjjjjjjjj oooooooooooooo ver con que nombre usa Lucía */
 let categFiltro = [];
 let operaFiltro = [];
+/* ----------------------------------------------------------------------------------- */
 
 /* ================== Menú  - y Menú Hambburguesa  ================ */
 const nav = document.getElementById("nav");
@@ -53,9 +54,19 @@ menuInicio.addEventListener("click", () => {
 menuBalance.addEventListener("click", () => {
 	mostrar(contenedor_menuBalance);
 	inicializarFechaFiltro();
-	categFiltro = JSON.parse(localStorage.getItem("categorias"));
-	cargarCategorias();
-	filtrar_oper();
+
+	if (controlarSiHayCateOper()) {
+		/* Si hay categorías y operaciones, entonces se habilita "Mostrar filtros" y 
+		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
+		document.getElementById("ocultar-filtros").classList.remove("hidden");
+		categFiltro = JSON.parse(localStorage.getItem("categorias"));
+		cargarCategorias();
+		filtrar_oper();
+	} else {
+		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
+		el mensaje de cargar "nuevas operaciones" */
+		document.getElementById("ocultar-filtros").classList.add("hidden");
+	}
 });
 
 menuCategorias.addEventListener("click", () => {
@@ -66,6 +77,7 @@ menuReportes.addEventListener("click", () => {
 	mostrar(contenedor_menuReportes);
 	mostrarReportes(); /* ver en scriptReporte.js */
 });
+/* ----------------------------------------------------------------------------------- */
 
 /* ======================== CLARO - OSCURO ========================  */
 const btn_claro_oscuro = document.getElementById("btn-claro-oscuro");
@@ -99,10 +111,27 @@ function modoClaroOscuro() {
 		document.documentElement.classList.remove("dark");
 	}
 }
-/* ------------------------------------------------------------------------------------------------ */
+/* ----------------------------------------------------------------------------------- */
 
-/* =============================================================== */
+/* ================================================================ */
 /* para Operaciones BALANCE Y FILTROS */
+/* Por si borraron todas las categorías o todas las operaciones */
+function controlarSiHayCateOper() {
+	let lonCate = 0;
+	let lonOper = 0;
+	if (localStorage.getItem("categorias") !== null) {
+		lonCate = JSON.parse(localStorage.getItem("categorias")).length;
+	}
+	if (localStorage.getItem("operaciones") !== null) {
+		lonOper = JSON.parse(localStorage.getItem("operaciones")).length;
+	}
+
+	if (lonCate > 0 && lonOper > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 const filtro_categoria = document.getElementById("filtro-categoria");
 function cargarCategorias() {
@@ -144,11 +173,6 @@ filtro_tipo.addEventListener("change", filtrar_oper);
 filtro_cate.addEventListener("change", filtrar_oper);
 filtro_fecha.addEventListener("change", filtrar_oper);
 filtro_orden.addEventListener("change", filtrar_oper);
-
-function nombreCat(id) {
-	const resultado = categFiltro.find((c) => c.id === id);
-	return resultado.nombre;
-}
 
 function masReciente(operaFiltro, como) {
 	if (como === "A") {
@@ -208,13 +232,23 @@ function formatFecha(f) {
 	let fc = new Date(f);
 	let ff;
 	fc.getDate() < 10
-		? (ff = "0" + fc.getDate() + "-")
-		: (ff = fc.getDate() + "-");
+		? (ff = "0" + fc.getDate() + "/")
+		: (ff = fc.getDate() + "/");
 	fc.getMonth() + 1 < 10
-		? (ff += "0" + (fc.getMonth() + 1) + "-")
-		: (ff += fc.getMonth() + 1 + "-");
+		? (ff += "0" + (fc.getMonth() + 1) + "/")
+		: (ff += fc.getMonth() + 1 + "/");
 	ff += fc.getFullYear();
 	return ff;
+}
+
+/* Busca nombre de las Categorías para mostrar */
+function nombreCat(id) {
+	const resultado = categFiltro.find((c) => c.id === id);
+	if (resultado === undefined) {
+		return "Sin categoría.";
+	} else {
+		return resultado.nombre;
+	}
 }
 
 /* === Función ppal que llmanan TODOS los FILTROS cada vez que hay un cambio ===== */
@@ -262,7 +296,7 @@ function filtrar_oper() {
 			}
 
 			con_oper_listado.innerHTML += `<div class="flex">
-							<div class="w-[30%]">${op.descripcion.toUpperCase() + " - " + op.tipo}</div>
+							<div class="w-[30%]">${op.descripcion.toUpperCase() + "-" + op.tipo}</div>
 							<div class="w-[30%]">${nombreCat(op.categoria)}</div>
 							<div class="w-[15%]">${formatFecha(op.fecha)}</div>
 							<div class="w-[16%] flex justify-end">${x}</div>
@@ -290,6 +324,7 @@ function filtrar_oper() {
 		cont_con_oper.classList.add("hidden");
 	}
 }
+/* ----------------------------------------------------------------------------------- */
 
 /* ================================================================================================*/
 function funcionesAEjecutar() {
