@@ -57,22 +57,24 @@ menuReportes.addEventListener("click", () => {
 	mostrar(contenedor_menuReportes);
 });
 
+/* ------------------------------------------------------------------------------------------------ */
+
 /* ======================== CLARO - OSCURO ========================  */
 const btn_claro_oscuro = document.getElementById("btn-claro-oscuro");
 
 btn_claro_oscuro.addEventListener("click", () => {
 	if (
-		localStorage.theme === "dark" ||
+		localStorage.theme === "dark" || //esta en modo OSCURO? => PASAR A claro
 		(!("theme" in localStorage) &&
 			window.matchMedia("(prefers-color-scheme: dark)").matches)
 	) {
-		btn_claro_oscuro.innerHTML = `<i class="fa fa-moon-o" aria-hidden="true"></i>`;
-		document.documentElement.classList.remove("dark");
-		localStorage.theme = "light";
+		btn_claro_oscuro.innerHTML = `<i class="fa fa-moon-o" aria-hidden="true"></i>`; //poner luna
+		document.documentElement.classList.remove("dark"); //PASAR A claro
+		localStorage.theme = "light"; //PASAR A claro
 	} else {
-		btn_claro_oscuro.innerHTML = `<i class="fa fa-sun-o"></i>`;
-		document.documentElement.classList.add("dark");
-		localStorage.theme = "dark";
+		btn_claro_oscuro.innerHTML = `<i class="fa fa-sun-o"></i>`; //poner SOL
+		document.documentElement.classList.add("dark"); //pasar a oscuro
+		localStorage.theme = "dark"; //pasar a oscuro
 	}
 });
 
@@ -82,11 +84,11 @@ function modoClaroOscuro() {
 		(!("theme" in localStorage) &&
 			window.matchMedia("(prefers-color-scheme: dark)").matches)
 	) {
-		btn_claro_oscuro.innerHTML = `<i class="fa fa-sun-o"></i>`;
-		document.documentElement.classList.add("dark");
+		btn_claro_oscuro.innerHTML = `<i class="fa fa-sun-o"></i>`; //pone SOL
+		document.documentElement.classList.add("dark"); //pinta oscuro
 	} else {
-		btn_claro_oscuro.innerHTML = `<i class="fa fa-moon-o" aria-hidden="true"></i>`;
-		document.documentElement.classList.remove("dark");
+		btn_claro_oscuro.innerHTML = `<i class="fa fa-moon-o" aria-hidden="true"></i>`; //pone LUNA
+		document.documentElement.classList.remove("dark"); //pinta Claro
 	}
 }
 /* ------------------------------------------------------------------------------------------------ */
@@ -95,4 +97,5 @@ function modoClaroOscuro() {
 function funcionesAEjecutar() {
 	modoClaroOscuro();
 }
+/* Cuando se termina de cargar la página  */
 window.onload = funcionesAEjecutar;
