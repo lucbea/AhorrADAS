@@ -145,9 +145,20 @@ function cargarCategorias() {
 
 function inicializarFechaFiltro() {
 	var fecha = new Date();
-	document
+
+	var fecParaInput = fecha.getFullYear() + "-";
+
+	fecha.getMonth() + 1 < 10
+		? (fecParaInput += "0" + (fecha.getMonth() + 1) + "-")
+		: (fecParaInput += fecha.getMonth() + 1 + "-");
+	fecha.getDate() < 10
+		? (fecParaInput += "0" + fecha.getDate())
+		: (fecParaInput += fecha.getDate());
+	document.getElementById("filtro-fecha").setAttribute("value", fecParaInput);
+
+	/* document //OJO! ESTA OPCION TE CAMBIA EL DÍA, UNAS 3 HORAS ANTES QUE TERMINE EL DÍA)
 		.getElementById("filtro-fecha")
-		.setAttribute("value", fecha.toJSON().slice(0, 10));
+		.setAttribute("value", fecha.toJSON().slice(0, 10)); */
 }
 
 const ocultar_filtros = document.getElementById("ocultar-filtros");
