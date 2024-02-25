@@ -1,318 +1,479 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AhorrADAs L-M</title>
+		<link rel="icon" href="img/ahorrosCuad.ico" type="image/png" />
+		<!-- STYLE para los iconos  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
-	<!-- Genera códigos encriptados -->
-	<title>AhorrADAs L-M</title>
-	<!-- <link rel="icon" href="imagen/ahorrosCuad.ico" type="image/png" /> -->
-	<!-- STYLE para los iconos  -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- Genera códigos encriptados -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
 
-	<!-- TailWind CSS  -->
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="tailwind.config.js"></script>
+		<!-- TailWind CSS  -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="tailwind.config.js"></script>
 
-	<!-- MIS ESTILOS, DEBEN IR ÚLTIMO -->
-	<link rel="stylesheet" href="style.css" />
-</head>
-<!-- ***************************** BODY *********************************** -->
+		<!-- MIS ESTILOS, DEBEN IR ÚLTIMO -->
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<!-- ***************************** BODY *********************************** -->
 
-<body class="bg-gray-100 dark:bg-gray-400 font-Raleway min-w-[279px] relative">
-	<header class="w-full">
-		<div
-			class="bg-colPpal dark:bg-gray-500 w-full h-[100%] md:h-18 lg:h-22 flex flex-col md:flex-row items-center ">
-			<div class="flex flex-row w-full md:w-[45%]">
-				<div class="w-[80%] min-w-[50px] pl-2.5">
-					<h1 class="font-Lora lg:text-4xl flex flex-row items-center">
-						<i class="fa-solid fa-wallet tamanio-ADA"></i>
-						<p class="pl-3 tamanio-ADA">AhorrADAs</p>
-					</h1>
-				</div>
-
-				<div class="w-[15%] text-white text-xl flex items-center justify-end">
-					<!--  abrir menú hamb  -->
-					<button class="md:hidden" id="abrir">
-						<i class="fa fa-bars" aria-hidden="true"></i>
-					</button>
-
-					<!--  cerrar menú hamb  -->
-					<button class="hidden md:hidden" id="cerrar">
-						<i class="fa fa-times-circle" aria-hidden="true"></i>
-					</button>
-				</div>
-			</div>
-			<div class="w-[55%] flex justify-center w-full md:justify-end bg-zinc-200 md:dark:bg-gray-500 md:bg-colPpal hidden md:flex"
-				id="nav">
-				<div class="flex flex-col md:flex-row font-Lora text-sm md:text-lg items-center">
-					<a href="#"
-						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-						id="menu-inicio">
-						<i class="fa-solid fa-house"></i>
-						Inicio
-					</a>
-					<a href="#"
-						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-						id="menu-balance">
-						<i class="fa-solid fa-chart-line"></i>
-						Balance
-					</a>
-
-					<a href="#"
-						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-						id="menu-categorias">
-						<i class="fa-solid fa-list"></i>
-						Categorías
-					</a>
-
-					<a href="#"
-						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-						id="menu-reportes">
-						<i class="fa-solid fa-chart-pie"></i>
-						Reportes
-					</a>
-					<a href="#"
-						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-						id="btn-claro-oscuro">
-						<i class="fa fa-moon-o" aria-hidden="true"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<main class="w-full h-full flex justify-center">
-		<!-- ***************************************************************** -->
-		<!-- =================== CONTENEDOR Menú: Inicio  =================== -->
-		<div class="font-Lora flex flex-col items-center justify-center max-w-[1200px]" id="cont-menu-inicio">
-			<img class="w-[80%] grayscale-0 dark:grayscale" src="imagen/ahorros.png" alt="Imagen de portada"
-				aria-label="Imagen de portada, mujer ahorrando" />
-			<div class="flex flex-col sm:flex-row mx-3">
-				<p class="tamanio-frase lg:text-3xl text-center mr-1">
-					Bienvenidos al Sistema de
-				</p>
-				<p class="tamanio-frase lg:text-3xl text-center">
-					Control de Gastos e Ingresos
-				</p>
-			</div>
-
-			<p class="tamanio-frase font-black lg:text-3xl">AhorrADAs</p>
-			<p class="text-sm">-</p>
-			<p class="text-sm">Lucía Ferrer - Magdalena Brollo</p>
-		</div>
-		<!-- ***************************************************************** -->
-		<!-- =================== CONTENEDOR Menú: Balance  =================== -->
-		<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
-		<!-- <div class="flex flex-col lg:flex-row justify-between w-full max-w-[1200px] hidden" id="cont-menu-balance"> -->
-		<!-- contenedor BALANCE-FILTROS -->
-		<div class="flex flex-col w-full h-full lg:w-[27%]">
-			<!-- contenedor BALANCE -->
-			<div class="bg-zinc-50 dark:bg-gray-300 lg:w-full m-4 p-5 rounded-lg shadow-2xl">
-				<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold my-3">
-					Balance
-				</h2>
-
-				<div class="text-base sm:text-lg">
-					<div class="flex mt-5 mb-3">
-						<div class="w-[30%]">Ganancias</div>
-						<div class="w-[69%] flex justify-end items-center dark:text-cyan-800" id="balance-ganancias">
-							+$0,00
-						</div>
+	<body class="bg-gray-100 dark:bg-gray-400 font-Roboto">
+		<header class="w-full">
+			<div
+				class="bg-colPpal dark:bg-gray-500 w-full h-[auto] md:h-[100px] flex flex-col md:flex-row items-center"
+			>
+				<div class="flex flex-row w-full md:w-[45%]">
+					<div class="w-[80%] min-w-[50px] pl-2.5">
+						<h1 class="font-Lora lg:text-5xl flex flex-row items-center">
+							<i class="fa-solid fa-wallet tamanio-ADA"></i>
+							<p class="pl-3 tamanio-ADA">AhorrADAs</p>
+						</h1>
 					</div>
-					<div class="flex my-3">
-						<div class="w-[30%]">Gastos</div>
-						<div class="w-[69%] flex justify-end items-center text-[red] dark:text-red-900"
-							id="balance-gastos">
-							-$0,00
-						</div>
+
+					<div class="w-[15%] text-white text-xl flex items-center justify-end">
+						<!--  abrir menú hamb  -->
+						<button class="md:hidden" id="abrir">
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</button>
+
+						<!--  cerrar menú hamb  -->
+						<button class="hidden md:hidden" id="cerrar">
+							<i class="fa fa-times-circle" aria-hidden="true"></i>
+						</button>
 					</div>
-					<div class="flex my-3">
-						<div class="w-[30%]">Total</div>
-						<div class="w-[69%] flex justify-end items-center dark:text-cyan-800" id="balance-total">
-							+$0,00
-						</div>
+				</div>
+
+				<div
+					class="flex justify-center w-full md:justify-end bg-zinc-200 md:dark:bg-gray-500 md:bg-colPpal hidden md:flex"
+					id="nav"
+				>
+					<div
+						class="flex flex-col md:flex-row font-Lora text-sm md:text-lg items-center md:pr-[20px]"
+					>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-inicio"
+						>
+							<i class="fa-solid fa-house"></i>
+							Inicio
+						</a>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-balance"
+						>
+							<i class="fa-solid fa-chart-line"></i>
+							Balance
+						</a>
+
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-categorias"
+						>
+							<i class="fa-solid fa-list"></i>
+							Categorías
+						</a>
+
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="menu-reportes"
+						>
+							<i class="fa-solid fa-chart-pie"></i>
+							Reportes
+						</a>
+						<a
+							href="#"
+							class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							id="btn-claro-oscuro"
+						>
+							<i class="fa fa-moon-o" aria-hidden="true"></i>
+						</a>
 					</div>
 				</div>
 			</div>
-			<!-- contenedor TITULO-FILTRO -->
-			<div class="bg-zinc-50 dark:bg-gray-300 lg:w-full m-4 p-5 rounded-lg shadow-2xl">
-				<div class="flex">
-					<h2 class="w-[40%] text-colSec dark:text-black font-Lora text-4xl font-bold my-3">
-						Filtros
-					</h2>
-					<a href="#" class="w-[58%] text-sm flex justify-end items-center" id="ocultar-filtros"><i
-							class="fa-regular fa-eye"></i>
-						<p class="ml-1">Mostrar Filtros</p>
-					</a>
+		</header>
+
+		<main class="w-full h-full flex justify-center">
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Inicio  =================== -->
+			<div
+				class="font-Lora flex flex-col items-center justify-center max-w-[1200px]"
+				id="cont-menu-inicio"
+			>
+				<img
+					class="w-[80%] grayscale-0 dark:grayscale"
+					src="img/ahorros.png"
+					alt="Imagen de portada"
+					aria-label="Imagen de portada, mujer ahorrando"
+				/>
+				<div class="flex flex-col sm:flex-row mx-3">
+					<p class="tamanio-frase lg:text-3xl text-center mr-1">
+						Bienvenidos al Sistema de
+					</p>
+					<p class="tamanio-frase lg:text-3xl text-center">
+						Control de Gastos e Ingresos
+					</p>
 				</div>
-				<!-- contenedor FILTROS (se oculta) -->
-				<div class="hidden" id="contenedor-filtros">
-					<div class="my-3">
-						<h4 class="font-bold">Tipo</h4>
-						<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
-							<select
-								class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
-								id="filtro-tipo" aria-label="Seleccionar por tipo operación">
-								<option value="TODO" selected>TODO</option>
-								<option value="GANANCIA">GANANCIAS</option>
-								<option value="GASTO">GASTOS</option>
-							</select>
-						</div>
-					</div>
 
-					<div class="my-3">
-						<h4 class="font-bold">Categorías</h4>
-						<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
-							<select
-								class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
-								id="filtro-categoria" aria-label="Seleccionar por categoría">
-								<option value="TODAS">TODAS</option>
-								<!-- las categorías se cargan en script.js -->
-							</select>
-						</div>
-					</div>
-
-					<div class="my-3">
-						<h4 class="font-bold">Fecha Desde</h4>
-						<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
-							<input class="rounded-[3px] bg-zinc-200 dark:bg-gray-400 flex items-center h-[30px] w-full"
-								type="date" value="" id="filtro-fecha" aria-label="Seleccionar por fecha desde" />
-						</div>
-					</div>
-
-					<div class="my-3">
-						<h4 class="font-bold">Ordenar por</h4>
-						<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
-							<select
-								class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
-								id="filtro-orden" aria-label="Seleccionar por ordenar por">
-								<option value="mas_reciente">Más reciente</option>
-								<option value="menos_reciente">Menos reciente</option>
-								<option value="mayor_monto">Mayor monto</option>
-								<option value="menor_monto">Menor monto</option>
-								<option value="A_Z">A .. Z Descripción</option>
-								<option value="Z_A">Z .. A Descripción</option>
-							</select>
-						</div>
-					</div>
-				</div>
+				<p class="tamanio-frase font-black lg:text-3xl">AhorrADAs</p>
 			</div>
-			<!-- <a href="#"
-									class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-									id="menu-categorias">
-									<i class="fa-solid fa-list"></i>
-									Categorías
-								</a>
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Balance  =================== -->
+			<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
+			<div
+				class="flex flex-col lg:flex-row justify-between w-full max-w-[1200px] hidden"
+				id="cont-menu-balance"
+			>
+				<!-- contenedor BALANCE-FILTROS -->
+				<div class="flex flex-col w-full h-full lg:w-[27%]">
+					<!-- contenedor BALANCE -->
+					<div
+						class="bg-zinc-50 dark:bg-gray-300 lg:w-full m-4 p-5 rounded-lg shadow-2xl"
+					>
+						<h2
+							class="text-colSec dark:text-black font-Lora text-4xl font-bold my-3"
+						>
+							Balance
+						</h2>
 
-								<a href="#"
-									class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-									id="menu-reportes">
-									<i class="fa-solid fa-chart-pie"></i>
-									Reportes
-								</a>
-								<a href="#"
-									class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
-									id="btn-claro-oscuro">
-									<i class="fa fa-moon-o" aria-hidden="true"></i>
-								</a>
+						<div class="text-base sm:text-lg">
+							<div class="flex mt-5 mb-3">
+								<div class="w-[30%]">Ganancias</div>
+								<div
+									class="w-[69%] flex justify-end items-center dark:text-cyan-800"
+									id="balance-ganancias"
+								>
+									+$999.123.123,00
+								</div>
+							</div>
+							<div class="flex my-3">
+								<div class="w-[30%]">Gastos</div>
+								<div
+									class="w-[69%] flex justify-end items-center text-[red] dark:text-red-900"
+									id="balance-gastos"
+								>
+									+$0,00
+								</div>
+							</div>
+							<div class="flex my-3">
+								<div class="w-[30%]">Total</div>
+								<div
+									class="w-[69%] flex justify-end items-center dark:text-cyan-800"
+									id="balance-total"
+								>
+									+$0,00
+								</div>
 							</div>
 						</div>
-				</div>
-	</header> -->
+					</div>
+					<!-- contenedor TITULO-FILTRO -->
+					<div
+						class="bg-zinc-50 dark:bg-gray-300 lg:w-full m-4 p-5 rounded-lg shadow-2xl"
+					>
+						<div class="flex">
+							<h2
+								class="w-[40%] text-colSec dark:text-black font-Lora text-4xl font-bold my-3"
+							>
+								Filtros
+							</h2>
+							<a
+								href="#"
+								class="w-[58%] text-sm flex justify-end items-center"
+								id="ocultar-filtros"
+								><i class="fa-regular fa-eye"></i>
+								<p class="ml-1">Mostrar Filtros</p>
+							</a>
+						</div>
+						<!-- contenedor FILTROS (se oculta) -->
+						<div class="hidden" id="contenedor-filtros">
+							<div class="my-3">
+								<h4 class="font-bold">Tipo</h4>
+								<div
+									class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]"
+								>
+									<select
+										class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
+										id="filtro-tipo"
+										aria-label="Seleccionar por tipo operación"
+									>
+										<option value="TODO" selected>TODO</option>
+										<option value="GANANCIA">GANANCIAS</option>
+										<option value="GASTO">GASTOS</option>
+									</select>
+								</div>
+							</div>
 
-			<!-- contenedor SIN/CON OPERACIONES -->
-			<div class="bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-[68%] m-4 p-5 rounded-lg shadow-2xl">
-				<div class="flex">
-					<h2 class="w-[70%] text-colSec dark:text-black font-Lora text-4xl font-bold">
-						Operaciones
-					</h2>
-					<div class="w-[28%] flex justify-end items-center">
-						+ Nueva Operación
+							<div class="my-3">
+								<h4 class="font-bold">Categorías</h4>
+								<div
+									class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]"
+								>
+									<select
+										class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
+										id="filtro-categoria"
+										aria-label="Seleccionar por categoría"
+									>
+										<option value="TODAS">TODAS</option>
+										<!-- las categorías se cargan en script.js -->
+									</select>
+								</div>
+							</div>
+
+							<div class="my-3">
+								<h4 class="font-bold">Fecha desde</h4>
+								<div
+									class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]"
+								>
+									<input
+										class="rounded-[3px] bg-zinc-200 dark:bg-gray-400 flex items-center h-[30px] w-full"
+										type="date"
+										value=""
+										id="filtro-fecha"
+										aria-label="Seleccionar por fecha desde"
+									/>
+								</div>
+							</div>
+
+							<div class="my-3">
+								<h4 class="font-bold">Ordenar por</h4>
+								<div
+									class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]"
+								>
+									<select
+										class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
+										id="filtro-orden"
+										aria-label="Seleccionar por ordenar por"
+									>
+										<option value="mas_reciente">Más reciente</option>
+										<option value="menos_reciente">Menos reciente</option>
+										<option value="mayor_monto">Mayor monto</option>
+										<option value="menor_monto">Menor monto</option>
+										<option value="A_Z">A .. Z Descripción</option>
+										<option value="Z_A">Z .. A Descripción</option>
+									</select>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
-				<!-- contenedor SIN OPERACIONES -->
-				<div class="flex flex-col items-center justify-center" id="cont-sin-oper">
-					<img class="w-[50%] m-10 grayscale-0 dark:grayscale" src="imagen/operaciones.svg"
-						alt="Imagen de Reportes" aria-label="Imagen de reportes" />
-					<h2 class="text-[red] text-sm sm:text-base">
-						No se puede generar el listado de operaciones.
-					</h2>
-					<h3 class="text-sm sm:text-base">
-						Diríjase a "Nueva Operación" y regitre nuevas operaciones.
-					</h3>
-					<h3 class="text-sm sm:text-base">
-						O seleccione los "Filtros" deseadas.
-					</h3>
-				</div>
-
-				<!-- contenedor CON OPERACIONES -->
-				<div class="hidden flex flex-col" id="cont-con-oper">
-					<div class="flex justify-between border-b-2 border-indigo-100 dark:border-gray-400 mt-5">
-						<div>Descripción</div>
-						<div>Categoría</div>
-						<div>Fecha</div>
-						<div>Monto</div>
-						<div>Acciones</div>
+				<!-- contenedor SIN/CON OPERACIONES -->
+				<div
+					class="bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-[68%] m-4 p-5 rounded-lg shadow-2xl"
+				>
+					<div class="flex">
+						<h2
+							class="w-[70%] text-colSec dark:text-black font-Lora text-4xl font-bold"
+						>
+							Operaciones
+						</h2>
+						<div class="w-[28%] flex justify-end items-center">
+							+ Nueva Operación
+						</div>
 					</div>
-					<div id="con-oper-listado"></div>
+
+					<!-- contenedor SIN OPERACIONES -->
+					<div
+						class="flex flex-col items-center justify-center"
+						id="cont-sin-oper"
+					>
+						<img
+							class="w-[50%] m-10 grayscale-0 dark:grayscale"
+							src="img/operaciones.svg"
+							alt="Imagen de Reportes"
+							aria-label="Imagen de reportes"
+						/>
+						<h2 class="text-[red] text-sm sm:text-base">
+							No se puede generar el listado de operaciones.
+						</h2>
+						<h3 class="text-sm sm:text-base">
+							Diríjase a "Nueva Operación" y regitre nuevas operaciones.
+						</h3>
+						<h3 class="text-sm sm:text-base">
+							O seleccione los "Filtros" deseadas.
+						</h3>
+					</div>
+
+					<!-- contenedor CON OPERACIONES -->
+					<div class="hidden flex flex-col" id="cont-con-oper">
+						<div
+							class="flex justify-between border-b-2 border-indigo-100 dark:border-gray-400 mt-5"
+						>
+							<div>Descripción</div>
+							<div>Categoría</div>
+							<div>Fecha</div>
+							<div>Monto</div>
+							<div>Acciones</div>
+						</div>
+						<div id="con-oper-listado"></div>
+					</div>
 				</div>
 			</div>
-		</div>
 
+			<!-- ***************************************************************** -->
+			<!-- =================== CONTENEDOR Menú: Categorías  =================== -->
 
-		<!-- ***************************************************************** -->
-		<!-- =================== CONTENEDOR Menú: Balance  =================== -->
-		<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
-		<div class="flex flex-col lg:flex-row justify-between w-full max-w-[1200px] hidden" id="cont-menu-balance">
-			<!-- contenedor BALANCE-FILTROS -->
-			<!-- contenedor BALANCE -->
-			<div class="flex flex-col w-full h-full lg:w-[40%]">
-				<div class="bg-zinc-50 dark:bg-gray-300 h-[250px] lg:w-full m-4 p-5 rounded-lg shadow-2xl">
-					<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold">
-						Balance
-					</h2>
-					<p class="clifford">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-						recusandae distinctio officiis. Voluptates explicabo aperiam omnis
-						tenetur, vero sequi dolores repellendus, iusto corporis quisquam
-						aliquam minima esse reiciendis modi cupiditate.
-					</p>
-				</div>
-				<!-- contenedor FILTROS -->
-				<div class="bg-zinc-50 dark:bg-gray-300 h-[400px] lg:w-full m-4 p-5 rounded-lg shadow-2xl">
-					<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold">
-						Filtros
-					</h2>
-					<p>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-						Reiciendis quod eos, officiis molestias quibusdam non eius
-						adipisci nihil, hic totam accusantium, laudantium quam delectus
-						molestiae voluptas. Minima nisi voluptatibus eos?
-					</p>
-				</div>
-			</div>
-
-			<!-- contenedor OPERACIONES -->
-			<div class="bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-[55%] m-4 p-5 rounded-lg shadow-2xl">
-				<h2 class="text-colSecdark:text-black font-Lora text-4xl font-bold">
-					Operaciones
+			<div
+				id="cont-menu-categorias"
+				class="hidden bg-zinc-50 dark:bg-gray-300 h-[auto] flex justify-center flex-col lg:w-3/5 md:w-5/6 lg:px-12 m-4 mt-10 p-5 rounded-lg shadow-2xl max-w-[1100px] relative"
+			>
+				<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold">
+					Categorías
 				</h2>
-				<div class="flex justify-center m-10">
-					<img class="w-[50%] grayscale-0 dark:grayscale" src="img/operaciones.svg" alt="Imagen de Reportes"
-						aria-label="Imagen de reportes" />
-				</div>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-					voluptates voluptatibus dolorum expedita eveniet veniam similique
-					provident nam architecto ab esse quis sed eaque quo quod natus,
-					facilis vitae quaerat!
+				<p class="my-3">
+					Aquí puedes agregar, borrar o modificar las categorías.
 				</p>
+				<div id="ingreso-categoria" class="ingreso-categoria my-8 w-full">
+					<label for="categoria" class="block mb-2">Nombre</label>
+					<div class="contenedor-ingreso-cat flex items-center h-12">
+						<input
+							id="categoria"
+							class="flex-grow border border-gray-300 rounded-lg w-4/5 py-2 px-4 mr-2 text-xs h-9 hover:h-10 active:h-10"
+							type="text"
+							placeholder="Ej. OCIO"
+						/>
+						<button
+							id="boton-ingreso-categoria"
+							class="flex-shrink-0 h-9 px-6 rounded-lg bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+						>
+							<!-- <i class="fa fa-trash-o fa-lg hidden md:inline"></i> -->
+							<span class="hidden md:inline text-xl">AGREGAR</span>
+							<span class="md:hidden text-lg">+</span>
+						</button>
+					</div>
+				</div>
+				<div
+					id="muestra-categorias"
+					class="flex flex-col justify-between w-full"
+				></div>
+				<!-- <div id="elements"></div> -->
 			</div>
+
+			<div
+				id="mje-cat-duplicada"
+				class="hidden absolute flex bottom-32 h-36 px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly"
+			>
+				<p class="text-center">
+					La categoría ingresada ya se encuentra registrada
+				</p>
+				<button
+					id="cerrar-cat-duplicada"
+					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+				>
+					Cerrar ventana
+				</button>
+			</div>
+
+			<div
+				id="mje-cat-vacia"
+				class="hidden absolute flex bottom-32 h-36 px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly"
+			>
+				<p class="text-center">No se ha ingresado categoría</p>
+				<button
+					id="cerrar-cat-vacia"
+					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+				>
+					Cerrar ventana
+				</button>
+			</div>
+
+			<!-- =================== CONTENEDOR Sub-Menú: Editar Categorías  =================== -->
+			<div
+				id="cont-editar-categoria"
+				class="hidden absolute block h-36 w-4/5 lg:w-3/5 md:w-3/5 sm:w-3/5 px-2 max-w-[1100px] top-36 z-10"
+			>
+				<div
+					class="bg-zinc-50 dark:bg-gray-300 h-36 w-full px-2 rounded-lg shadow-2xl visible z-10"
+				>
+					<h2 class="text-center mb-3 pt-4">EDITAR CATEGORIA</h2>
+					<!--5 mt-28 -->
+					<div
+						id="ingreso-editar-categoria"
+						class="ingreso-editar-categoria lg:w-4/5 md:w-4/5 sm:w-full lg:mx-auto md:mx-auto"
+					>
+						<label for="editar-categoria" class="block mb-2 ml-4">Nombre</label>
+						<div
+							class="contenedor-ingreso-editar-cat flex w-full h-9 items-center"
+						>
+							<input
+								id="editar-categoria"
+								class="flex-grow border border-gray-300 rounded-lg w-4/6 py-2 px-4 mr-1 text-xs"
+								type="text"
+							/>
+							<div class="flex flex-grow justify-end w-2/8">
+								<button
+									id="boton-grabar-editar-categoria"
+									class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-1 md:ml-4 md:mr-2 lg:mx-4 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+								>
+									<i class="fa-regular fa-square-check"></i>
+								</button>
+								<button
+									id="boton-cancelar-editar-categoria"
+									class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-0 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+								>
+									<i class="fa-regular fa-rectangle-xmark"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div
+				id="cont-editar-categoria"
+				class="hidden absolute top-40 h-36 px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl max-w-[1100px] z-10 mx-1 sm:mx-3 lg:mx-5"
+			>
+				<h2 class="text-center mb-3 pt-4">EDITAR CATEGORIA</h2>
+				<!--5 mt-28 -->
+				<div
+					id="ingreso-editar-categoria"
+					class="ingreso-editar-categoria lg:w-4/5 md:w-4/5 sm:w-full lg:mx-auto md:mx-auto"
+				>
+					<label for="ing-text-categoria" class="block mb-2 ml-4">Nombre</label>
+					<div
+						class="contenedor-ingreso-editar-cat flex w-full h-9 items-center"
+					>
+						<input
+							id="ing-text-categoria"
+							class="flex-grow border border-gray-300 rounded-lg w-4/6 py-2 px-4 mr-1 text-xs"
+							type="text"
+						/>
+						<div class="flex flex-grow justify-end w-2/8">
+							<button
+								id="boton-grabar-editar-categoria"
+								class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-1 md:ml-4 md:mr-2 lg:mx-4 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							>
+								<i class="fa-regular fa-square-check"></i>
+							</button>
+							<button
+								id="boton-cancelar-editar-categoria"
+								class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-0 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
+							>
+								<i class="fa-regular fa-rectangle-xmark"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- </div> -->
+
+			<!-- =================== CONTENEDOR Fondo Ventana Modal  =================== -->
+			<div
+				id="cont-ventana-modal"
+				class="hidden bg-colVentModalFondo absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-0 min-w-[279px]"
+			></div>
 
 			<!-- ***************************************************************** -->
 			<!-- =================== CONTENEDOR Menú: Reportes  =================== -->
@@ -325,9 +486,16 @@
 				</h2>
 				<!--  =======================================   -->
 				<!-- Esta img se muestra cuando NO hay reportes-->
-				<div class="flex flex-col justify-center items-center m-10" id="cont-sin-reporte">
-					<img class="w-[50%] grayscale-0 dark:grayscale m-10" src="imagen/reportes.svg"
-						alt="Imagen de Reportes" aria-label="Imagen de reportes" />
+				<div
+					class="flex flex-col justify-center items-center m-10"
+					id="cont-sin-reporte"
+				>
+					<img
+						class="w-[50%] grayscale-0 dark:grayscale m-10"
+						src="img/reportes.svg"
+						alt="Imagen de Reportes"
+						aria-label="Imagen de reportes"
+					/>
 					<h2 class="text-[red] items-center">
 						No se puede generar REPORTES por falta de "Operaciones".
 					</h2>
@@ -480,143 +648,12 @@
 					</div>
 				</div>
 			</div>
-
 			<!-- ***************************************************************** -->
-	<!-- </main> -->
-<!-- </body> -->
-<!-- JavaScript -->
-<!-- <script src="script.js"></script> -->
-<!-- <script src="scriptReportes.js"></script> -->
+		</main>
+	</body>
 
-<!-- </html> -->
-<!-- </div> --> 
-
-<!-- ***************************************************************** -->
-<!-- =================== CONTENEDOR Menú: Categorías  =================== -->
-
-<div id="cont-menu-categorias"
-	class="hidden bg-zinc-50 dark:bg-gray-300 h-[auto]  flex justify-center flex-col lg:w-3/5 md:w-5/6 lg:px-12 m-4 mt-10 p-5 rounded-lg shadow-2xl max-w-[1100px] relative">
-	<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold">
-		Categorías
-	</h2>
-	<p class="my-3">
-		Aquí puedes agregar, borrar o modificar las categorías.
-	</p>
-	<div id="ingreso-categoria" class="ingreso-categoria my-8 w-full">
-		<label for="categoria" class="block mb-2">Nombre</label>
-		<div class="contenedor-ingreso-cat flex items-center h-12">
-			<input id="categoria"
-				class="flex-grow border border-gray-300 rounded-lg w-4/5 py-2 px-4 mr-2 text-xs h-9 hover:h-10 active:h-10"
-				type="text" placeholder="Ej. OCIO">
-			<button id="boton-ingreso-categoria"
-				class="flex-shrink-0 h-9 px-6  rounded-lg bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-				<!-- <i class="fa fa-trash-o fa-lg hidden md:inline"></i> -->
-				<span class="hidden md:inline text-xl">AGREGAR</span>
-				<span class="md:hidden text-lg">+</span>
-			</button>
-		</div>
-	</div>
-	<div id="muestra-categorias" class="flex flex-col justify-between w-full">
-
-	</div>
-	<!-- <div id="elements"></div> -->
-
-
-</div>
-<div id="mje-cat-duplicada"
-	class="hidden absolute flex bottom-32 h-36 px-7  bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
-	<p class="text-center">La categoría ingresada ya se encuentra registrada</p>
-	<button id="cerrar-cat-duplicada"
-		class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto  mx-auto hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">Cerrar
-		ventana</button>
-</div>
-<div id="mje-cat-vacia"
-	class="hidden absolute flex bottom-32 h-36 px-7  bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
-	<p class="text-center">No se ha ingresado categoría</p>
-	<button id="cerrar-cat-vacia"
-		class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">Cerrar
-		ventana</button>
-</div>
-<!-- =================== CONTENEDOR Sub-Menú: Editar Categorías  =================== -->
-<div id="cont-editar-categoria"
-	class="hidden  absolute block h-36 w-4/5 lg:w-3/5 md:w-3/5 sm:w-3/5 px-2 max-w-[1100px] top-36 z-10">
-	<div class="bg-zinc-50 dark:bg-gray-300 h-36 w-full    px-2 rounded-lg shadow-2xl  visible z-10">
-		<h2 class="text-center mb-3 pt-4">EDITAR CATEGORIA</h2> <!--5 mt-28 -->
-		<div id="ingreso-editar-categoria"
-			class="ingreso-editar-categoria lg:w-4/5 md:w-4/5 sm:w-full lg:mx-auto md:mx-auto">
-			<label for="editar-categoria" class="block mb-2 ml-4">Nombre</label>
-			<div class="contenedor-ingreso-editar-cat flex w-full h-9 items-center">
-				<input id="editar-categoria"
-					class="flex-grow  border border-gray-300 rounded-lg w-4/6 py-2 px-4 mr-1 text-xs" type="text">
-				<div class="flex flex-grow justify-end w-2/8">
-					<button id="boton-grabar-editar-categoria"
-						class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-1 md:ml-4 md:mr-2 lg:mx-4 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-						<i class="fa-regular fa-square-check"></i>
-					</button>
-					<button id="boton-cancelar-editar-categoria"
-						class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-0 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-						<i class="fa-regular fa-rectangle-xmark"></i>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="cont-editar-categoria"
-	class="hidden absolute top-40 h-36 px-7  bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl  max-w-[1100px] z-10 mx-1 sm:mx-3 lg:mx-5 ">
-
-	<h2 class="text-center  mb-3 pt-4">EDITAR CATEGORIA</h2> <!--5 mt-28 -->
-	<div id="ingreso-editar-categoria"
-		class="ingreso-editar-categoria lg:w-4/5 md:w-4/5 sm:w-full lg:mx-auto md:mx-auto">
-		<label for="ing-text-categoria" class="block mb-2 ml-4">Nombre</label>
-		<div class="contenedor-ingreso-editar-cat flex w-full h-9 items-center">
-			<input id="ing-text-categoria"
-				class="flex-grow  border border-gray-300 rounded-lg w-4/6 py-2 px-4 mr-1 text-xs" type="text">
-			<div class="flex flex-grow justify-end w-2/8">
-				<button id="boton-grabar-editar-categoria"
-					class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-1 md:ml-4 md:mr-2 lg:mx-4 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-					<i class="fa-regular fa-square-check"></i>
-				</button>
-				<button id="boton-cancelar-editar-categoria"
-					class="flex-shrink-0 h-8 px-2 md:px-4 lg:px-6 rounded-lg bg-blue-100 mx-0 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
-					<i class="fa-regular fa-rectangle-xmark"></i>
-				</button>
-			</div>
-		</div>
-
-	</div>
-</div>
-</div>
-
-<!-- ***************************************************************** -->
-<!-- =================== CONTENEDOR Fondo Ventana Modal  =================== -->
-<div id="cont-ventana-modal"
-	class="hidden bg-colVentModalFondo absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-0 min-w-[279px]">
-</div>
-
-<!-- ***************************************************************** -->
-<!-- =================== CONTENEDOR Menú: Reportes  =================== -->
-<div class="hidden bg-zinc-50 dark:bg-gray-300 h-[auto] lg:w-full m-4 p-5 rounded-lg shadow-2xl max-w-[1100px]"
-	id="cont-menu-reportes">
-	<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold">
-		Reportes
-	</h2>
-	<div class="flex justify-center m-10">
-		<img class="w-[50%] grayscale-0 dark:grayscale" src="img/reportes.svg" alt="Imagen de Reportes"
-			aria-label="Imagen de reportes" />
-	</div>
-	<p>
-		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore
-		nesciunt amet odio inventore sequi nulla commodi molestiae ut saepe.
-		Eveniet consequatur autem sunt id odit fugiat repudiandae vel fuga
-		nemo! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-	</p>
-</div>
-</main>
-</body>
-
-<!-- JavaScript -->
-<script src="script.js"></script>
-<script src="./scriptCategoria.js"></script>
-
+	<!-- JavaScript -->
+	<script src="script.js"></script>
+	<script src="scriptReportes.js"></script>
+	<script src="./scriptCategoria.js"></script>
 </html>
