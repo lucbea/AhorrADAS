@@ -34,6 +34,7 @@ menuReportes.addEventListener("click", cerrarNav);
 
 const contenedor_menuInicio = document.getElementById("cont-menu-inicio");
 const contenedor_menuBalance = document.getElementById("cont-menu-balance");
+const contenedor_menuOperaciones = document.getElementById("cont-menu-operaciones");
 const contenedor_menuCategorias = document.getElementById(
 	"cont-menu-categorias"
 );
@@ -42,16 +43,19 @@ const contenedor_menuReportes = document.getElementById("cont-menu-reportes");
 function mostrar(mostrar) {
 	contenedor_menuInicio.classList.add("hidden");
 	contenedor_menuBalance.classList.add("hidden");
+	contenedor_menuOperaciones.classList.add("hidden");
 	contenedor_menuCategorias.classList.add("hidden");
 	contenedor_menuReportes.classList.add("hidden");
-
 	mostrar.classList.remove("hidden");
+	// mostrar.classList.add("hidden"); //Sacar 1de marzo 
+	// contenedor_menuBalance.classList.remove("hidden");  //sacer 1 de marzo
 }
 
 menuInicio.addEventListener("click", () => {
 	mostrar(contenedor_menuInicio);
 });
 
+const cont_con_oper = document.getElementById("cont-con-oper");
 menuBalance.addEventListener("click", () => {
 	mostrar(contenedor_menuBalance);
 	inicializarFechaFiltro();
@@ -63,6 +67,9 @@ menuBalance.addEventListener("click", () => {
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
 		cargarCategorias();
 		filtrar_oper();
+		document.getElementById("cont-sin-oper").classList.add("hidden");
+		cont_con_oper.classList.remove('hidden');
+		
 	} else {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
@@ -155,9 +162,9 @@ const contenedor_filtros = document.getElementById("contenedor-filtros");
 ocultar_filtros.addEventListener("click", () => {
 	contenedor_filtros.classList.toggle("hidden");
 	if (contenedor_filtros.classList.contains("hidden")) {
-		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1"> Mostrar Filtros </p>`;
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Mostrar Filtros </p>`;
 	} else {
-		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1"> Ocultar Filtros </p>`;
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Ocultar Filtros </p>`;
 	}
 });
 
@@ -167,7 +174,7 @@ const filtro_cate = document.getElementById("filtro-categoria");
 const filtro_fecha = document.getElementById("filtro-fecha");
 const filtro_orden = document.getElementById("filtro-orden");
 
-const cont_con_oper = document.getElementById("cont-con-oper");
+// const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en ínea 67 aprox
 const con_oper_listado = document.getElementById("con-oper-listado");
 
 filtro_tipo.addEventListener("change", filtrar_oper);
@@ -330,5 +337,6 @@ function filtrar_oper() {
 /* ================================================================================================*/
 function funcionesAEjecutar() {
 	modoClaroOscuro();
+	mostrar(contenedor_menuInicio);
 }
 window.onload = funcionesAEjecutar;
