@@ -20,7 +20,6 @@ abrir.addEventListener("click", () => {
 	abrir.classList.add("hidden");
 });
 
-
 function cerrarNav() {
 	nav.classList.add("hidden");
 	cerrar.classList.add("hidden");
@@ -284,7 +283,7 @@ function filtrar_oper() {
 	}
 
 	operaFiltro = operaFiltro.filter(function (op) {
-		return fechaDesde < new Date(op.fecha);
+		return fechaDesde <= new Date(op.fecha);
 	});
 
 	ordenarOperaciones(operaFiltro, orden);
