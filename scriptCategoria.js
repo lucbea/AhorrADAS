@@ -42,8 +42,10 @@ const grabar = (locacion, dato) => localStorage.setItem(locacion, JSON.stringify
 // Recuperar del Local Storage
 // ---------------------------
 const recuperar = (locacion) => {
-    categoriasLS = JSON.parse(localStorage.getItem(locacion));
-    return categoriasLS;
+    let datosLS;
+    datosLS = JSON.parse(localStorage.getItem(locacion));
+    // console.log(locacion, datosLS);
+    return datosLS;
 }
 
 
