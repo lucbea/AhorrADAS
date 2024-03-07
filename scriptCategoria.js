@@ -42,8 +42,10 @@ const grabar = (locacion, dato) => localStorage.setItem(locacion, JSON.stringify
 // Recuperar del Local Storage
 // ---------------------------
 const recuperar = (locacion) => {
-    categoriasLS = JSON.parse(localStorage.getItem(locacion));
-    return categoriasLS;
+    let datosLS;
+    datosLS = JSON.parse(localStorage.getItem(locacion));
+    // console.log(locacion, datosLS);
+    return datosLS;
 }
 
 
@@ -68,11 +70,11 @@ const mostrarDato = () => {
             spanCategoria.classList.add("span-categoria");
             spanCategoria.innerHTML = categoria.nombre;
 
-            let btnEditar = document.createElement("button");
-            btnEditar.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-            btnEditar.id = `btn-editar-${categoria.id}`; // Identificador único para el botón de editar
-            btnEditar.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "mx-1", "md:mx-4", "lg:mx-4", "hover:bg-blue-200", "focus:bg-blue-200", "hover:dark:bg-gray-400", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
-            btnEditar.addEventListener("click", () => editarCategoria(categoria.id));
+            let btnEditarCat = document.createElement("button");
+            btnEditarCat.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+            btnEditarCat.id = `btn-editar-${categoria.id}`; // Identificador único para el botón de editar
+            btnEditarCat.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "mx-1", "md:mx-4", "lg:mx-4", "hover:bg-blue-200", "focus:bg-blue-200", "hover:dark:bg-gray-400", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
+            btnEditarCat.addEventListener("click", () => editarCategoria(categoria.id));
 
             let btnBorrar = document.createElement("button");
             btnBorrar.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
@@ -81,13 +83,14 @@ const mostrarDato = () => {
             btnBorrar.addEventListener("click", () => borrarCategoria(categoria.id));
 
             div1.appendChild(spanCategoria);
-            div2.appendChild(btnEditar);
+            div2.appendChild(btnEditarCat);
             div2.appendChild(btnBorrar);
             divContenCat.appendChild(div1);
             divContenCat.appendChild(div2);
             $muestraCategorias.appendChild(divContenCat);
 
         }
+       
     });
 };
 
