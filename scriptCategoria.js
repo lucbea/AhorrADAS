@@ -194,7 +194,7 @@ $cerrar.addEventListener('click', () => {
 // ______________________________________________________________________
 // Evento - Ingreso de texto en input de categoria o de edicion categoria
 // ----------------------------------------------------------------------
-// $inpCategoria.addEventListener('input', (e) => $inpCategoria.value = ingresarCategoria($inpCategoria));
+$inpCategoria.addEventListener('input', (e) => $inpCategoria.value = ingresarCategoria($inpCategoria));
 
 
 // _________________________________________________
@@ -232,8 +232,7 @@ const revisarDatosDuplicados = (id, nombre) => {  //quitar el ID porque está de
 // ----------------------------------------------
 let $botonIngresoCategoria = document.getElementById('boton-ingreso-categoria');
 $botonIngresoCategoria.addEventListener('click', (e) => {
-    let valorCategoria = ingresarCategoria($inpCategoria);
-    // valorCategoria = $inpCategoria.value.trim();    // Obtener el valor del input de la categoría 
+    let valorCategoria = $inpCategoria.value.trim();    // Obtener el valor del input de la categoría 
     if (valorCategoria !== "") {  //evita ingreso de categoría vacía
         let nuevaCategEncrip = crearIdDato(valorCategoria);
         nombNuevaCateg = nuevaCategEncrip.nombre;
@@ -317,49 +316,11 @@ const editarCategoria = (idCat) => {
 //--------------------------   
 // Función borrar categoría
 // -------------------------
-// const borrarCategoria = (id) => {
-//     const nuevasCategorias = categoriasLS.filter(categoria => categoria.id !== id);  // Filtrar las categorías, excluyendo la del id
-//     grabar("categorias", nuevasCategorias);  // Guardar las nuevas categorías en el localStorage   
-//     mostrarDato();  // Mostrar las categorías actualizadas
-// };
-
-
-//--------------------------
-// Función borrar categoría
-// -------------------------
 const borrarCategoria = (id) => {
-    // OTRA VEZ RECUPERA CATEGORIA ------------------
-    const categorias = recuperar("categorias");
-
-    let borrar = true;
-    if (localStorage.getItem("operaciones") !== null) {
-        const operCate = recuperar("operaciones");
-        if (operCate.length > 0) {
-            const resultado = operCate.find((op) => op.categoria == id);
-            if (resultado !== undefined) {
-                //NO se puede borrar. Esta categoría tienen operaciones.
-                borrar = false;
-            }
-        }
-    }
-    if (borrar) {
-        //faltaria una pregunta de "ESTÁ SEGURO QUE DESEA BORRAR?"
-        alert("ESTÁ SEGURO QUE DESEA BORRAR?");
-        const nuevasCategorias = categorias.filter(
-            (categoria) => categoria.id !== id
-        ); // Filtrar las categorías, excluyendo la del id
-        grabar("categorias", nuevasCategorias); // Guardar las nuevas categorías en el localStorage
-        mostrarDato(); // Mostrar las categorías actualizadas
-    } else {
-        alert("Categoría con operaciones. Primero elimine las Operaciones");
-    }
+    const nuevasCategorias = categoriasLS.filter(categoria => categoria.id !== id);  // Filtrar las categorías, excluyendo la del id
+    grabar("categorias", nuevasCategorias);  // Guardar las nuevas categorías en el localStorage   
+    mostrarDato();  // Mostrar las categorías actualizadas
 };
-
-
-
-
-
-
 
 // ______________________________
 // Función  Activar Ventana Modal
