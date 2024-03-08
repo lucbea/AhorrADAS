@@ -1,18 +1,3 @@
-// _______________________________________________________
-// Función que inicializa el array de operaciones en el LS
-// -------------------------------------------------------
-const inicializarOperaciones = () => {
-    if (localStorage.getItem("operaciones") === null) {
-        localStorage.setItem("operaciones", JSON.stringify([]))
-    }
-}
-
-// __________________________________________
-// Inicialización del array Operaciones en LS
-// ------------------------------------------
-inicializarOperaciones();
-
-
 // ___________________
 // Variables generales
 // -------------------
@@ -42,13 +27,13 @@ let categorias_LS;
 let operaciones_LS = '[]';
 let idEnCurso;
 let operaciones = [
-    // { id: "93e21f72-44ca-43aa-b990-02ffef336bdf", descripcion: "verid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
-    // { id: "116e96d5-26d8-4245-aaad-37ef5323a950", descripcion: "verdi2", monto: "2", tipo: "GASTO", categoria: " EDUCACION", fecha: "02/03/2024" },
-    // { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb6", descripcion: "verid3", monto: "3", tipo: "GANANCIA", categoria: " SALIDAS", fecha: "03/03/2024" },
-    // { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef50", descripcion: "verid4", monto: "4", tipo: "GASTO", categoria: " SERVICIOS", fecha: "04/03/2024" },
-    // { id: "83c6269b-7226-4388-90c6-1f6a771486c7", descripcion: "verid5", monto: "5", tipo: "GANANCIA", categoria: " TRANSPORTE", fecha: "05/03/2024" },
-    // { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522e", descripcion: "verid6", monto: "6", tipo: "GASTO", categoria: " TRABAJO", fecha: "26/02/2024" },
-    // { id: "3e33ed37-d4d2-4eb8-b784-bde48396699c", descripcion: "verid7", monto: "7", tipo: "GANANCIA", categoria: " COMIDA", fecha: "27/02/2024" },
+    { id: "93e21f72-44ca-43aa-b990-02ffef336bdf", descripcion: "verid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
+    { id: "116e96d5-26d8-4245-aaad-37ef5323a950", descripcion: "verdi2", monto: "2", tipo: "GASTO", categoria: " EDUCACION", fecha: "02/03/2024" },
+    { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb6", descripcion: "verid3", monto: "3", tipo: "GANANCIA", categoria: " SALIDAS", fecha: "03/03/2024" },
+    { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef50", descripcion: "verid4", monto: "4", tipo: "GASTO", categoria: " SERVICIOS", fecha: "04/03/2024" },
+    { id: "83c6269b-7226-4388-90c6-1f6a771486c7", descripcion: "verid5", monto: "5", tipo: "GANANCIA", categoria: " TRANSPORTE", fecha: "05/03/2024" },
+    { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522e", descripcion: "verid6", monto: "6", tipo: "GASTO", categoria: " TRABAJO", fecha: "26/02/2024" },
+    { id: "3e33ed37-d4d2-4eb8-b784-bde48396699c", descripcion: "verid7", monto: "7", tipo: "GANANCIA", categoria: " COMIDA", fecha: "27/02/2024" },
 ];
 let operacion = {};
 let $menuBalance = document.getElementById("menu-balance"); //botón que activa el bloque de balances y filtros
@@ -61,6 +46,22 @@ let $celdaCategoria = document.getElementById("celda-categoria");
 let $celdaFecha = document.getElementById("celda-fecha");
 let $celdaMonto = document.getElementById("celda-monto");
 let $celdaAcciones = document.getElementById("celda-acciones");
+
+
+// _______________________________________________________
+// Función que inicializa el array de operaciones en el LS
+// -------------------------------------------------------
+const inicializarOperaciones = () => {
+    if (localStorage.getItem("operaciones") === null) {
+        localStorage.setItem("operaciones", JSON.stringify(operaciones)); 
+    }
+}
+
+// __________________________________________
+// Inicialización del array Operaciones en LS
+// ------------------------------------------
+inicializarOperaciones();
+
 
 
 // _____________________________
@@ -138,19 +139,6 @@ const mostrarDataInput = (id) => {
 }
 
 
-// ______________________________
-// Evento botón  grabar operacion
-// ------------------------------
-$btnGrabarOp.addEventListener('click', () => {
-    operaciones_LS = recuperar("operaciones");
-    operacion.id = uuidv4();
-    operacion = tomarData(operacion.id);
-    operaciones_LS.push(operacion);
-    grabar("operaciones", operaciones_LS);
-    mostrar($conten_menuBalance);
-    completarTablaOperaciones(operaciones_LS);
-})
-
 
 let fechaFormateada;
 // ___________________________________________________________________
@@ -182,12 +170,14 @@ const mostrarFechaInput = (fecha) => {
     return formatoFecha;
 }
 
-
+let array;
 // ______________________________________________
 // Función que arma la tabla con los datos del LS
 // ----------------------------------------------
 const completarTablaOperaciones = (array) => {
     // let operacionId;
+    console.log('estoy en completar tabla operaciones', array);
+    alert();
     $conOperListado.innerHTML = " ";
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
@@ -236,6 +226,19 @@ const completarTablaOperaciones = (array) => {
 };
 
 
+// ______________________________
+// Evento botón  grabar operacion
+// ------------------------------
+$btnGrabarOp.addEventListener('click', () => {
+    operaciones_LS = recuperar("operaciones");
+    operacion.id = uuidv4();
+    operacion = tomarData(operacion.id);
+    operaciones_LS.push(operacion);
+    grabar("operaciones", operaciones_LS);
+    mostrar($conten_menuBalance);
+    completarTablaOperaciones(operaciones_LS);
+})
+
 // ______________________________________________________
 // Evento boton Borrar Operación
 // ------------------------------------------------------
@@ -282,15 +285,15 @@ const editarOperacion = (idOp) => {
 }
 
 
-// ____________________________________
-// Evento botón activar el Menú Balance
-// ------------------------------------
-$menuBalance.addEventListener('click', () => {
-    operaciones_LS = recuperar("operaciones");
-    if (operaciones_LS) {
-        completarTablaOperaciones(operaciones_LS);
-    }
-})
+// // ____________________________________
+// // Evento botón activar el Menú Balance
+// // ------------------------------------
+// $menuBalance.addEventListener('click', () => {
+//     operaciones_LS = recuperar("operaciones");
+//     if (operaciones_LS) {
+//         completarTablaOperaciones(operaciones_LS);
+//     }
+// })
 
 
 // _______________________________________
@@ -306,9 +309,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // Muestra opciones de categorias en el select para elegir la categ
 // ----------------------------------------------------------------
 const ingresarCategSelect = () => {
-    console.log('estoy en ingresarCategSelect, las recuperaré de LS')
+    // console.log('estoy en ingresarCategSelect, las recuperaré de LS')
     categorias_LS = recuperar("categorias");
-    console.log('categorias recuperadas:', categorias_LS)
+    // console.log('categorias recuperadas:', categorias_LS)
     $categoriaOperSelect.innerHTML = "";
     for (let i = 0; i < categorias_LS.length; i++) {
         $categoriaOperSelect.innerHTML += `<option value =" ${categorias_LS[i].nombre}">${categorias_LS[i].nombre}</option>`;

@@ -330,12 +330,14 @@ const editarCategoria = (idCat) => {
 const borrarCategoria = (id) => {
     // OTRA VEZ RECUPERA CATEGORIA ------------------
     const categorias = recuperar("categorias");
+    console.log('entré a borrar categoría y la cargué de LS:', categorias)
 
     let borrar = true;
     if (localStorage.getItem("operaciones") !== null) {
         const operCate = recuperar("operaciones");
         if (operCate.length > 0) {
             const resultado = operCate.find((op) => op.categoria == id);
+            console.log('estas operaciones tiene esa categoria', resultado)
             if (resultado !== undefined) {
                 //NO se puede borrar. Esta categoría tienen operaciones.
                 borrar = false;
