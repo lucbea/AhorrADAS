@@ -70,7 +70,7 @@ menuBalance.addEventListener("click", () => {
 		filtrar_oper();
 		document.getElementById("cont-sin-oper").classList.add("hidden");
 		cont_con_oper.classList.remove('hidden');
-		
+
 	} else {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
@@ -265,73 +265,94 @@ function filtrar_oper() {
 	let x;
 	let sumaGana = 0;
 	let sumaGasto = 0;
-	operaFiltro = JSON.parse(localStorage.getItem("operaciones"));
+	operaFiltro = recuperar("operaciones");  // trae las operaciones del LS
+	categFiltro = recuperar("categorias"); 	// trae las categorias del LS
 
 	const tipo = filtro_tipo.value;
-	const cate = filtro_cate.value;
+	const categ = filtro_cate.value;
+	console.log('estoy en filtrar_oper', filtro_cate.value, categ, filtro_tipo.value, operaFiltro, operaFiltro.length, categFiltro, categFiltro.length);
 	const fechaDesde = new Date(`${filtro_fecha.value}T00:00:00`);
 	const orden = filtro_orden.value;
 
+
+
 	if (tipo !== "TODO") {
 		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
+		console.log('filtro por tipo: ', tipo, operaFiltro)
+		// if (operaFiltro) { completarTablaOperaciones(operaFiltro); }
+		// completarTablaOperaciones(operaFiltro);
 	}
 
-	if (cate !== "TODAS") {
-		operaFiltro = operaFiltro.filter((oper) => oper.categoria === cate);
+	if (categ !== "TODAS") {
+		categFiltro = categFiltro.filter((cate) => cate.id === categ);
+		// console.log(categFiltro)
+		console.log('categFiltro', categFiltro, categFiltro[0].id, typeof categFiltro[0].id, typeof filtro_cate.value, categFiltro[0].nombre, typeof categFiltro[0].id);
+		// if (categFiltro.length >0) {
+		console.log('operaFiltro', operaFiltro);
+		operaFiltro = operaFiltro.filter((oper) => oper.categoria.trim() === categFiltro[0].nombre.trim());
+		console.log(' categFiltro >0, filtro por categ: ', categ, operaFiltro);
 	}
 
-	operaFiltro = operaFiltro.filter(function (op) {
-		return fechaDesde < new Date(op.fecha);
-	});
 
-	ordenarOperaciones(operaFiltro, orden);
+	// operaFiltro = operaFiltro.filter(function (op) {
+	// 	return fechaDesde < new Date(op.fecha);
+	// });
+
+	// operaFiltro = ordenarOperaciones(operaFiltro, orden);
+	// console.log('operaFiltro', operaFiltro);
+	// alert();
+	
 
 	/* Si hay datos después de filtrar... */
-	if (operaFiltro.length > 0) {
-		document.getElementById("cont-sin-oper").classList.add("hidden");
-		cont_con_oper.classList.remove("hidden");
 
-		con_oper_listado.innerHTML = "";
 
-		operaFiltro.forEach((op) => {
-			if (op.tipo === "GANANCIA") {
-				sumaGana += op.monto;
-				x = `<div> $${formatPesos(op.monto)} </div>`;
-			} else {
-				sumaGasto += op.monto;
-				x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-					Math.abs(op.monto)
-				)} </div>`;
-			}
+// 	if (operaFiltro.length > 0) {
 
-			con_oper_listado.innerHTML += `<div class="flex">
-							<div class="w-[30%]">${op.descripcion.toUpperCase() + "-" + op.tipo}</div>
-							<div class="w-[30%]">${nombreCat(op.categoria)}</div>
-							<div class="w-[15%]">${formatFecha(op.fecha)}</div>
-							<div class="w-[16%] flex justify-end">${x}</div>
-							<div class="w-[9%]  flex justify-end"> Edi-Eli</div>
-						</div>`;
-		});
+// 		document.getElementById("cont-sin-oper").classList.add("hidden");
+// 		cont_con_oper.classList.remove("hidden");
+// 		completarTablaOperaciones(operaFiltro);
+// 		con_oper_listado.innerHTML = "";
 
-		document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(
-			sumaGana
-		)}`;
-		document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(
-			sumaGasto
-		)}`;
+// 		operaFiltro.forEach((op) => {
+// 			if (op.tipo === "GANANCIA") {
+// 				sumaGana += op.monto;
+// 				x = `<div> $${formatPesos(op.monto)} </div>`;
+// 			} else {
+// 				sumaGasto += op.monto;
+// 				x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
+// 					Math.abs(op.monto)
+// 				)} </div>`;
+// 			}
 
-		if (sumaGana - sumaGasto >= 0) {
-			x = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
-		} else {
-			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-				Math.abs(sumaGana - sumaGasto)
-			)} </div>`;
-		}
-		document.getElementById("balance-total").innerHTML = `${x}`;
-	} else {
-		document.getElementById("cont-sin-oper").classList.remove("hidden");
-		cont_con_oper.classList.add("hidden");
-	}
+// 			con_oper_listado.innerHTML += `<div class="flex">
+// 							<div class="w-[30%]">${op.descripcion.toUpperCase() + "-" + op.tipo}</div>
+// 							<div class="w-[30%]">${nombreCat(op.categoria)}</div>
+// 							<div class="w-[15%]">${formatFecha(op.fecha)}</div>
+// 							<div class="w-[16%] flex justify-end">${x}</div>
+// 							<div class="w-[9%]  flex justify-end"> Edi-Eli</div>
+// 						</div>`;
+// 		});
+
+// 		document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(
+// 			sumaGana
+// 		)}`;
+// 		document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(
+// 			sumaGasto
+// 		)}`;
+
+// 		if (sumaGana - sumaGasto >= 0) {
+// 			x = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
+// 		} else {
+// 			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
+// 				Math.abs(sumaGana - sumaGasto)
+// 			)} </div>`;
+// 		}
+// 		document.getElementById("balance-total").innerHTML = `${x}`;
+// 	} else {
+// 		document.getElementById("cont-sin-oper").classList.remove("hidden");
+// 		cont_con_oper.classList.add("hidden");
+// 	}
+	completarTablaOperaciones(operaFiltro);
 }
 /* ----------------------------------------------------------------------------------- */
 
