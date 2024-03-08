@@ -26,6 +26,7 @@ function cerrarNav() {
 	cerrar.classList.add("hidden");
 	abrir.classList.remove("hidden");
 }
+
 cerrar.addEventListener("click", cerrarNav);
 menuInicio.addEventListener("click", cerrarNav);
 menuBalance.addEventListener("click", cerrarNav);
