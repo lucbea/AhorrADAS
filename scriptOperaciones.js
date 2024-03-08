@@ -77,6 +77,7 @@ const borrarInputs = () => {
 // Evento botón Nueva Operación
 // ----------------------------
 $btnIngOp.addEventListener("click", () => {
+    ingresarCategSelect();
     operacion.id = uuidv4();
     mostrar($conten_menuOperaciones);
     $titNuevaOp.classList.remove("hidden");
@@ -199,7 +200,7 @@ const completarTablaOperaciones = (array) => {
                 <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 w-full h-[70px] sm:h-[40px]">
                     <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
                         <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[15px]">${operacion.descripcion}</div>
-                        <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[33,3%] flex justify-center items-center text-[10px] bg-zinc-100 dark:bg-gray-300 p-1 rounded-lg shadow-inner">${operacion.categoria}</div>
+                        <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[33,3%] flex justify-center items-center text-[10px] bg-zinc-100 dark:bg-gray-200 p-1 rounded-lg shadow-inner">${operacion.categoria}</div>
                     </div>
                     <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[130px] flex justify-end text-[12px]">${operacion.fecha}</div>
                     <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[29%] gap-3">
@@ -251,6 +252,8 @@ const borrarOperacion = (id) => {
 // ------------------------------------------------------
 let arrayListo;
 const editarOperacion = (idOp) => {
+    console.log('voy a ingresar categ seleccionada')
+    ingresarCategSelect();
     let idOpEditar = idOp;    
     mostrar($conten_menuOperaciones);
     $titNuevaOp.classList.add("hidden");
@@ -303,7 +306,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // Muestra opciones de categorias en el select para elegir la categ
 // ----------------------------------------------------------------
 const ingresarCategSelect = () => {
+    console.log('estoy en ingresarCategSelect, las recuperaré de LS')
     categorias_LS = recuperar("categorias");
+    console.log('categorias recuperadas:', categorias_LS)
     $categoriaOperSelect.innerHTML = "";
     for (let i = 0; i < categorias_LS.length; i++) {
         $categoriaOperSelect.innerHTML += `<option value =" ${categorias_LS[i].nombre}">${categorias_LS[i].nombre}</option>`;
@@ -315,6 +320,7 @@ const ingresarCategSelect = () => {
 // Inicialización de opciones de categorías en el select
 // -----------------------------------------------------
 ingresarCategSelect();
+
 
 
 
