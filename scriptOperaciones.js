@@ -34,6 +34,21 @@ let operaciones = [
     { id: "83c6269b-7226-4388-90c6-1f6a771486c7", descripcion: "verid5", monto: "5", tipo: "GANANCIA", categoria: " TRANSPORTE", fecha: "05/03/2024" },
     { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522e", descripcion: "verid6", monto: "6", tipo: "GASTO", categoria: " TRABAJO", fecha: "26/02/2024" },
     { id: "3e33ed37-d4d2-4eb8-b784-bde48396699c", descripcion: "verid7", monto: "7", tipo: "GANANCIA", categoria: " COMIDA", fecha: "27/02/2024" },
+    { id: "93e21f72-44ca-43aa-b990-02ffef336bdv", descripcion: "averid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
+    { id: "116e96d5-26d8-4245-aaad-37ef5323a958", descripcion: "averdi2", monto: "2", tipo: "GASTO", categoria: " EDUCACION", fecha: "02/03/2024" },
+    { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb1", descripcion: "averid3", monto: "3", tipo: "GASTO", categoria: " SALIDAS", fecha: "03/03/2024" },
+    { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef52", descripcion: "bverid4", monto: "4", tipo: "GASTO", categoria: " SERVICIOS", fecha: "04/03/2024" },
+    { id: "83c6269b-7226-4388-90c6-1f6a771486c9", descripcion: "bverid5", monto: "5", tipo: "GASTO", categoria: " TRANSPORTE", fecha: "05/03/2024" },
+    { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522f", descripcion: "bverid6", monto: "6", tipo: "GASTO", categoria: " TRABAJO", fecha: "26/02/2024" },
+    { id: "3e33ed37-d4d2-4eb8-b784-bde48396699b", descripcion: "cverid7", monto: "7", tipo: "GASTO", categoria: " COMIDA", fecha: "27/02/2024" },
+    { id: "93e21f72-44ca-43aa-b990-02ffef336bdg", descripcion: "cverid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
+    { id: "116e96d5-26d8-4245-aaad-37ef5323a95t", descripcion: "cverdi2", monto: "2", tipo: "GANANCIA", categoria: " EDUCACION", fecha: "02/03/2024" },
+    { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb8", descripcion: "dverid3", monto: "3", tipo: "GANANCIA", categoria: " SALIDAS", fecha: "03/03/2024" },
+    { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef5w", descripcion: "dverid4", monto: "4", tipo: "GANANCIA", categoria: " SERVICIOS", fecha: "04/03/2024" },
+    { id: "83c6269b-7226-4388-90c6-1f6a771486cs", descripcion: "dverid5", monto: "5", tipo: "GANANCIA", categoria: " TRANSPORTE", fecha: "05/03/2024" },
+    { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522r", descripcion: "everid6", monto: "6", tipo: "GANANCIA", categoria: " TRABAJO", fecha: "26/02/2024" },
+    { id: "3e33ed37-d4d2-4eb8-b784-bde483966992", descripcion: "everid7", monto: "7", tipo: "GANANCIA", categoria: " COMIDA", fecha: "27/02/2024" },
+    { id: "3e33ed37-d4d2-4eb8-b784-bde483955992", descripcion: "zz zzz zzzz", monto: "25", tipo: "GANANCIA", categoria: "TRABAJO", fecha: "09/03/2024" }
 ];
 let operacion = {};
 let $menuBalance = document.getElementById("menu-balance"); //botón que activa el bloque de balances y filtros
@@ -175,13 +190,12 @@ let array;
 // Función que arma la tabla con los datos del LS
 // ----------------------------------------------
 const completarTablaOperaciones = (array) => {
-    // let operacionId;
     console.log('estoy en completar tabla operaciones', array);
-    alert();
     $conOperListado.innerHTML = " ";
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
         document.getElementById("cont-con-oper").classList.remove("hidden");
+        document.getElementById("contenedor-filtros").classList.remove("hidden");
         let i = 0;
         array.forEach(operacion => {
             i++;
@@ -222,6 +236,7 @@ const completarTablaOperaciones = (array) => {
     } else {
         document.getElementById("cont-con-oper").classList.add("hidden");
         document.getElementById("cont-sin-oper").classList.remove("hidden");
+        document.getElementById("contenedor-filtros").classList.add("hidden");
     }
 };
 
@@ -309,9 +324,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // ----------------------------------------------------------------
 const ingresarCategSelect = () => {
     categorias_LS = recuperar("categorias");
-    // console.log('estoy en ingresarCategSelect, las recuperaré de LS')
-    categorias_LS = recuperar("categorias");
-    // console.log('categorias recuperadas:', categorias_LS)
     $categoriaOperSelect.innerHTML = "";
     for (let i = 0; i < categorias_LS.length; i++) {
         $categoriaOperSelect.innerHTML += `<option value =" ${categorias_LS[i].nombre}">${categorias_LS[i].nombre}</option>`;
