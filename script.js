@@ -66,7 +66,7 @@ menuBalance.addEventListener("click", () => {
 		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
 		document.getElementById("ocultar-filtros").classList.remove("hidden");
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
-		cargarCategorias();
+		cargarCategorias();  
 		filtrar_oper();
 		document.getElementById("cont-sin-oper").classList.add("hidden");
 		cont_con_oper.classList.remove('hidden');
@@ -142,6 +142,9 @@ function controlarSiHayCateOper() {
 	}
 }
 
+// ___________________________________________________________
+// Función que carga las categorias del LS en el filtro select
+// -----------------------------------------------------------
 const filtro_categoria = document.getElementById("filtro-categoria");
 function cargarCategorias() {
 	filtro_categoria.innerHTML = `<option value="TODAS">TODAS</option>`;
@@ -151,13 +154,20 @@ function cargarCategorias() {
 	});
 }
 
+// ________________________________________________
+// Función que inicializa las fechas en los filtros
+// ------------------------------------------------ 
 function inicializarFechaFiltro() {
-	var fecha = new Date();
-	document
-		.getElementById("filtro-fecha")
-		.setAttribute("value", fecha.toJSON().slice(0, 10));
+	let fechaDesde = new Date();
+	let fechaHasta = new Date();
+	document.getElementById("filtro-fecha-desde").value = fechaDesde.toISOString().split('T')[0];
+	document.getElementById("filtro-fecha-hasta").value = fechaHasta.toISOString().split('T')[0];
 }
 
+
+// ___________________________________
+// Evento que oculta todos los filtros
+// -----------------------------------
 const ocultar_filtros = document.getElementById("ocultar-filtros");
 const contenedor_filtros = document.getElementById("contenedor-filtros");
 ocultar_filtros.addEventListener("click", () => {
@@ -169,49 +179,58 @@ ocultar_filtros.addEventListener("click", () => {
 	}
 });
 
+//_________________________________________________________________ 
 /*--------------- Para filtrar operaciones -----------------------*/
 const filtro_tipo = document.getElementById("filtro-tipo");
 const filtro_cate = document.getElementById("filtro-categoria");
-const filtro_fecha = document.getElementById("filtro-fecha");
+const filtro_fecha_desde = document.getElementById("filtro-fecha-desde");
+const filtro_fecha_hasta = document.getElementById("filtro-fecha-hasta");
 const filtro_orden = document.getElementById("filtro-orden");
 
 // const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en ínea 67 aprox
 const con_oper_listado = document.getElementById("con-oper-listado");
-
+let bandera_desde = false;
+let bandera_hasta = false;
 filtro_tipo.addEventListener("change", filtrar_oper);
 filtro_cate.addEventListener("change", filtrar_oper);
-filtro_fecha.addEventListener("change", filtrar_oper);
+filtro_fecha_desde.addEventListener("change", () => {
+	bandera_desde = true;
+	filtrar_oper()});
+filtro_fecha_hasta.addEventListener("change", () => {
+	bandera_hasta = true;
+	filtrar_oper()});
 filtro_orden.addEventListener("change", filtrar_oper);
 
-function masReciente(operaFiltro, como) {
-	if (como === "A") {
-		operaFiltro.sort((a, b) => {
-			return new Date(a.fecha) - new Date(b.fecha);
-		});
-	} else {
-		operaFiltro.sort((a, b) => {
-			return new Date(b.fecha) - new Date(a.fecha);
-		});
-	}
-}
+// function masReciente(operaFiltro, como) {
+// 	if (como === "A") {
+// 		operaFiltro.sort((a, b) => {
+// 			return new Date(a.fecha) - new Date(b.fecha);
+// 		});
+// 	} else {
+// 		operaFiltro.sort((a, b) => {
+// 			return new Date(b.fecha) - new Date(a.fecha);
+// 		});
+// 	}
+// }
 
-function mayorMonto(operaFiltro, como) {
-	return operaFiltro.sort((a, b) => {
-		return como === "A" ? a.monto - b.monto : b.monto - a.monto;
-	});
-}
+// function mayorMonto(operaFiltro, como) {
+// 	return operaFiltro.sort((a, b) => {
+// 		return como === "A" ? a.monto - b.monto : b.monto - a.monto;
+// 	});
+// }
 
-function aZ(operaFiltro, como) {
-	if (como === "A") {
-		operaFiltro.sort((a, b) => {
-			return a.descripcion.localeCompare(b.descripcion);
-		});
-	} else {
-		operaFiltro.sort((a, b) => {
-			return b.descripcion.localeCompare(a.descripcion);
-		});
-	}
-}
+// function aZ(operaFiltro, como) {
+// 	if (como === "A") {
+// 		operaFiltro.sort((a, b) => {
+// 			return a.descripcion.localeCompare(b.descripcion);
+// 		});
+// 	} else {
+// 		operaFiltro.sort((a, b) => {
+// 			return b.descripcion.localeCompare(a.descripcion);
+// 		});
+// 	}
+// }
+
 
 function ordenarOperaciones(operaFiltro, orden) {
 	switch (orden) {
@@ -237,18 +256,18 @@ function ordenarOperaciones(operaFiltro, orden) {
 	}
 }
 
-function formatFecha(f) {
-	let fc = new Date(f);
-	let ff;
-	fc.getDate() < 10
-		? (ff = "0" + fc.getDate() + "/")
-		: (ff = fc.getDate() + "/");
-	fc.getMonth() + 1 < 10
-		? (ff += "0" + (fc.getMonth() + 1) + "/")
-		: (ff += fc.getMonth() + 1 + "/");
-	ff += fc.getFullYear();
-	return ff;
-}
+// function formatFecha(f) {
+// 	let fc = new Date(f);
+// 	let ff;
+// 	fc.getDate() < 10
+// 		? (ff = "0" + fc.getDate() + "/")
+// 		: (ff = fc.getDate() + "/");
+// 	fc.getMonth() + 1 < 10
+// 		? (ff += "0" + (fc.getMonth() + 1) + "/")
+// 		: (ff += fc.getMonth() + 1 + "/");
+// 	ff += fc.getFullYear();
+// 	return ff;
+// }
 
 /* Busca nombre de las Categorías para mostrar */
 function nombreCat(id) {
@@ -268,45 +287,60 @@ function filtrar_oper() {
 	operaFiltro = recuperar("operaciones");  // trae las operaciones del LS
 	categFiltro = recuperar("categorias"); 	// trae las categorias del LS
 
+// Filtro de fecha
+	const fechaInicio = new Date(document.getElementById('filtro-fecha-desde').value);
+	let fechaFin = new Date(document.getElementById('filtro-fecha-hasta').value);
+	fechaFin.setDate(fechaFin.getDate() + 1);   // Incrementar la fecha de fin en 1 día porque no lo toma al de la misma fecha
+	if (bandera_desde === true || bandera_hasta === true) {
+		operaFiltro = operaciones.filter(op => {
+			const fechaOp = new Date(op.fecha.split('/').reverse().join('/'));
+			return fechaOp >= fechaInicio && fechaOp < fechaFin; // Usar < en lugar de <= para excluir el día siguiente
+		}).sort((a, b) => {
+			const dateA = new Date(a.fecha.split('/').reverse().join('/'));
+			const dateB = new Date(b.fecha.split('/').reverse().join('/'));
+			return dateA - dateB;
+		});
+	}
+
 	const tipo = filtro_tipo.value;
 	const categ = filtro_cate.value;
-	console.log('estoy en filtrar_oper', filtro_cate.value, categ, filtro_tipo.value, operaFiltro, operaFiltro.length, categFiltro, categFiltro.length);
-	const fechaDesde = new Date(`${filtro_fecha.value}T00:00:00`);
+	const fechaDesde = new Date(`${filtro_fecha_desde.value}T00:00:00`);
+	const fechaHasta = new Date(`${filtro_fecha_desde.value}T00:00:00`);
 	const orden = filtro_orden.value;
 
-
-
+	// Filtro tipo
 	if (tipo !== "TODO") {
 		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
-		console.log('filtro por tipo: ', tipo, operaFiltro)
-		// if (operaFiltro) { completarTablaOperaciones(operaFiltro); }
-		// completarTablaOperaciones(operaFiltro);
 	}
 
+	// Filtro categoría
 	if (categ !== "TODAS") {
 		categFiltro = categFiltro.filter((cate) => cate.id === categ);
-		// console.log(categFiltro)
-		console.log('categFiltro', categFiltro, categFiltro[0].id, typeof categFiltro[0].id, typeof filtro_cate.value, categFiltro[0].nombre, typeof categFiltro[0].id);
-		// if (categFiltro.length >0) {
-		console.log('operaFiltro', operaFiltro);
 		operaFiltro = operaFiltro.filter((oper) => oper.categoria.trim() === categFiltro[0].nombre.trim());
-		console.log(' categFiltro >0, filtro por categ: ', categ, operaFiltro);
 	}
 
 
+	completarTablaOperaciones(operaFiltro);
+	// Obtener la fecha de inicio y fin
+	// const fechaInicio = new Date("01/01/2024");
+	// const fechaFin = new Date("08/03/2024");
+
+	// Filtrar las operaciones
 	// operaFiltro = operaFiltro.filter(function (op) {
-	// 	return fechaDesde < new Date(op.fecha);
+	// 	const fechaOp = new Date(op.fecha);
+	// 	return fechaOp >= fechaInicio && fechaOp <= fechaFin;
 	// });
+
+	// Mostrar el array filtrado
+	// console.log(operaFiltro);
 
 	// operaFiltro = ordenarOperaciones(operaFiltro, orden);
 	// console.log('operaFiltro', operaFiltro);
-	// alert();
+	
 	
 
 	/* Si hay datos después de filtrar... */
-
-
-// 	if (operaFiltro.length > 0) {
+	// if (operaFiltro.length > 0) {
 
 // 		document.getElementById("cont-sin-oper").classList.add("hidden");
 // 		cont_con_oper.classList.remove("hidden");
@@ -351,9 +385,9 @@ function filtrar_oper() {
 // 	} else {
 // 		document.getElementById("cont-sin-oper").classList.remove("hidden");
 // 		cont_con_oper.classList.add("hidden");
-// 	}
-	completarTablaOperaciones(operaFiltro);
-}
+	}
+	
+
 /* ----------------------------------------------------------------------------------- */
 
 /* ================================================================================================*/
