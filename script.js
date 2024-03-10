@@ -29,7 +29,10 @@ function cerrarNav() {
 
 cerrar.addEventListener("click", cerrarNav);
 menuInicio.addEventListener("click", cerrarNav);
-menuBalance.addEventListener("click", cerrarNav);
+menuBalance.addEventListener("click", () => {
+	cerrarNav();
+	ocultarMostrarFiltros();
+	});
 menuCategorias.addEventListener("click", cerrarNav);
 menuReportes.addEventListener("click", cerrarNav);
 
@@ -76,6 +79,7 @@ menuBalance.addEventListener("click", () => {
 		el mensaje de cargar "nuevas operaciones" */
 		document.getElementById("ocultar-filtros").classList.add("hidden");
 	}
+	ocultarMostrarFiltros();
 });
 
 menuCategorias.addEventListener("click", () => {
@@ -165,19 +169,26 @@ function inicializarFechaFiltro() {
 }
 
 
-// ___________________________________
-// Evento que oculta todos los filtros
-// -----------------------------------
-const ocultar_filtros = document.getElementById("ocultar-filtros");
-const contenedor_filtros = document.getElementById("contenedor-filtros");
-ocultar_filtros.addEventListener("click", () => {
-	contenedor_filtros.classList.toggle("hidden");
+// ______________________________________________
+// Función asociada a ocultar/mostrar los filtros
+// ----------------------------------------------
+const ocultarMostrarFiltros = () => {
+	// contenedor_filtros.classList.toggle("hidden");
 	if (contenedor_filtros.classList.contains("hidden")) {
 		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Mostrar Filtros </p>`;
 	} else {
 		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Ocultar Filtros </p>`;
 	}
-});
+}
+
+
+
+// ___________________________________
+// Evento que oculta todos los filtros
+// -----------------------------------
+const ocultar_filtros = document.getElementById("ocultar-filtros");
+const contenedor_filtros = document.getElementById("contenedor-filtros");
+ocultar_filtros.addEventListener("click", () => {ocultarMostrarFiltros()});
 
 //_________________________________________________________________ 
 /*--------------- Para filtrar operaciones -----------------------*/
@@ -187,7 +198,7 @@ const filtro_fecha_desde = document.getElementById("filtro-fecha-desde");
 const filtro_fecha_hasta = document.getElementById("filtro-fecha-hasta");
 const filtro_orden = document.getElementById("filtro-orden");
 
-// const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en ínea 67 aprox
+// const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en línea 67 aprox
 const con_oper_listado = document.getElementById("con-oper-listado");
 let bandera_desde = false;
 let bandera_hasta = false;
@@ -201,6 +212,7 @@ filtro_fecha_hasta.addEventListener("change", () => {
 	filtrar_oper()});
 filtro_orden.addEventListener("change", filtrar_oper);
 
+// La función que sigue es la que se revisa
 // function masReciente(operaFiltro, como) {
 // 	if (como === "A") {
 // 		operaFiltro.sort((a, b) => {
@@ -213,26 +225,48 @@ filtro_orden.addEventListener("change", filtrar_oper);
 // 	}
 // }
 
-// function mayorMonto(operaFiltro, como) {
-// 	return operaFiltro.sort((a, b) => {
-// 		return como === "A" ? a.monto - b.monto : b.monto - a.monto;
-// 	});
-// }
+// Revisando
+function masReciente(operaFiltro, como) {
+	if (como === "A") {
+		operaFiltro.sort((a, b) => {
+			console.log('a.fecha:', a.fecha, 'b.fecha:', b.fecha);
+			return new Date(a.fecha) - new Date(b.fecha);
+		});
+	} else {
+		operaFiltro.sort((a, b) => {
+			console.log('a.fecha:', a.fecha, 'b.fecha:', b.fecha);
+			return new Date(b.fecha) - new Date(a.fecha);
+		});
+	}
+}
+// Fin revision
 
-// function aZ(operaFiltro, como) {
-// 	if (como === "A") {
-// 		operaFiltro.sort((a, b) => {
-// 			return a.descripcion.localeCompare(b.descripcion);
-// 		});
-// 	} else {
-// 		operaFiltro.sort((a, b) => {
-// 			return b.descripcion.localeCompare(a.descripcion);
-// 		});
-// 	}
-// }
+
+
+
+
+
+function mayorMonto(operaFiltro, como) {
+	return operaFiltro.sort((a, b) => {
+		return como === "A" ? a.monto - b.monto : b.monto - a.monto;
+	});
+}
+
+function aZ(operaFiltro, como) {
+	if (como === "A") {
+		operaFiltro.sort((a, b) => {
+			return a.descripcion.localeCompare(b.descripcion);
+		});
+	} else {
+		operaFiltro.sort((a, b) => {
+			return b.descripcion.localeCompare(a.descripcion);
+		});
+	}
+}
 
 
 function ordenarOperaciones(operaFiltro, orden) {
+	// console.log('filtro', filtro, 'orden', orden)
 	switch (orden) {
 		case "mas_reciente":
 			operaFiltro = masReciente(operaFiltro, "D");
@@ -286,8 +320,11 @@ function filtrar_oper() {
 	let sumaGasto = 0;
 	operaFiltro = recuperar("operaciones");  // trae las operaciones del LS
 	categFiltro = recuperar("categorias"); 	// trae las categorias del LS
+	const tipo = filtro_tipo.value;
+	const categ = filtro_cate.value;
+	const orden = filtro_orden.value;
 
-// Filtro de fecha
+	// Filtro de fecha
 	const fechaInicio = new Date(document.getElementById('filtro-fecha-desde').value);
 	let fechaFin = new Date(document.getElementById('filtro-fecha-hasta').value);
 	fechaFin.setDate(fechaFin.getDate() + 1);   // Incrementar la fecha de fin en 1 día porque no lo toma al de la misma fecha
@@ -302,12 +339,6 @@ function filtrar_oper() {
 		});
 	}
 
-	const tipo = filtro_tipo.value;
-	const categ = filtro_cate.value;
-	const fechaDesde = new Date(`${filtro_fecha_desde.value}T00:00:00`);
-	const fechaHasta = new Date(`${filtro_fecha_desde.value}T00:00:00`);
-	const orden = filtro_orden.value;
-
 	// Filtro tipo
 	if (tipo !== "TODO") {
 		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
@@ -319,74 +350,33 @@ function filtrar_oper() {
 		operaFiltro = operaFiltro.filter((oper) => oper.categoria.trim() === categFiltro[0].nombre.trim());
 	}
 
-
+	ordenarOperaciones(operaFiltro, orden);
 	completarTablaOperaciones(operaFiltro);
-	// Obtener la fecha de inicio y fin
-	// const fechaInicio = new Date("01/01/2024");
-	// const fechaFin = new Date("08/03/2024");
+	ocultarMostrarFiltros();
 
-	// Filtrar las operaciones
-	// operaFiltro = operaFiltro.filter(function (op) {
-	// 	const fechaOp = new Date(op.fecha);
-	// 	return fechaOp >= fechaInicio && fechaOp <= fechaFin;
-	// });
-
-	// Mostrar el array filtrado
-	// console.log(operaFiltro);
-
-	// operaFiltro = ordenarOperaciones(operaFiltro, orden);
-	// console.log('operaFiltro', operaFiltro);
+	// Obtención de resultados para encabezado de Balance 
+	operaFiltro.forEach((op) => {
+		if (op.tipo === "GANANCIA") {
+			sumaGana = sumaGana + parseFloat(op.monto);
+			x = `<div> $${formatPesos(op.monto)} </div>`;
+		} else {
+			sumaGasto = sumaGasto + parseFloat(op.monto);
+			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
+					Math.abs(op.monto))} </div>`;
+		}
+	});
+	document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(sumaGana)}`;
+	document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(sumaGasto)}`;
+	if (sumaGana - sumaGasto >= 0) {
+		x = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
+		} else {
+			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(Math.abs(sumaGana - sumaGasto))} </div>`;
+		}
+		document.getElementById("balance-total").innerHTML = `${x}`;
+}
 	
-	
 
-	/* Si hay datos después de filtrar... */
-	// if (operaFiltro.length > 0) {
 
-// 		document.getElementById("cont-sin-oper").classList.add("hidden");
-// 		cont_con_oper.classList.remove("hidden");
-// 		completarTablaOperaciones(operaFiltro);
-// 		con_oper_listado.innerHTML = "";
-
-// 		operaFiltro.forEach((op) => {
-// 			if (op.tipo === "GANANCIA") {
-// 				sumaGana += op.monto;
-// 				x = `<div> $${formatPesos(op.monto)} </div>`;
-// 			} else {
-// 				sumaGasto += op.monto;
-// 				x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-// 					Math.abs(op.monto)
-// 				)} </div>`;
-// 			}
-
-// 			con_oper_listado.innerHTML += `<div class="flex">
-// 							<div class="w-[30%]">${op.descripcion.toUpperCase() + "-" + op.tipo}</div>
-// 							<div class="w-[30%]">${nombreCat(op.categoria)}</div>
-// 							<div class="w-[15%]">${formatFecha(op.fecha)}</div>
-// 							<div class="w-[16%] flex justify-end">${x}</div>
-// 							<div class="w-[9%]  flex justify-end"> Edi-Eli</div>
-// 						</div>`;
-// 		});
-
-// 		document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(
-// 			sumaGana
-// 		)}`;
-// 		document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(
-// 			sumaGasto
-// 		)}`;
-
-// 		if (sumaGana - sumaGasto >= 0) {
-// 			x = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
-// 		} else {
-// 			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-// 				Math.abs(sumaGana - sumaGasto)
-// 			)} </div>`;
-// 		}
-// 		document.getElementById("balance-total").innerHTML = `${x}`;
-// 	} else {
-// 		document.getElementById("cont-sin-oper").classList.remove("hidden");
-// 		cont_con_oper.classList.add("hidden");
-	}
-	
 
 /* ----------------------------------------------------------------------------------- */
 
@@ -395,4 +385,5 @@ function funcionesAEjecutar() {
 	modoClaroOscuro();
 	mostrar(contenedor_menuInicio);
 }
+
 window.onload = funcionesAEjecutar;

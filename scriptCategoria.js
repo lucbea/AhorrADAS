@@ -359,6 +359,10 @@ const borrarCategoria = (id) => {
 
 
 
+
+
+
+
 // ______________________________
 // Función  Activar Ventana Modal
 // ------------------------------
@@ -366,7 +370,6 @@ const activarVentMod = (contenAActivar) => {
     $contVentanaModal.classList.remove("hidden");
     contenAActivar.classList.remove("hidden");
 }
-
 
 // ___________________________________
 // Llamado para restaurar las categorías
