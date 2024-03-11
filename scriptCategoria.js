@@ -2,7 +2,7 @@
 // crearCategoria con id encriptado
 // --------------------------------
 const crearIdDato = (nombre) => {
-    return { id: uuidv4(), nombre };
+    return {id: uuidv4(), nombre };
 }
 
 
@@ -68,7 +68,9 @@ const mostrarDato = () => {
             div1.classList.add("flex", "items-center");
             let spanCategoria = document.createElement("span");
             spanCategoria.classList.add("span-categoria");
-            spanCategoria.innerHTML = categoria.nombre;
+            spanCategoria.innerHTML = categoria.nombre.trim();
+            // console.log(spanCategoria);
+            // alert();
 
             let btnEditarCat = document.createElement("button");
             btnEditarCat.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
@@ -146,7 +148,7 @@ const armadoArrayGuardar = (locacion, id, nombre, funcion) => {
                 let nombre = nombre;
                 arrayListoParaGuardar = categoriasLS.map(categoria => {
                     if (categoria.id === id) {
-                        return { ...categoria, nombre: nombre }; // Actualiza el nombre si el ID coincide
+                        return { ...categoria, nombre:nombre }; // Actualiza el nombre si el ID coincide
                     } else {
                         return categoria; // Retorna la categoría sin cambios si el ID no coincide
                     }
