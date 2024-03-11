@@ -38,9 +38,12 @@ const grabar = (locacion, dato) =>
 // Recuperar del Local Storage
 // ---------------------------
 const recuperar = (locacion) => {
-	categoriasLS = JSON.parse(localStorage.getItem(locacion));
-	return categoriasLS;
-};
+    let datosLS;
+    datosLS = JSON.parse(localStorage.getItem(locacion));
+    // console.log(locacion, datosLS);
+    return datosLS;
+}
+
 
 // // _______________________________
 // // Funcion Mostrar las categorias
@@ -63,28 +66,11 @@ const mostrarDato = () => {
 			spanCategoria.classList.add("span-categoria");
 			spanCategoria.innerHTML = categoria.nombre;
 
-			let btnEditar = document.createElement("button");
-			btnEditar.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-			btnEditar.id = `btn-editar-${categoria.id}`; // Identificador único para el botón de editar
-			btnEditar.classList.add(
-				"flex-shrink-0",
-				"h-8",
-				"px-2",
-				"md:px-4",
-				"lg:px-6",
-				"rounded-lg",
-				"bg-blue-100",
-				"mx-1",
-				"md:mx-4",
-				"lg:mx-4",
-				"hover:bg-blue-200",
-				"focus:bg-blue-200",
-				"hover:dark:bg-gray-400",
-				"focus:dark:bg-gray-400",
-				"hover:shadow-md",
-				"focus:shadow-md"
-			);
-			btnEditar.addEventListener("click", () => editarCategoria(categoria.id));
+            let btnEditarCat = document.createElement("button");
+            btnEditarCat.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+            btnEditarCat.id = `btn-editar-${categoria.id}`; // Identificador único para el botón de editar
+            btnEditarCat.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "mx-1", "md:mx-4", "lg:mx-4", "hover:bg-blue-200", "focus:bg-blue-200", "hover:dark:bg-gray-400", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
+            btnEditarCat.addEventListener("click", () => editarCategoria(categoria.id));
 
 			let btnBorrar = document.createElement("button");
 			btnBorrar.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
@@ -106,14 +92,16 @@ const mostrarDato = () => {
 			);
 			btnBorrar.addEventListener("click", () => borrarCategoria(categoria.id));
 
-			div1.appendChild(spanCategoria);
-			div2.appendChild(btnEditar);
-			div2.appendChild(btnBorrar);
-			divContenCat.appendChild(div1);
-			divContenCat.appendChild(div2);
-			$muestraCategorias.appendChild(divContenCat);
-		}
-	});
+            div1.appendChild(spanCategoria);
+            div2.appendChild(btnEditarCat);
+            div2.appendChild(btnBorrar);
+            divContenCat.appendChild(div1);
+            divContenCat.appendChild(div2);
+            $muestraCategorias.appendChild(divContenCat);
+
+        }
+       
+    });
 };
 
 // _________________________
@@ -211,10 +199,8 @@ $cerrar.addEventListener("click", () => {
 // ______________________________________________________________________
 // Evento - Ingreso de texto en input de categoria o de edicion categoria
 // ----------------------------------------------------------------------
-$inpCategoria.addEventListener(
-	"input",
-	(e) => ($inpCategoria.value = ingresarCategoria($inpCategoria))
-);
+// $inpCategoria.addEventListener('input', (e) => $inpCategoria.value = ingresarCategoria($inpCategoria));
+
 
 // _________________________________________________
 // Evento - Boton cerrar mensaje por categoría vacía
@@ -248,34 +234,29 @@ const revisarDatosDuplicados = (id, nombre) => {
 // ______________________________________________
 // Evento - Boton AGREGAR de ingreso de categoría
 // ----------------------------------------------
-let $botonIngresoCategoria = document.getElementById("boton-ingreso-categoria");
-$botonIngresoCategoria.addEventListener("click", (e) => {
-	let valorCategoria = $inpCategoria.value.trim(); // Obtener el valor del input de la categoría
-	if (valorCategoria !== "") {
-		//evita ingreso de categoría vacía
-		let nuevaCategEncrip = crearIdDato(valorCategoria);
-		nombNuevaCateg = nuevaCategEncrip.nombre;
-		idNuevaCateg = nuevaCategEncrip.id;
-		let datoDuplicado = revisarDatosDuplicados(idNuevaCateg, nombNuevaCateg);
-		if (!datoDuplicado) {
-			let categoriasParaGuardar = armadoArrayGuardar(
-				"categorias",
-				idNuevaCateg,
-				nombNuevaCateg,
-				"nuevaCateg"
-			);
-			grabar("categorias", categoriasParaGuardar);
-			mostrarDato();
-			$inpCategoria.value = " ";
-			return;
-		} else {
-			activarVentMod($mjeCatDuplicada);
-			return;
-		}
-	} else {
-		activarVentMod($mjeCatVacia);
-		return;
-	}
+let $botonIngresoCategoria = document.getElementById('boton-ingreso-categoria');
+$botonIngresoCategoria.addEventListener('click', (e) => {
+    let valorCategoria = ingresarCategoria($inpCategoria);
+    // valorCategoria = $inpCategoria.value.trim();    // Obtener el valor del input de la categoría 
+    if (valorCategoria !== "") {  //evita ingreso de categoría vacía
+        let nuevaCategEncrip = crearIdDato(valorCategoria);
+        nombNuevaCateg = nuevaCategEncrip.nombre;
+        idNuevaCateg = nuevaCategEncrip.id;
+        let datoDuplicado = revisarDatosDuplicados(idNuevaCateg, nombNuevaCateg);
+        if (!datoDuplicado) {
+            let categoriasParaGuardar = armadoArrayGuardar("categorias", idNuevaCateg, nombNuevaCateg, "nuevaCateg");
+            grabar("categorias", categoriasParaGuardar);
+            mostrarDato();
+            $inpCategoria.value = " ";
+            return;
+        } else {
+            activarVentMod($mjeCatDuplicada);
+            return;
+        }
+    } else {
+        activarVentMod($mjeCatVacia);
+        return;
+    }
 });
 
 // _______________________________________
@@ -349,16 +330,55 @@ const editarCategoria = (idCat) => {
 	});
 };
 
+
+//--------------------------   
+// Función borrar categoría
+// -------------------------
+// const borrarCategoria = (id) => {
+//     const nuevasCategorias = categoriasLS.filter(categoria => categoria.id !== id);  // Filtrar las categorías, excluyendo la del id
+//     grabar("categorias", nuevasCategorias);  // Guardar las nuevas categorías en el localStorage   
+//     mostrarDato();  // Mostrar las categorías actualizadas
+// };
+
+
 //--------------------------
 // Función borrar categoría
 // -------------------------
 const borrarCategoria = (id) => {
-	const nuevasCategorias = categoriasLS.filter(
-		(categoria) => categoria.id !== id
-	); // Filtrar las categorías, excluyendo la del id
-	grabar("categorias", nuevasCategorias); // Guardar las nuevas categorías en el localStorage
-	mostrarDato(); // Mostrar las categorías actualizadas
+    // OTRA VEZ RECUPERA CATEGORIA ------------------
+    const categorias = recuperar("categorias");
+    console.log('entré a borrar categoría y la cargué de LS:', categorias)
+
+    let borrar = true;
+    if (localStorage.getItem("operaciones") !== null) {
+        const operCate = recuperar("operaciones");
+        if (operCate.length > 0) {
+            const resultado = operCate.find((op) => op.categoria == id);
+            console.log('estas operaciones tiene esa categoria', resultado)
+            if (resultado !== undefined) {
+                //NO se puede borrar. Esta categoría tienen operaciones.
+                borrar = false;
+            }
+        }
+    }
+    if (borrar) {
+        //faltaria una pregunta de "ESTÁ SEGURO QUE DESEA BORRAR?"
+        alert("ESTÁ SEGURO QUE DESEA BORRAR?");
+        const nuevasCategorias = categorias.filter(
+            (categoria) => categoria.id !== id
+        ); // Filtrar las categorías, excluyendo la del id
+        grabar("categorias", nuevasCategorias); // Guardar las nuevas categorías en el localStorage
+        mostrarDato(); // Mostrar las categorías actualizadas
+    } else {
+        alert("Categoría con operaciones. Primero elimine las Operaciones");
+    }
 };
+
+
+
+
+
+
 
 // ______________________________
 // Función  Activar Ventana Modal
