@@ -20,6 +20,7 @@ abrir.addEventListener("click", () => {
 	abrir.classList.add("hidden");
 });
 
+
 function cerrarNav() {
 	nav.classList.add("hidden");
 	cerrar.classList.add("hidden");
