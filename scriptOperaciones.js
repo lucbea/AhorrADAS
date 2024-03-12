@@ -27,28 +27,29 @@ let categorias_LS;
 let operaciones_LS = '[]';
 let idEnCurso;
 let operaciones = [
-    { id: "93e21f72-44ca-43aa-b990-02ffef336bdf", descripcion: "verid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
-    { id: "116e96d5-26d8-4245-aaad-37ef5323a950", descripcion: "verdi2", monto: "2", tipo: "GASTO", categoria: " EDUCACION", fecha: "02/03/2024" },
-    { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb6", descripcion: "verid3", monto: "3", tipo: "GANANCIA", categoria: " SALIDAS", fecha: "03/03/2024" },
-    { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef50", descripcion: "verid4", monto: "4", tipo: "GASTO", categoria: " SERVICIOS", fecha: "04/03/2024" },
-    { id: "83c6269b-7226-4388-90c6-1f6a771486c7", descripcion: "verid5", monto: "5", tipo: "GANANCIA", categoria: " TRANSPORTE", fecha: "05/03/2024" },
-    { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522e", descripcion: "verid6", monto: "6", tipo: "GASTO", categoria: " TRABAJO", fecha: "26/02/2024" },
-    { id: "3e33ed37-d4d2-4eb8-b784-bde48396699c", descripcion: "verid7", monto: "7", tipo: "GANANCIA", categoria: " COMIDA", fecha: "27/02/2024" },
-    { id: "93e21f72-44ca-43aa-b990-02ffef336bdv", descripcion: "averid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
-    { id: "116e96d5-26d8-4245-aaad-37ef5323a958", descripcion: "averdi2", monto: "2", tipo: "GASTO", categoria: " EDUCACION", fecha: "02/03/2024" },
-    { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb1", descripcion: "averid3", monto: "3", tipo: "GASTO", categoria: " SALIDAS", fecha: "03/03/2024" },
-    { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef52", descripcion: "bverid4", monto: "4", tipo: "GASTO", categoria: " SERVICIOS", fecha: "04/03/2024" },
-    { id: "83c6269b-7226-4388-90c6-1f6a771486c9", descripcion: "bverid5", monto: "5", tipo: "GASTO", categoria: " TRANSPORTE", fecha: "05/03/2024" },
-    { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522f", descripcion: "bverid6", monto: "6", tipo: "GASTO", categoria: " TRABAJO", fecha: "26/02/2024" },
-    { id: "3e33ed37-d4d2-4eb8-b784-bde48396699b", descripcion: "cverid7", monto: "7", tipo: "GASTO", categoria: " COMIDA", fecha: "27/02/2024" },
-    { id: "93e21f72-44ca-43aa-b990-02ffef336bdg", descripcion: "cverid1", monto: "1", tipo: "GANANCIA", categoria: " COMIDA", fecha: "01/03/2024" },
-    { id: "116e96d5-26d8-4245-aaad-37ef5323a95t", descripcion: "cverdi2", monto: "2", tipo: "GANANCIA", categoria: " EDUCACION", fecha: "02/03/2024" },
-    { id: "b3e6fa79-1f8c-4687-b05a-712f29f9dbb8", descripcion: "dverid3", monto: "3", tipo: "GANANCIA", categoria: " SALIDAS", fecha: "03/03/2024" },
-    { id: "e2dfc2d9-3586-4e75-bf20-3ea7f8f3ef5w", descripcion: "dverid4", monto: "4", tipo: "GANANCIA", categoria: " SERVICIOS", fecha: "04/03/2024" },
-    { id: "83c6269b-7226-4388-90c6-1f6a771486cs", descripcion: "dverid5", monto: "5", tipo: "GANANCIA", categoria: " TRANSPORTE", fecha: "05/03/2024" },
-    { id: "1c98ac9c-988f-457a-a4f5-f9a6ccdb522r", descripcion: "everid6", monto: "6", tipo: "GANANCIA", categoria: " TRABAJO", fecha: "26/02/2024" },
-    { id: "3e33ed37-d4d2-4eb8-b784-bde483966992", descripcion: "everid7", monto: "7", tipo: "GANANCIA", categoria: " COMIDA", fecha: "27/02/2024" },
-    { id: "3e33ed37-d4d2-4eb8-b784-bde483955992", descripcion: "zz zzz zzzz", monto: "25", tipo: "GANANCIA", categoria: "TRABAJO", fecha: "09/03/2024" }
+    { id: "93e21f72-44ca-43aa-b990-04ffef336bdf", descripcion: "verid1", monto: 1, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/03/01" },
+    { id: "116e96d5-26d8-4245-aaad-34ef5323a950", descripcion: "verdi2", monto: 2, tipo: "GASTO", categoria: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", fecha: "2024/03/02" },
+    { id: "b3e6fa79-1f8c-4687-b05a-742f29f9dbb6", descripcion: "verid3", monto: 3, tipo: "GANANCIA", categoria: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", fecha: "2024/03/03" },
+    { id: "e2dfc2d9-3586-4e75-bf20-34a7f8f3ef50", descripcion: "verid4", monto: 4, tipo: "GASTO", categoria: "c585531d-7bed-4096-a099-baa8282300b0", fecha: "2024/03/04" },
+    { id: "83c6269b-7226-4388-90c6-146a771486c7", descripcion: "verid5", monto: 5, tipo: "GANANCIA", categoria: "a84a60e9-5c32-4381-b0da-aa120df9b90b", fecha: "2024/03/05" },
+    { id: "1c98ac9c-988f-457a-a4f5-f4a6ccdb522e", descripcion: "verid6", monto: 6, tipo: "GASTO", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/02/26" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b4e48396699c", descripcion: "verid7", monto: 7, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/02/27" },
+    { id: "93e21f72-44ca-43aa-b990-02ffef336bdv", descripcion: "averid1", monto: 1, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/03/01" },
+    { id: "116e96d5-26d8-4245-aaad-32ef5323a958", descripcion: "averdi2", monto: 2, tipo: "GASTO", categoria: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", fecha: "2024/03/02" },
+    { id: "b3e6fa79-1f8c-4687-b05a-722f29f9dbb1", descripcion: "averid3", monto: 3, tipo: "GASTO", categoria: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", fecha: "2024/03/03" },
+    { id: "e2dfc2d9-3586-4e75-bf20-32a7f8f3ef52", descripcion: "bverid4", monto: 4, tipo: "GASTO", categoria: "c585531d-7bed-4096-a099-baa8282300b0", fecha: "2024/03/04" },
+    { id: "83c6269b-7226-4388-90c6-126a771486c9", descripcion: "bverid5", monto: 5, tipo: "GASTO", categoria: "a84a60e9-5c32-4381-b0da-aa120df9b90b", fecha: "2024/03/05" },
+    { id: "1c98ac9c-988f-457a-a4f5-f2a6ccdb522f", descripcion: "bverid6", monto: 6, tipo: "GASTO", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/02/26" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b2e48396699b", descripcion: "cverid7", monto: 7, tipo: "GASTO", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/02/27" },
+    { id: "93e21f72-44ca-43aa-b990-03ffef336bdg", descripcion: "cverid1", monto: 1, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/03/01" },
+    { id: "116e96d5-26d8-4245-aaad-33ef5323a95t", descripcion: "cverdi2", monto: 2, tipo: "GANANCIA", categoria: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", fecha: "2024/03/02" },
+    { id: "b3e6fa79-1f8c-4687-b05a-732f29f9dbb8", descripcion: "dverid3", monto: 3, tipo: "GANANCIA", categoria: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", fecha: "2024/03/03" },
+    { id: "e2dfc2d9-3586-4e75-bf20-33a7f8f3ef5w", descripcion: "dverid4", monto: 4, tipo: "GANANCIA", categoria: "c585531d-7bed-4096-a099-baa8282300b0", fecha: "2024/03/04" },
+    { id: "83c6269b-7226-4388-90c6-136a771486cs", descripcion: "dverid5", monto: 5, tipo: "GANANCIA", categoria: "a84a60e9-5c32-4381-b0da-aa120df9b90b", fecha: "2024/03/05" },
+    { id: "1c98ac9c-988f-457a-a4f5-f3a6ccdb522r", descripcion: "everid6", monto: 6, tipo: "GANANCIA", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/02/26" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b3e483966992", descripcion: "everid7", monto: 7, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/02/27" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b5e483955992", descripcion: "zz zzz zzzz", monto: 25, tipo: "GANANCIA", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/03/09" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b7e483955992", descripcion: "zz zzz zzzz bis", monto: 25, tipo: "GANANCIA", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/03/09" }
 ];
 let operacion = {};
 let $menuBalance = document.getElementById("menu-balance"); //botón que activa el bloque de balances y filtros
@@ -68,12 +69,12 @@ let $celdaAcciones = document.getElementById("celda-acciones");
 // -------------------------------------------------------
 const inicializarOperaciones = () => {
     if (localStorage.getItem("operaciones") === null) {
-        localStorage.setItem("operaciones", JSON.stringify(operaciones)); 
+        localStorage.setItem("operaciones", JSON.stringify(operaciones));
     }
 }
 
 // __________________________________________
-// Inicialización del array Operaciones en LS
+// Llamado a inicializar el array Operaciones en LS
 // ------------------------------------------
 inicializarOperaciones();
 
@@ -108,20 +109,31 @@ $btnIngOp.addEventListener("click", () => {
 // Evento Ingreso fecha en el input
 // --------------------------------
 $fechaOperInput.addEventListener('input', () => {
-    mostrarFechaInput($fechaOperInput.value);
+    console.log('ingrese fecha', $fechaOperInput.value);
+    manipulacFecha($fechaOperInput.value, 'ingreso', 'D');
 });
 
 
 // ________________________________
 // Función tomar datos de los input
 // --------------------------------
-const tomarData = (id) => {
+const tomarData = (id, tipoOper) => {
+    categorias_LS = recuperar("categorias");
     operacion.id = id;
     operacion.descripcion = $descripcionOperInput.value;
-    operacion.monto = $montoOperInput.value;
+    operacion.monto = parseFloat($montoOperInput.value);
     operacion.tipo = $tipoOperSelect.value;
-    operacion.categoria = $categoriaOperSelect.value;
-    operacion.fecha = mostrarFechaInput($fechaOperInput.value);
+    let categAux = $categoriaOperSelect.value.trim();
+    console.log(operacion.categoria);
+    categorias_LS.forEach((categ) => {
+        console.log(categ.nombre)
+        if (categAux === categ.nombre) {
+            console.log('encontró categoria', categ.id, categ.nombre);
+            operacion.categoria = categ.id;
+        }
+    })
+    operacion.fecha = manipulacFecha($fechaOperInput.value, tipoOper, 'A');
+    // console.log('estoy en tomarData', operacion.fecha);
     return operacion;
 }
 
@@ -129,13 +141,13 @@ const tomarData = (id) => {
 // _____________________________________
 // Evento botón Cancelar Nueva Operación
 // -------------------------------------
-$btnCancOp.addEventListener('click', () => {mostrar($conten_menuBalance)});
+$btnCancOp.addEventListener('click', () => { mostrar($conten_menuBalance) });
 
 
 // __________________________________________
 // Eventos botones Cancelar Edición Operación
 // ------------------------------------------
-$btnCancOp2.addEventListener('click', () => {mostrar($conten_menuBalance)});
+$btnCancOp2.addEventListener('click', () => { mostrar($conten_menuBalance) });
 
 
 // __________________________________
@@ -143,22 +155,25 @@ $btnCancOp2.addEventListener('click', () => {mostrar($conten_menuBalance)});
 // ----------------------------------
 const mostrarDataInput = (id) => {
     operaciones_LS = recuperar("operaciones");
+    categorias_LS = recuperar("categorias")
     // Usar find en lugar de filter, ya que filter devuelve un array y find devuelve el primer elemento que cumple la condición
     let operacion = operaciones_LS.find((operacion) => operacion.id === id);
-    if (!operacion) {return}
+    if (!operacion) { return }
     $descripcionOperInput.value = operacion.descripcion;
     $montoOperInput.value = operacion.monto;
     $tipoOperSelect.value = operacion.tipo;
-    $categoriaOperSelect.value = operacion.categoria;
-    $fechaOperInput.value = formatearFecha(operacion.fecha);
+    let categoria = categorias_LS.find((categoria) => operacion.categoria === categoria.id);
+    $categoriaOperSelect.value = ' '+categoria.nombre;
+    let fechaAux = manipulacFecha(operacion.fecha, 'ingreso', 'D');
+    $fechaOperInput.value = formatearFecha(fechaAux);
 }
 
 
 
 let fechaFormateada;
-// ___________________________________________________________________
-// Función para mostrar fecha en input con formato dd/MM/aaaa desde LS
-// -------------------------------------------------------------------
+// ______________________________________________________________________________________________
+// Función para mostrar fecha en input con formato dd/MM/aaaa desde LS (que está en formato aaaa)
+// ----------------------------------------------------------------------------------------------
 const formatearFecha = (fecha) => {
     let partes = fecha.split('/');
     let fechaNueva = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
@@ -169,44 +184,81 @@ const formatearFecha = (fecha) => {
 // __________________________________________________
 // Funcion para tomar fecha del input y guardar en LS
 // --------------------------------------------------
-const mostrarFechaInput = (fecha) => {
-    // Asegurarse de que la fecha esté en formato 'yyyy-mm-dd'
+const manipulacFecha = (fecha, tarea, orden) => {
+    if (tarea === 'ingreso') {
+        // console.log('se ha ingresado una fecha por input', fecha);
+        fecha = fecha.replace(/-/g, '/');
+        // console.log('se ha ingresado una fecha por input, se transforma con/',fecha); // Salida: '2024/03/10'
+
+    }
+    // Asegurarse de que la fecha esté en formato 'aaaa/mm/dd'
+    // console.log('estoy en manipulacFecha', fecha);
     let partesFecha = fecha.split('/');
-    fechaFormateada = partesFecha[2] + '-' + partesFecha[1] + '-' + partesFecha[0];
-    let fechaObjeto = new Date(fechaFormateada);// Necesita esta conversión para aplicar el getTime a continuación
+    if (partesFecha.length !== 3) {
+        console.error('Formato de fecha incorrecto');
+        return;
+    }
+    let anio = partesFecha[0];
+    let mes = partesFecha[1].padStart(2, '0');
+    let dia = partesFecha[2].padStart(2, '0');
+
+    let fechaFormateada = anio + '-' + mes + '-' + dia;
+    let fechaObjeto = new Date(fechaFormateada);
+
     if (isNaN(fechaObjeto.getTime())) {
         console.error('La fecha no es válida');
         return;
     }
-    let dia = fechaObjeto.getDate().toString().padStart(2, '0');
-    let mes = (fechaObjeto.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 al mes porque los meses van de 0 a 11
-    let anio = fechaObjeto.getFullYear();
-    let formatoFecha = dia + '/' + mes + '/' + anio;
+
+    let formatoFecha;
+    if (orden === 'D') {
+        formatoFecha = dia + '/' + mes + '/' + anio;
+    } else {
+        formatoFecha = anio + '/' + mes + '/' + dia;
+    }
+
+    console.log('formato fecha: ', orden, formatoFecha);
     return formatoFecha;
 }
+
 
 let array;
 // ______________________________________________
 // Función que arma la tabla con los datos del LS
 // ----------------------------------------------
 const completarTablaOperaciones = (array) => {
-    console.log('estoy en completar tabla operaciones', array);
+    // console.log('estoy en completar tabla operaciones', array);
     $conOperListado.innerHTML = " ";
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
         document.getElementById("cont-con-oper").classList.remove("hidden");
         document.getElementById("contenedor-filtros").classList.remove("hidden");
         let i = 0;
+        let fechaMostrar;
+        categorias_LS = recuperar("categorias");
+        // console.log('estoy en completarTablaFecha')
         array.forEach(operacion => {
+            fechaMostrar = manipulacFecha(operacion.fecha, 'mostrar desde LS', 'D');
+            // console.log('estoy en completarTablaFecha     fechaMostrar: ', fechaMostrar);
             i++;
+            categorias_LS.forEach((categoria) => {
+                // console.log('convertir categoria')
+                console.log(categoria.id, operacion.categoria);
+                if (categoria.id === operacion.categoria) {
+                    console.log('convertir categoria', 'categoria.id', categoria.id, 'operacion.categoria', operacion.categoria)
+                    operacion.categoria = categoria.nombre;
+
+                    return operacion.categoria
+                }
+            })
             $conOperListado.innerHTML += `        
                 <div class="h-[2px] bg-slate-100 my-[4px]"></div>    
                 <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 w-full h-[70px] sm:h-[40px]">
                     <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
                         <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[15px]">${operacion.descripcion}</div>
-                        <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[33,3%] flex justify-center items-center text-[10px] bg-zinc-100 dark:bg-gray-200 p-1 rounded-lg shadow-inner">${operacion.categoria}</div>
+                        <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[33,3%] flex justify-center items-center text-[10px] bg-zinc-100 dark:bg-gray-200 p-1 rounded-lg shadow-inner"> ${operacion.categoria}</div>
                     </div>
-                    <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[130px] flex justify-end text-[12px]">${operacion.fecha}</div>
+                    <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[130px] flex justify-end text-[12px]">${fechaMostrar}</div>
                     <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[29%] gap-3">
                         <div id="celdaMonto" class="w-[220px] flex items-center sm:justify-end text-[15px]">${operacion.monto}</div>
                         <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end lg:gap-1"></div>
@@ -247,7 +299,9 @@ const completarTablaOperaciones = (array) => {
 $btnGrabarOp.addEventListener('click', () => {
     operaciones_LS = recuperar("operaciones");
     operacion.id = uuidv4();
-    operacion = tomarData(operacion.id);
+    operacion = tomarData(operacion.id, 'ingreso');
+    console.log('voy a grabar operacion en LS', operacion)
+    alert();
     operaciones_LS.push(operacion);
     grabar("operaciones", operaciones_LS);
     mostrar($conten_menuBalance);
@@ -271,7 +325,7 @@ const borrarOperacion = (id) => {
 let arrayListo;
 const editarOperacion = (idOp) => {
     ingresarCategSelect();
-    let idOpEditar = idOp;    
+    let idOpEditar = idOp;
     mostrar($conten_menuOperaciones);
     $titNuevaOp.classList.add("hidden");
     $titEditOp.classList.remove("hidden");
@@ -281,11 +335,11 @@ const editarOperacion = (idOp) => {
     mostrarDataInput(idOpEditar);
     index = '';
     idEnCurso = '';
-    $btnModificarOp.addEventListener('click', () => {       
+    $btnModificarOp.addEventListener('click', () => {
         index = operaciones_LSEdit.findIndex((operacion) => operacion.id === idOpEditar);
-        idEnCurso = operaciones_LSEdit[index].id;  
+        idEnCurso = operaciones_LSEdit[index].id;
         if (index !== -1) {  // Verifica si se encontró el objeto con el id dado
-            let operacionEdit = tomarData(idOpEditar);
+            let operacionEdit = tomarData(idOpEditar, 'ingreso');
             arrayListo = [
                 ...operaciones_LSEdit.slice(0, index),  // elementos antes del índice
                 operacionEdit,                      // elemento que quieres insertar/reemplazar

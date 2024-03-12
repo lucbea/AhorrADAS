@@ -2,7 +2,7 @@
 // crearCategoria con id encriptado
 // --------------------------------
 const crearIdDato = (nombre) => {
-    return { id: uuidv4(), nombre };
+    return {id: uuidv4(), nombre };
 }
 
 
@@ -10,12 +10,18 @@ const crearIdDato = (nombre) => {
 // constante Categorias iniciales (para restaurar)
 // ------------------------------
 const categoriasInicio = [
-    crearIdDato('COMIDA'),
-    crearIdDato('EDUCACION'),
-    crearIdDato('SALIDAS'),
-    crearIdDato('SERVICIOS'),
-    crearIdDato('TRANSPORTE'),
-    crearIdDato('TRABAJO'),
+    { id: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", nombre: "COMIDA" },
+    { id: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", nombre: "EDUCACION" },
+    { id: "c585531d-7bed-4096-a099-baa8282300b0", nombre: "SALIDAS" },
+    { id: "a84a60e9-5c32-4381-b0da-aa120df9b90b", nombre: "SERVICIOS" },
+    { id: "4904f4f9-d770-4857-a250-5350ee8e3770", nombre: "TRANSPORTE" },
+    { id: "40e00304-2d59-4c1c-8987-b7e5de113c25", nombre: "TRABAJO" }
+    // crearIdDato('COMIDA'),
+    // crearIdDato('EDUCACION'),
+    // crearIdDato('SALIDAS'),
+    // crearIdDato('SERVICIOS'),
+    // crearIdDato('TRANSPORTE'),
+    // crearIdDato('TRABAJO'),
 ];
 
 
@@ -68,7 +74,9 @@ const mostrarDato = () => {
             div1.classList.add("flex", "items-center");
             let spanCategoria = document.createElement("span");
             spanCategoria.classList.add("span-categoria");
-            spanCategoria.innerHTML = categoria.nombre;
+            spanCategoria.innerHTML = categoria.nombre.trim();
+            // console.log(spanCategoria);
+            // alert();
 
             let btnEditarCat = document.createElement("button");
             btnEditarCat.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
@@ -146,7 +154,7 @@ const armadoArrayGuardar = (locacion, id, nombre, funcion) => {
                 let nombre = nombre;
                 arrayListoParaGuardar = categoriasLS.map(categoria => {
                     if (categoria.id === id) {
-                        return { ...categoria, nombre: nombre }; // Actualiza el nombre si el ID coincide
+                        return { ...categoria, nombre:nombre }; // Actualiza el nombre si el ID coincide
                     } else {
                         return categoria; // Retorna la categoría sin cambios si el ID no coincide
                     }
