@@ -27,29 +27,29 @@ let categorias_LS;
 let operaciones_LS = '[]';
 let idEnCurso;
 let operaciones = [
-    { id: "93e21f72-44ca-43aa-b990-04ffef336bdf", descripcion: "verid1", monto: "1", tipo: "GANANCIA", categoria: "COMIDA", fecha: "2024/03/01" },
-    { id: "116e96d5-26d8-4245-aaad-34ef5323a950", descripcion: "verdi2", monto: "2", tipo: "GASTO", categoria: "EDUCACION", fecha: "2024/03/02" },
-    { id: "b3e6fa79-1f8c-4687-b05a-742f29f9dbb6", descripcion: "verid3", monto: "3", tipo: "GANANCIA", categoria: "SALIDAS", fecha: "2024/03/03" },
-    { id: "e2dfc2d9-3586-4e75-bf20-34a7f8f3ef50", descripcion: "verid4", monto: "4", tipo: "GASTO", categoria: "SERVICIOS", fecha: "2024/03/04" },
-    { id: "83c6269b-7226-4388-90c6-146a771486c7", descripcion: "verid5", monto: "5", tipo: "GANANCIA", categoria: "TRANSPORTE", fecha: "2024/03/05" },
-    { id: "1c98ac9c-988f-457a-a4f5-f4a6ccdb522e", descripcion: "verid6", monto: "6", tipo: "GASTO", categoria: "TRABAJO", fecha: "2024/02/26" },
-    { id: "3e33ed37-d4d2-4eb8-b784-b4e48396699c", descripcion: "verid7", monto: "7", tipo: "GANANCIA", categoria: "COMIDA", fecha: "2024/02/27" },
-    { id: "93e21f72-44ca-43aa-b990-02ffef336bdv", descripcion: "averid1", monto: "1", tipo: "GANANCIA", categoria: "COMIDA", fecha: "2024/03/01" },
-    { id: "116e96d5-26d8-4245-aaad-32ef5323a958", descripcion: "averdi2", monto: "2", tipo: "GASTO", categoria: "EDUCACION", fecha: "2024/03/02" },
-    { id: "b3e6fa79-1f8c-4687-b05a-722f29f9dbb1", descripcion: "averid3", monto: "3", tipo: "GASTO", categoria: "SALIDAS", fecha: "2024/03/03" },
-    { id: "e2dfc2d9-3586-4e75-bf20-32a7f8f3ef52", descripcion: "bverid4", monto: "4", tipo: "GASTO", categoria: "SERVICIOS", fecha: "2024/03/04" },
-    { id: "83c6269b-7226-4388-90c6-126a771486c9", descripcion: "bverid5", monto: "5", tipo: "GASTO", categoria: "TRANSPORTE", fecha: "2024/03/05" },
-    { id: "1c98ac9c-988f-457a-a4f5-f2a6ccdb522f", descripcion: "bverid6", monto: "6", tipo: "GASTO", categoria: "TRABAJO", fecha: "2024/02/26" },
-    { id: "3e33ed37-d4d2-4eb8-b784-b2e48396699b", descripcion: "cverid7", monto: "7", tipo: "GASTO", categoria: "COMIDA", fecha: "2024/02/27" },
-    { id: "93e21f72-44ca-43aa-b990-03ffef336bdg", descripcion: "cverid1", monto: "1", tipo: "GANANCIA", categoria: "COMIDA", fecha: "2024/03/01" },
-    { id: "116e96d5-26d8-4245-aaad-33ef5323a95t", descripcion: "cverdi2", monto: "2", tipo: "GANANCIA", categoria: "EDUCACION", fecha: "2024/03/02" },
-    { id: "b3e6fa79-1f8c-4687-b05a-732f29f9dbb8", descripcion: "dverid3", monto: "3", tipo: "GANANCIA", categoria: "SALIDAS", fecha: "2024/03/03" },
-    { id: "e2dfc2d9-3586-4e75-bf20-33a7f8f3ef5w", descripcion: "dverid4", monto: "4", tipo: "GANANCIA", categoria: "SERVICIOS", fecha: "2024/03/04" },
-    { id: "83c6269b-7226-4388-90c6-136a771486cs", descripcion: "dverid5", monto: "5", tipo: "GANANCIA", categoria: "TRANSPORTE", fecha: "2024/03/05" },
-    { id: "1c98ac9c-988f-457a-a4f5-f3a6ccdb522r", descripcion: "everid6", monto: "6", tipo: "GANANCIA", categoria: "TRABAJO", fecha: "2024/02/26" },
-    { id: "3e33ed37-d4d2-4eb8-b784-b3e483966992", descripcion: "everid7", monto: "7", tipo: "GANANCIA", categoria: "COMIDA", fecha: "2024/02/27" },
-    { id: "3e33ed37-d4d2-4eb8-b784-b5e483955992", descripcion: "zz zzz zzzz", monto: "25", tipo: "GANANCIA", categoria: "TRABAJO", fecha: "2024/03/09" },
-    { id: "3e33ed37-d4d2-4eb8-b784-b7e483955992", descripcion: "zz zzz zzzz bis", monto: "25", tipo: "GANANCIA", categoria: "TRABAJO", fecha: "2024/03/09" }
+    { id: "93e21f72-44ca-43aa-b990-04ffef336bdf", descripcion: "verid1", monto: 1, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/03/01" },
+    { id: "116e96d5-26d8-4245-aaad-34ef5323a950", descripcion: "verdi2", monto: 2, tipo: "GASTO", categoria: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", fecha: "2024/03/02" },
+    { id: "b3e6fa79-1f8c-4687-b05a-742f29f9dbb6", descripcion: "verid3", monto: 3, tipo: "GANANCIA", categoria: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", fecha: "2024/03/03" },
+    { id: "e2dfc2d9-3586-4e75-bf20-34a7f8f3ef50", descripcion: "verid4", monto: 4, tipo: "GASTO", categoria: "c585531d-7bed-4096-a099-baa8282300b0", fecha: "2024/03/04" },
+    { id: "83c6269b-7226-4388-90c6-146a771486c7", descripcion: "verid5", monto: 5, tipo: "GANANCIA", categoria: "a84a60e9-5c32-4381-b0da-aa120df9b90b", fecha: "2024/03/05" },
+    { id: "1c98ac9c-988f-457a-a4f5-f4a6ccdb522e", descripcion: "verid6", monto: 6, tipo: "GASTO", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/02/26" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b4e48396699c", descripcion: "verid7", monto: 7, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/02/27" },
+    { id: "93e21f72-44ca-43aa-b990-02ffef336bdv", descripcion: "averid1", monto: 1, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/03/01" },
+    { id: "116e96d5-26d8-4245-aaad-32ef5323a958", descripcion: "averdi2", monto: 2, tipo: "GASTO", categoria: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", fecha: "2024/03/02" },
+    { id: "b3e6fa79-1f8c-4687-b05a-722f29f9dbb1", descripcion: "averid3", monto: 3, tipo: "GASTO", categoria: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", fecha: "2024/03/03" },
+    { id: "e2dfc2d9-3586-4e75-bf20-32a7f8f3ef52", descripcion: "bverid4", monto: 4, tipo: "GASTO", categoria: "c585531d-7bed-4096-a099-baa8282300b0", fecha: "2024/03/04" },
+    { id: "83c6269b-7226-4388-90c6-126a771486c9", descripcion: "bverid5", monto: 5, tipo: "GASTO", categoria: "a84a60e9-5c32-4381-b0da-aa120df9b90b", fecha: "2024/03/05" },
+    { id: "1c98ac9c-988f-457a-a4f5-f2a6ccdb522f", descripcion: "bverid6", monto: 6, tipo: "GASTO", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/02/26" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b2e48396699b", descripcion: "cverid7", monto: 7, tipo: "GASTO", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/02/27" },
+    { id: "93e21f72-44ca-43aa-b990-03ffef336bdg", descripcion: "cverid1", monto: 1, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/03/01" },
+    { id: "116e96d5-26d8-4245-aaad-33ef5323a95t", descripcion: "cverdi2", monto: 2, tipo: "GANANCIA", categoria: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", fecha: "2024/03/02" },
+    { id: "b3e6fa79-1f8c-4687-b05a-732f29f9dbb8", descripcion: "dverid3", monto: 3, tipo: "GANANCIA", categoria: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", fecha: "2024/03/03" },
+    { id: "e2dfc2d9-3586-4e75-bf20-33a7f8f3ef5w", descripcion: "dverid4", monto: 4, tipo: "GANANCIA", categoria: "c585531d-7bed-4096-a099-baa8282300b0", fecha: "2024/03/04" },
+    { id: "83c6269b-7226-4388-90c6-136a771486cs", descripcion: "dverid5", monto: 5, tipo: "GANANCIA", categoria: "a84a60e9-5c32-4381-b0da-aa120df9b90b", fecha: "2024/03/05" },
+    { id: "1c98ac9c-988f-457a-a4f5-f3a6ccdb522r", descripcion: "everid6", monto: 6, tipo: "GANANCIA", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/02/26" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b3e483966992", descripcion: "everid7", monto: 7, tipo: "GANANCIA", categoria: "4904f4f9-d770-4857-a250-5350ee8e3770", fecha: "2024/02/27" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b5e483955992", descripcion: "zz zzz zzzz", monto: 25, tipo: "GANANCIA", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/03/09" },
+    { id: "3e33ed37-d4d2-4eb8-b784-b7e483955992", descripcion: "zz zzz zzzz bis", monto: 25, tipo: "GANANCIA", categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25", fecha: "2024/03/09" }
 ];
 let operacion = {};
 let $menuBalance = document.getElementById("menu-balance"); //botón que activa el bloque de balances y filtros
@@ -69,7 +69,7 @@ let $celdaAcciones = document.getElementById("celda-acciones");
 // -------------------------------------------------------
 const inicializarOperaciones = () => {
     if (localStorage.getItem("operaciones") === null) {
-        localStorage.setItem("operaciones", JSON.stringify(operaciones)); 
+        localStorage.setItem("operaciones", JSON.stringify(operaciones));
     }
 }
 
@@ -118,14 +118,22 @@ $fechaOperInput.addEventListener('input', () => {
 // Función tomar datos de los input
 // --------------------------------
 const tomarData = (id, tipoOper) => {
+    categorias_LS = recuperar("categorias");
     operacion.id = id;
     operacion.descripcion = $descripcionOperInput.value;
-    operacion.monto = $montoOperInput.value;
+    operacion.monto = parseFloat($montoOperInput.value);
     operacion.tipo = $tipoOperSelect.value;
-    operacion.categoria = $categoriaOperSelect.value.trim();
-    // console.log()
+    let categAux = $categoriaOperSelect.value.trim();
+    console.log(operacion.categoria);
+    categorias_LS.forEach((categ) => {
+        console.log(categ.nombre)
+        if (categAux === categ.nombre) {
+            console.log('encontró categoria', categ.id, categ.nombre);
+            operacion.categoria = categ.id;
+        }
+    })
     operacion.fecha = manipulacFecha($fechaOperInput.value, tipoOper, 'A');
-    console.log('estoy en tomarData', operacion.fecha);
+    // console.log('estoy en tomarData', operacion.fecha);
     return operacion;
 }
 
@@ -133,13 +141,13 @@ const tomarData = (id, tipoOper) => {
 // _____________________________________
 // Evento botón Cancelar Nueva Operación
 // -------------------------------------
-$btnCancOp.addEventListener('click', () => {mostrar($conten_menuBalance)});
+$btnCancOp.addEventListener('click', () => { mostrar($conten_menuBalance) });
 
 
 // __________________________________________
 // Eventos botones Cancelar Edición Operación
 // ------------------------------------------
-$btnCancOp2.addEventListener('click', () => {mostrar($conten_menuBalance)});
+$btnCancOp2.addEventListener('click', () => { mostrar($conten_menuBalance) });
 
 
 // __________________________________
@@ -147,15 +155,15 @@ $btnCancOp2.addEventListener('click', () => {mostrar($conten_menuBalance)});
 // ----------------------------------
 const mostrarDataInput = (id) => {
     operaciones_LS = recuperar("operaciones");
+    categorias_LS = recuperar("categorias")
     // Usar find en lugar de filter, ya que filter devuelve un array y find devuelve el primer elemento que cumple la condición
     let operacion = operaciones_LS.find((operacion) => operacion.id === id);
-    if (!operacion) {return}
+    if (!operacion) { return }
     $descripcionOperInput.value = operacion.descripcion;
     $montoOperInput.value = operacion.monto;
     $tipoOperSelect.value = operacion.tipo;
-    console.log('estoy en mostrarDataInput',operacion.categoria);
-    alert();
-    $categoriaOperSelect.value = ' '+operacion.categoria;
+    let categoria = categorias_LS.find((categoria) => operacion.categoria === categoria.id);
+    $categoriaOperSelect.value = ' '+categoria.nombre;
     let fechaAux = manipulacFecha(operacion.fecha, 'ingreso', 'D');
     $fechaOperInput.value = formatearFecha(fechaAux);
 }
@@ -178,13 +186,13 @@ const formatearFecha = (fecha) => {
 // --------------------------------------------------
 const manipulacFecha = (fecha, tarea, orden) => {
     if (tarea === 'ingreso') {
-        console.log('se ha ingresado una fecha por input', fecha);
+        // console.log('se ha ingresado una fecha por input', fecha);
         fecha = fecha.replace(/-/g, '/');
-        console.log('se ha ingresado una fecha por input, se transforma con/',fecha); // Salida: '2024/03/10'
+        // console.log('se ha ingresado una fecha por input, se transforma con/',fecha); // Salida: '2024/03/10'
 
     }
     // Asegurarse de que la fecha esté en formato 'aaaa/mm/dd'
-    console.log('estoy en manipulacFecha', fecha);
+    // console.log('estoy en manipulacFecha', fecha);
     let partesFecha = fecha.split('/');
     if (partesFecha.length !== 3) {
         console.error('Formato de fecha incorrecto');
@@ -214,34 +222,12 @@ const manipulacFecha = (fecha, tarea, orden) => {
 }
 
 
-// const manipulacFecha = (fecha, orden) => {
-//     // Asegurarse de que la fecha esté en formato 'yyyy/mm/dd'
-//     let partesFecha = fecha.split('/');
-//     fechaFormateada = partesFecha[2] + '-' + partesFecha[1] + '-' + partesFecha[0];
-//     let fechaObjeto = new Date(fechaFormateada);// Necesita esta conversión para aplicar el getTime a continuación
-//     if (isNaN(fechaObjeto.getTime())) {
-//         console.error('La fecha no es válida');
-//         return;
-//     }
-//     let dia = fechaObjeto.getDate().toString().padStart(2, '0');
-//     let mes = (fechaObjeto.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 al mes porque los meses van de 0 a 11
-//     let anio = fechaObjeto.getFullYear();
-//     let formatoFecha;
-//     if (orden === 'D') {
-//         formatoFecha = dia + '/' + mes + '/' + anio
-//     } else {
-//         formatoFecha = anio + '/' + mes + '/' + dia
-//     };
-//     console.log('formato fecha: ',orden, formatoFecha);
-//     return formatoFecha;
-// }
-
 let array;
 // ______________________________________________
 // Función que arma la tabla con los datos del LS
 // ----------------------------------------------
 const completarTablaOperaciones = (array) => {
-    console.log('estoy en completar tabla operaciones', array);
+    // console.log('estoy en completar tabla operaciones', array);
     $conOperListado.innerHTML = " ";
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
@@ -249,11 +235,22 @@ const completarTablaOperaciones = (array) => {
         document.getElementById("contenedor-filtros").classList.remove("hidden");
         let i = 0;
         let fechaMostrar;
+        categorias_LS = recuperar("categorias");
         // console.log('estoy en completarTablaFecha')
         array.forEach(operacion => {
-            fechaMostrar = manipulacFecha (operacion.fecha, 'mostrar desde LS', 'D');
-            console.log('estoy en completarTablaFecha     fechaMostrar: ', fechaMostrar);
+            fechaMostrar = manipulacFecha(operacion.fecha, 'mostrar desde LS', 'D');
+            // console.log('estoy en completarTablaFecha     fechaMostrar: ', fechaMostrar);
             i++;
+            categorias_LS.forEach((categoria) => {
+                // console.log('convertir categoria')
+                console.log(categoria.id, operacion.categoria);
+                if (categoria.id === operacion.categoria) {
+                    console.log('convertir categoria', 'categoria.id', categoria.id, 'operacion.categoria', operacion.categoria)
+                    operacion.categoria = categoria.nombre;
+
+                    return operacion.categoria
+                }
+            })
             $conOperListado.innerHTML += `        
                 <div class="h-[2px] bg-slate-100 my-[4px]"></div>    
                 <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 w-full h-[70px] sm:h-[40px]">
@@ -328,7 +325,7 @@ const borrarOperacion = (id) => {
 let arrayListo;
 const editarOperacion = (idOp) => {
     ingresarCategSelect();
-    let idOpEditar = idOp;    
+    let idOpEditar = idOp;
     mostrar($conten_menuOperaciones);
     $titNuevaOp.classList.add("hidden");
     $titEditOp.classList.remove("hidden");
@@ -338,9 +335,9 @@ const editarOperacion = (idOp) => {
     mostrarDataInput(idOpEditar);
     index = '';
     idEnCurso = '';
-    $btnModificarOp.addEventListener('click', () => {       
+    $btnModificarOp.addEventListener('click', () => {
         index = operaciones_LSEdit.findIndex((operacion) => operacion.id === idOpEditar);
-        idEnCurso = operaciones_LSEdit[index].id;  
+        idEnCurso = operaciones_LSEdit[index].id;
         if (index !== -1) {  // Verifica si se encontró el objeto con el id dado
             let operacionEdit = tomarData(idOpEditar, 'ingreso');
             arrayListo = [
