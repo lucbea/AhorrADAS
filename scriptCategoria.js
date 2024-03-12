@@ -10,12 +10,18 @@ const crearIdDato = (nombre) => {
 // constante Categorias iniciales (para restaurar)
 // ------------------------------
 const categoriasInicio = [
-    crearIdDato('COMIDA'),
-    crearIdDato('EDUCACION'),
-    crearIdDato('SALIDAS'),
-    crearIdDato('SERVICIOS'),
-    crearIdDato('TRANSPORTE'),
-    crearIdDato('TRABAJO'),
+    { id: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", nombre: "COMIDA" },
+    { id: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", nombre: "EDUCACION" },
+    { id: "c585531d-7bed-4096-a099-baa8282300b0", nombre: "SALIDAS" },
+    { id: "a84a60e9-5c32-4381-b0da-aa120df9b90b", nombre: "SERVICIOS" },
+    { id: "4904f4f9-d770-4857-a250-5350ee8e3770", nombre: "TRANSPORTE" },
+    { id: "40e00304-2d59-4c1c-8987-b7e5de113c25", nombre: "TRABAJO" }
+    // crearIdDato('COMIDA'),
+    // crearIdDato('EDUCACION'),
+    // crearIdDato('SALIDAS'),
+    // crearIdDato('SERVICIOS'),
+    // crearIdDato('TRANSPORTE'),
+    // crearIdDato('TRABAJO'),
 ];
 
 
