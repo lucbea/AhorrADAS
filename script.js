@@ -64,6 +64,7 @@ menuBalance.addEventListener("click", () => {
 	if (controlarSiHayCateOper()) {
 		/* Si hay categorías y operaciones, entonces se habilita "Mostrar filtros" y 
 		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
+		console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmm si hay");
 		document.getElementById("ocultar-filtros").classList.remove("hidden");
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
 		cargarCategorias();
@@ -72,6 +73,7 @@ menuBalance.addEventListener("click", () => {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
 		document.getElementById("ocultar-filtros").classList.add("hidden");
+		console.log("mmmmmmmmmmmmmmmmmmmmmmmmm NO hay");
 	}
 });
 
@@ -316,6 +318,12 @@ function filtrar_oper() {
 	operaFiltro = operaFiltro.filter(function (op) {
 		return fechaDesde <= new Date(op.fecha) && fechaHasta >= new Date(op.fecha);
 	});
+
+	if (operaFiltro.length > 0) {
+		document.getElementById("ocultar-filtros").classList.remove("hidden");
+	} else {
+		document.getElementById("ocultar-filtros").classList.add("hidden");
+	}
 
 	ordenarOperaciones(operaFiltro, orden);
 	completarTablaOperaciones(operaFiltro);

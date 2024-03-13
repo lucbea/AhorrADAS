@@ -29,7 +29,7 @@ let categorias_LS;
 let operaciones_LS = "[]";
 let idEnCurso;
 let operaciones = [
-	{
+	/* {
 		id: "93e21f72-44ca-43aa-b990-04ffef336bdf",
 		descripcion: "verid1",
 		monto: 1,
@@ -212,7 +212,7 @@ let operaciones = [
 		tipo: "GANANCIA",
 		categoria: "40e00304-2d59-4c1c-8987-b7e5de113c25",
 		fecha: "2024/03/09",
-	},
+	}, */
 ];
 let operacion = {};
 let $menuBalance = document.getElementById("menu-balance"); //botón que activa el bloque de balances y filtros
