@@ -325,31 +325,30 @@ function filtrar_oper() {
 		document.getElementById("ocultar-filtros").classList.add("hidden");
 	}
 
+	/* Filtrar - Ordenamiento*/
 	ordenarOperaciones(operaFiltro, orden);
-	completarTablaOperaciones(operaFiltro);
 
-	// Obtención de resultados para encabezado de Balance
+	/* Volver a mostrar operacione */
+	completarTablaOperaciones(operaFiltro); //VER en scriptOperaciones.js
+
+	// Recalcular resultados para encabezado de Balance
 	operaFiltro.forEach((op) => {
-		if (op.tipo === "GANANCIA") {
-			sumaGana = sumaGana + op.monto;
-			totBal = `<div> $${formatPesos(op.monto)} </div>`;
-		} else {
-			sumaGasto = sumaGasto + op.monto;
-			totBal = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-				Math.abs(op.monto)
-			)} </div>`;
-		}
+		op.tipo === "GANANCIA"
+			? (sumaGana = sumaGana + op.monto)
+			: (sumaGasto = sumaGasto + op.monto);
 	});
+
 	document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(
 		sumaGana
 	)}`;
 	document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(
 		sumaGasto
 	)}`;
+
 	if (sumaGana - sumaGasto >= 0) {
-		x = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
+		totBal = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
 	} else {
-		x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
+		totBal = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
 			Math.abs(sumaGana - sumaGasto)
 		)} </div>`;
 	}

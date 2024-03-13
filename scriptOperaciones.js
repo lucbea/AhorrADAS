@@ -498,7 +498,7 @@ $btnGrabarOp.addEventListener("click", () => {
 	operacion.id = uuidv4();
 	operacion = tomarData(operacion.id, "ingreso");
 	console.log("voy a grabar operacion en LS", operacion);
-	alert();
+	//alert();
 	operaciones_LS.push(operacion);
 	grabar("operaciones", operaciones_LS);
 	mostrar($conten_menuBalance);
