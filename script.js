@@ -44,7 +44,7 @@ const contenedor_menuReportes = document.getElementById("cont-menu-reportes");
 function mostrar(mostrar) {
 	contenedor_menuInicio.classList.add("hidden");
 	contenedor_menuBalance.classList.add("hidden");
-	contenedor_menuOperaciones.classList.add("hidden");
+	contenedor_menuOperaciones.classList.add("hidden"); //----
 	contenedor_menuCategorias.classList.add("hidden");
 	contenedor_menuReportes.classList.add("hidden");
 
@@ -143,6 +143,7 @@ function controlarSiHayCateOper() {
 // Función que carga las categorias del LS en el filtro select
 // -----------------------------------------------------------
 const filtro_categoria = document.getElementById("filtro-categoria");
+
 function cargarCategorias() {
 	filtro_categoria.innerHTML = `<option value="TODAS">TODAS</option>`;
 	categFiltro.forEach((cat) => {
@@ -162,7 +163,7 @@ function inicializarFechaInput(id_del_input, que_hago) {
 	} else {
 		fecha = new Date();
 	}
-	
+
 	var fecParaInput = fecha.getFullYear() + "-";
 
 	fecha.getMonth() + 1 < 10
@@ -176,25 +177,19 @@ function inicializarFechaInput(id_del_input, que_hago) {
 		.setAttribute("value", fecParaInput);
 }
 
-// ______________________________________________
-// Función asociada a ocultar/mostrar los filtros
-// ----------------------------------------------
-const ocultarMostrarFiltros = () => {
-	contenedor_filtros.classList.toggle("hidden");
-	if (contenedor_filtros.classList.contains("hidden")) {
-		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Mostrar Filtros </p>`;
-	} else {
-		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Ocultar Filtros </p>`;
-	}
-};
-
 // ___________________________________
 // Evento que oculta todos los filtros
 // -----------------------------------
 const ocultar_filtros = document.getElementById("ocultar-filtros");
 const contenedor_filtros = document.getElementById("contenedor-filtros");
+
 ocultar_filtros.addEventListener("click", () => {
-	ocultarMostrarFiltros();
+	contenedor_filtros.classList.toggle("hidden");
+	if (contenedor_filtros.classList.contains("hidden")) {
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1"> Mostrar Filtros </p>`;
+	} else {
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1"> Ocultar Filtros </p>`;
+	}
 });
 
 //_________________________________________________________________
@@ -207,19 +202,13 @@ const filtro_orden = document.getElementById("filtro-orden");
 
 // const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en línea 67 aprox
 const con_oper_listado = document.getElementById("con-oper-listado");
-let bandera_desde = false;
-let bandera_hasta = false;
+
 filtro_tipo.addEventListener("change", filtrar_oper);
 filtro_cate.addEventListener("change", filtrar_oper);
-filtro_fecha_desde.addEventListener("change", () => {
-	filtrar_oper();
-});
-filtro_fecha_hasta.addEventListener("change", () => {
-	filtrar_oper();
-});
+filtro_fecha_desde.addEventListener("change", filtrar_oper);
+filtro_fecha_hasta.addEventListener("change", filtrar_oper);
 filtro_orden.addEventListener("change", filtrar_oper);
 
-//La función que sigue es la que se revisa
 function masReciente(operaFiltro, como) {
 	if (como === "A") {
 		operaFiltro.sort((a, b) => {
@@ -288,60 +277,57 @@ function ordenarOperaciones(operaFiltro, orden) {
 // }
 
 /* Busca nombre de las Categorías para mostrar */
-function nombreCat(id) {
+/* function nombreCat(id) {
 	const resultado = categFiltro.find((c) => c.id === id);
 	if (resultado === undefined) {
 		return "Sin categoría.";
 	} else {
 		return resultado.nombre;
 	}
-}
+} */
 
 /* === Función ppal que llmanan TODOS los FILTROS cada vez que hay un cambio ===== */
 function filtrar_oper() {
-	let x;
+	let totBal;
 	let sumaGana = 0;
 	let sumaGasto = 0;
-	operaFiltro = recuperar("operaciones"); // trae las operaciones del LS
+	operaFiltro = JSON.parse(localStorage.getItem("operaciones"));
+
 	categFiltro = recuperar("categorias"); // trae las categorias del LS
 
 	/* Obtiene los value de cada filtro */
 	const tipo = filtro_tipo.value;
-	const categ = filtro_cate.value;
+	const cate = filtro_cate.value;
 	const fechaDesde = new Date(`${filtro_fecha_desde.value}T00:00:00`);
 	const fechaHasta = new Date(`${filtro_fecha_hasta.value}T00:00:00`);
 	const orden = filtro_orden.value;
+
+	/* Filtrar por Tipo */
+	if (tipo !== "TODO") {
+		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
+	}
+
+	/* Filtrar por Categorías */
+	if (cate !== "TODAS") {
+		operaFiltro = operaFiltro.filter((oper) => oper.categoria === cate);
+	}
 
 	/* Filtrar por Fecha desde - Hasta*/
 	operaFiltro = operaFiltro.filter(function (op) {
 		return fechaDesde <= new Date(op.fecha) && fechaHasta >= new Date(op.fecha);
 	});
 
-	// Filtro tipo
-	if (tipo !== "TODO") {
-		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
-	}
-
-	// Filtro categoría
-	if (categ !== "TODAS") {
-		categFiltro = categFiltro.filter((cate) => cate.id === categ);
-		operaFiltro = operaFiltro.filter(
-			(oper) => oper.categoria.trim() === categFiltro[0].nombre.trim()
-		);
-	}
-
 	ordenarOperaciones(operaFiltro, orden);
 	completarTablaOperaciones(operaFiltro);
-	ocultarMostrarFiltros();
 
 	// Obtención de resultados para encabezado de Balance
 	operaFiltro.forEach((op) => {
 		if (op.tipo === "GANANCIA") {
 			sumaGana = sumaGana + op.monto;
-			x = `<div> $${formatPesos(op.monto)} </div>`;
+			totBal = `<div> $${formatPesos(op.monto)} </div>`;
 		} else {
 			sumaGasto = sumaGasto + op.monto;
-			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
+			totBal = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
 				Math.abs(op.monto)
 			)} </div>`;
 		}
@@ -359,7 +345,7 @@ function filtrar_oper() {
 			Math.abs(sumaGana - sumaGasto)
 		)} </div>`;
 	}
-	document.getElementById("balance-total").innerHTML = `${x}`;
+	document.getElementById("balance-total").innerHTML = `${totBal}`;
 }
 
 /* ----------------------------------------------------------------------------------- */

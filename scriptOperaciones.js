@@ -503,6 +503,7 @@ $btnGrabarOp.addEventListener("click", () => {
 	grabar("operaciones", operaciones_LS);
 	mostrar($conten_menuBalance);
 	completarTablaOperaciones(operaciones_LS);
+	filtrar_oper(); //VER SCRIPT.JS
 });
 
 // ______________________________________________________
@@ -513,6 +514,7 @@ const borrarOperacion = (id) => {
 	grabar("operaciones", operaciones_LS);
 	mostrar($conten_menuBalance);
 	completarTablaOperaciones(operaciones_LS);
+	filtrar_oper(); //VER SCRIPT.JS
 };
 
 // ______________________________________________________
