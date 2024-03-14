@@ -294,8 +294,14 @@ function filtrar_oper() {
 	let sumaGana = 0;
 	let sumaGasto = 0;
 	operaFiltro = JSON.parse(localStorage.getItem("operaciones"));
-
 	categFiltro = recuperar("categorias"); // trae las categorias del LS
+
+	//Si antes de filtrar hay Operaciones
+	if (operaFiltro.length > 0) {
+		document.getElementById("ocultar-filtros").classList.remove("hidden");
+	} else {
+		document.getElementById("ocultar-filtros").classList.add("hidden");
+	}
 
 	/* Obtiene los value de cada filtro */
 	const tipo = filtro_tipo.value;
@@ -318,12 +324,6 @@ function filtrar_oper() {
 	operaFiltro = operaFiltro.filter(function (op) {
 		return fechaDesde <= new Date(op.fecha) && fechaHasta >= new Date(op.fecha);
 	});
-
-	if (operaFiltro.length > 0) {
-		document.getElementById("ocultar-filtros").classList.remove("hidden");
-	} else {
-		document.getElementById("ocultar-filtros").classList.add("hidden");
-	}
 
 	/* Filtrar - Ordenamiento*/
 	ordenarOperaciones(operaFiltro, orden);
