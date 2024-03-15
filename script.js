@@ -1,9 +1,8 @@
 /* ================== DECLARAR LOS ARRAY  categorías y operaciones  ================ */
-/* */
 let categFiltro = [];
 let operaFiltro = [];
 
-/* ================== Menú y Menú Hamburguesa  ================ */
+/* ================== Menú  - y Menú Hambburguesa  ================ */
 const nav = document.getElementById("nav");
 const abrir = document.getElementById("abrir");
 const cerrar = document.getElementById("cerrar");
@@ -19,6 +18,7 @@ abrir.addEventListener("click", () => {
 	abrir.classList.add("hidden");
 });
 
+
 function cerrarNav() {
 	nav.classList.add("hidden");
 	cerrar.classList.add("hidden");
@@ -33,9 +33,7 @@ menuReportes.addEventListener("click", cerrarNav);
 
 const contenedor_menuInicio = document.getElementById("cont-menu-inicio");
 const contenedor_menuBalance = document.getElementById("cont-menu-balance");
-const contenedor_menuOperaciones = document.getElementById(
-	"cont-menu-operaciones"
-);
+const contenedor_menuOperaciones = document.getElementById("cont-menu-operaciones");
 const contenedor_menuCategorias = document.getElementById(
 	"cont-menu-categorias"
 );
@@ -44,10 +42,10 @@ const contenedor_menuReportes = document.getElementById("cont-menu-reportes");
 function mostrar(mostrar) {
 	contenedor_menuInicio.classList.add("hidden");
 	contenedor_menuBalance.classList.add("hidden");
-	contenedor_menuOperaciones.classList.add("hidden"); //----
+	contenedor_menuOperaciones.classList.add("hidden");
 	contenedor_menuCategorias.classList.add("hidden");
 	contenedor_menuReportes.classList.add("hidden");
-
+	
 	mostrar.classList.remove("hidden");
 }
 
@@ -64,7 +62,6 @@ menuBalance.addEventListener("click", () => {
 	if (controlarSiHayCateOper()) {
 		/* Si hay categorías y operaciones, entonces se habilita "Mostrar filtros" y 
 		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
-		console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmm si hay");
 		document.getElementById("ocultar-filtros").classList.remove("hidden");
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
 		cargarCategorias();
@@ -73,7 +70,6 @@ menuBalance.addEventListener("click", () => {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
 		document.getElementById("ocultar-filtros").classList.add("hidden");
-		console.log("mmmmmmmmmmmmmmmmmmmmmmmmm NO hay");
 	}
 });
 
@@ -167,7 +163,7 @@ function inicializarFechaInput(id_del_input, que_hago) {
 	}
 
 	var fecParaInput = fecha.getFullYear() + "-";
-
+	
 	fecha.getMonth() + 1 < 10
 		? (fecParaInput += "0" + (fecha.getMonth() + 1) + "-")
 		: (fecParaInput += fecha.getMonth() + 1 + "-");
@@ -177,6 +173,8 @@ function inicializarFechaInput(id_del_input, que_hago) {
 	document
 		.getElementById(`${id_del_input}`)
 		.setAttribute("value", fecParaInput);
+
+	return fecParaInput; //hizo falta este return porque no me tomaba la fecha correcta en el input.value al ingresar nueva operacion
 }
 
 // ___________________________________
@@ -194,7 +192,7 @@ ocultar_filtros.addEventListener("click", () => {
 	}
 });
 
-//_________________________________________________________________
+//_________________________________________________________________ 
 /*--------------- Para filtrar operaciones -----------------------*/
 const filtro_tipo = document.getElementById("filtro-tipo");
 const filtro_cate = document.getElementById("filtro-categoria");
@@ -265,28 +263,15 @@ function ordenarOperaciones(operaFiltro, orden) {
 	}
 }
 
-// function formatFecha(f) {
-// 	let fc = new Date(f);
-// 	let ff;
-// 	fc.getDate() < 10
-// 		? (ff = "0" + fc.getDate() + "/")
-// 		: (ff = fc.getDate() + "/");
-// 	fc.getMonth() + 1 < 10
-// 		? (ff += "0" + (fc.getMonth() + 1) + "/")
-// 		: (ff += fc.getMonth() + 1 + "/");
-// 	ff += fc.getFullYear();
-// 	return ff;
-// }
-
 /* Busca nombre de las Categorías para mostrar */
-/* function nombreCat(id) {
+function nombreCat(id) {
 	const resultado = categFiltro.find((c) => c.id === id);
 	if (resultado === undefined) {
 		return "Sin categoría.";
 	} else {
 		return resultado.nombre;
 	}
-} */
+}
 
 /* === Función ppal que llmanan TODOS los FILTROS cada vez que hay un cambio ===== */
 function filtrar_oper() {
@@ -354,6 +339,9 @@ function filtrar_oper() {
 	}
 	document.getElementById("balance-total").innerHTML = `${totBal}`;
 }
+	
+
+
 
 /* ----------------------------------------------------------------------------------- */
 

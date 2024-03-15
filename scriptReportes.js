@@ -12,7 +12,7 @@ function CatMayorGananciaGasto(tipo, mayor) {
 				return total + oper.monto;
 			}, 0);
 		}
-		if (totalCat > mayor.importeCategoria) {
+		if (totalCat >= mayor.importeCategoria) {
 			mayor.importeCategoria = totalCat;
 			mayor.nombreCategoria = cat.nombre;
 		}
@@ -34,11 +34,10 @@ function CatMayorBalance(mayor) {
 					? total + oper.monto
 					: total - oper.monto;
 			}, 0);
-
-			if (totalCat > mayor.importeCategoria) {
-				mayor.importeCategoria = totalCat;
-				mayor.nombreCategoria = cat.nombre;
-			}
+		}
+		if (totalCat >= mayor.importeCategoria) {
+			mayor.importeCategoria = totalCat;
+			mayor.nombreCategoria = cat.nombre;
 		}
 	});
 }
@@ -271,7 +270,6 @@ function mostrarConReportes() {
 		return a.nombreCat.localeCompare(b.nombreCat);
 	});
 
-	totales_por_categoria.innerHTML ="";
 	totalesCat.forEach((totCat) => {
 		let x;
 		if (totCat.balance > 0) {
@@ -328,7 +326,6 @@ function mostrarConReportes() {
 		}
 	});
 
-	totales_por_mes.innerHTML = "";
 	totalesMes.forEach((totMes) => {
 		let x;
 		if (totMes.balance > 0) {
