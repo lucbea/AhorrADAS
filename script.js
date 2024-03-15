@@ -63,8 +63,7 @@ menuBalance.addEventListener("click", () => {
 
 	if (controlarSiHayCateOper()) {
 		/* Si hay categorías y operaciones, entonces se habilita "Mostrar filtros" y 
-		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
-		console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmm si hay");
+		permite seleccionr Filtros, y mostrar el listado */
 		document.getElementById("ocultar-filtros").classList.remove("hidden");
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
 		cargarCategorias();
@@ -73,7 +72,6 @@ menuBalance.addEventListener("click", () => {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
 		document.getElementById("ocultar-filtros").classList.add("hidden");
-		console.log("mmmmmmmmmmmmmmmmmmmmmmmmm NO hay");
 	}
 });
 
