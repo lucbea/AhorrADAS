@@ -215,107 +215,107 @@ let array;
 // Función que arma la tabla con los datos del LS
 // ----------------------------------------------
 const completarTablaOperaciones = (array) => {
-    // console.log('estoy en completar tabla operaciones', array);
-    $conOperListado.innerHTML = " ";
-    if (array.length > 0) {
-        document.getElementById("cont-sin-oper").classList.add("hidden");
-        	// document.getElementById("cont-con-oper").classList.remove("hidden");
-        // document.getElementById("contenedor-filtros").classList.remove("hidden");
-        let i = 0;
-        let fechaMostrar;
-        categorias_LS = recuperar("categorias");
-        // console.log('estoy en completarTablaFecha')
-        array.forEach((operacion) => {
-            fechaMostrar = manipulacFecha(operacion.fecha, "mostrar desde LS", "D");
-            // console.log('estoy en completarTablaFecha     fechaMostrar: ', fechaMostrar);
-            i++;
-            categorias_LS.forEach((categoria) => {
-                // console.log('convertir categoria')
-                console.log(categoria.id, operacion.categoria);
-                if (categoria.id === operacion.categoria) {
-                    console.log(
-                        "convertir categoria",
-                        "categoria.id",
-                        categoria.id,
-                        "operacion.categoria",
-                        operacion.categoria
-                    );
-                    operacion.categoria = categoria.nombre;
-                }
-            });
+	// console.log('estoy en completar tabla operaciones', array);
+	$conOperListado.innerHTML = " ";
+	if (array.length > 0) {
+		document.getElementById("cont-sin-oper").classList.add("hidden");
+	//	document.getElementById("cont-con-oper").classList.remove("hidden");
+		//document.getElementById("contenedor-filtros").classList.remove("hidden");
+		let i = 0;
+		let fechaMostrar;
+		categorias_LS = recuperar("categorias");
+		// console.log('estoy en completarTablaFecha')
+		array.forEach((operacion) => {
+			fechaMostrar = manipulacFecha(operacion.fecha, "mostrar desde LS", "D");
+			// console.log('estoy en completarTablaFecha     fechaMostrar: ', fechaMostrar);
+			i++;
+			categorias_LS.forEach((categoria) => {
+				// console.log('convertir categoria')
+				console.log(categoria.id, operacion.categoria);
+				if (categoria.id === operacion.categoria) {
+					console.log(
+						"convertir categoria",
+						"categoria.id",
+						categoria.id,
+						"operacion.categoria",
+						operacion.categoria
+					);
+					operacion.categoria = categoria.nombre;
 
-                    if (operacion.tipo === "GANANCIA") {
-                        $conOperListado.innerHTML += `        
-                            <div class="h-[2px] bg-slate-100 my-[4px]"></div>    
-                            <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 sm:gap-2 w-full h-[72px] sm:h-[40px]">
-                                <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
-                                    <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[12px] sm:text[15px]">${operacion.descripcion}</div>
-                                    <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[106px] flex justify-center items-center text-[10px] bg-zinc-200 dark:bg-gray-200 p-1 rounded-lg shadow-inner text-cyan-700 font-bold"> ${operacion.categoria}</div>
-                                </div>
-                                <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[70px] flex justify-end text-[12px]">${fechaMostrar}</div>
-                                <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[220px] gap-3">
-                                    <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#3fA763] font-bold">
-                                        <span class="text-[12px]">+</span>$${formatPesos(operacion.monto)}
-                                    </div>
-                                    <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1"></div>
-                                </div>
-                            </div>`;
-                    };
-                    });
-            for (let i = 0; i < array.length; i++) {
-                let btnEditarOper = document.createElement("button");
-                btnEditarOper.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-                let operacionIdEdit = array[i].id;
-                btnEditarOper.name = `btn-editar-oper`;
-                btnEditarOper.id = `${operacionIdEdit}`;
-                btnEditarOper.classList.add("flex-shrink-0", "h-8",
-                    "px-2",
-                    "lg:px-2",
-                    "rounded-lg",
-                    "bg-blue-100",
-                    "hover:bg-blue-200",
-                    "focus:bg-blue-200",
-                    "shadow-inner:lg",
-                    "hover:dark:bg-gray-400",
-                    "focus:dark:bg-gray-400",
-                    "hover:shadow-md",
-                    "focus:shadow-md"
-                );
-                btnEditarOper.addEventListener("click", () =>
-                    editarOperacion(btnEditarOper.id)
-                );
-                let btnBorrarOper = document.createElement("button");
-                btnBorrarOper.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-                let operacionIdBorr = array[i].id;
-                btnBorrarOper.name = `btn-borrar-oper`;
-                btnBorrarOper.id = `${operacionIdBorr}`;
-                btnBorrarOper.classList.add(
-                    "flex-shrink-0",
-                    "h-8",
-                    "px-2",
-                    "lg:px-2",
-                    "rounded-lg",
-                    "bg-blue-100",
-                    "hover:bg-blue-200",
-                    "focus:bg-blue-200",
-                    "shadow-inner:lg",
-                    "hover:dark:bg-gray-400",
-                    "focus:dark:bg-gray-400",
-                    "hover:shadow-md",
-                    "focus:shadow-md"
-                );
-                btnBorrarOper.addEventListener("click", () =>
-                    borrarOperacion(operacionIdBorr)
-                );
-                let celdaAcciones = document.getElementById(`celdaAcciones${i + 1}`);
-                celdaAcciones.appendChild(btnEditarOper);
-                celdaAcciones.appendChild(btnBorrarOper);
-            }
-        } else {
-            document.getElementById("cont-con-oper").classList.add("hidden");
-            //document.getElementById("cont-sin-oper").classList.remove("hidden");
-            //document.getElementById("contenedor-filtros").classList.add("hidden");
-        }
+					return operacion.categoria;
+				}
+			});
+			$conOperListado.innerHTML += `        
+                <div class="h-[2px] bg-slate-100 my-[4px]"></div>    
+                <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 w-full h-[70px] sm:h-[40px]">
+                    <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
+                        <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[15px]">${operacion.descripcion}</div>
+                        <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[33,3%] flex justify-center items-center text-[10px] bg-zinc-100 dark:bg-gray-200 p-1 rounded-lg shadow-inner"> ${operacion.categoria}</div>
+                    </div>
+                    <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[130px] flex justify-end text-[12px]">${fechaMostrar}</div>
+                    <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[29%] gap-3">
+                        <div id="celdaMonto" class="w-[220px] flex items-center sm:justify-end text-[15px]">${operacion.monto}</div>
+                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end lg:gap-1"></div>
+                    </div>
+                </div>
+            `;
+		});
+		for (let i = 0; i < array.length; i++) {
+			let btnEditarOper = document.createElement("button");
+			btnEditarOper.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+			let operacionIdEdit = array[i].id;
+			btnEditarOper.name = `btn-editar-oper`;
+			btnEditarOper.id = `${operacionIdEdit}`;
+			btnEditarOper.classList.add(
+				"flex-shrink-0",
+				"h-8",
+				"px-2",
+				"lg:px-2",
+				"rounded-lg",
+				"bg-blue-100",
+				"hover:bg-blue-200",
+				"focus:bg-blue-200",
+				"shadow-inner:lg",
+				"hover:dark:bg-gray-400",
+				"focus:dark:bg-gray-400",
+				"hover:shadow-md",
+				"focus:shadow-md"
+			);
+			btnEditarOper.addEventListener("click", () =>
+				editarOperacion(btnEditarOper.id)
+			);
+			let btnBorrarOper = document.createElement("button");
+			btnBorrarOper.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+			let operacionIdBorr = array[i].id;
+			btnBorrarOper.name = `btn-borrar-oper`;
+			btnBorrarOper.id = `${operacionIdBorr}`;
+			btnBorrarOper.classList.add(
+				"flex-shrink-0",
+				"h-8",
+				"px-2",
+				"lg:px-2",
+				"rounded-lg",
+				"bg-blue-100",
+				"hover:bg-blue-200",
+				"focus:bg-blue-200",
+				"shadow-inner:lg",
+				"hover:dark:bg-gray-400",
+				"focus:dark:bg-gray-400",
+				"hover:shadow-md",
+				"focus:shadow-md"
+			);
+			btnBorrarOper.addEventListener("click", () =>
+				borrarOperacion(operacionIdBorr)
+			);
+			let celdaAcciones = document.getElementById(`celdaAcciones${i + 1}`);
+			celdaAcciones.appendChild(btnEditarOper);
+			celdaAcciones.appendChild(btnBorrarOper);
+		}
+	} else {
+		document.getElementById("cont-con-oper").classList.add("hidden");
+		//document.getElementById("cont-sin-oper").classList.remove("hidden");
+		//document.getElementById("contenedor-filtros").classList.add("hidden");
+	}
 };
 
 
