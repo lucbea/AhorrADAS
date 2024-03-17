@@ -21,8 +21,8 @@ tailwind.config = {
 				colPpal: "#A3C3F2",
 				colSec: "#3F5A9F",
 				colVentModalFondo: "#3233348F", 
-				red: "#C11414",
-				green: "#339433"
+				rojo: "#C11414",
+				verde: "#339433"
 			},
 			customPosition: {
 				posVentModal: {

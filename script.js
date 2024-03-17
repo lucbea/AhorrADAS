@@ -62,14 +62,16 @@ menuBalance.addEventListener("click", () => {
 	if (controlarSiHayCateOper()) {
 		/* Si hay categorías y operaciones, entonces se habilita "Mostrar filtros" y 
 		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
-		document.getElementById("ocultar-filtros").classList.remove("hidden");
+		ocultar_filtros.classList.remove("hidden");
+		contenedor_filtros.classList.add("hidden")
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
 		cargarCategorias();
+		mns_aviso_seleccionar_filtros();
 		filtrar_oper();
 	} else {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
-		document.getElementById("ocultar-filtros").classList.add("hidden");
+		ocultar_filtros.classList.add("hidden");
 	}
 });
 
@@ -344,6 +346,15 @@ function filtrar_oper() {
 
 
 /* ----------------------------------------------------------------------------------- */
+
+/* MENSAJE que DESAPARECE DSPS DE 5segundos,  en Operaciones */
+function mns_aviso_seleccionar_filtros() {
+	const mns = document.getElementById("mensaje-filtros-5seg");
+	mns.classList.remove("hidden");
+	setTimeout(function () {
+		mns.classList.add("hidden");
+	}, 5000);
+}
 
 /* ================================================================================================*/
 function funcionesAEjecutar() {

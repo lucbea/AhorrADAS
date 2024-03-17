@@ -27,7 +27,8 @@
 <body class="bg-gray-100 dark:bg-gray-400 font-Roboto min-w-[279px]">
 	<header class="w-full">
 		<div
-			class="bg-colPpal dark:bg-gray-500 min-w-[279px] w-full h-[auto] md:h-[100px] flex flex-col md:flex-row items-center">
+			class="bg-colPpal dark:bg-gray-500 min-w-[279px] w-full h-[auto] md:h-[80px] flex flex-col md:flex-row items-center shadow-[0_02px_15px_5px_rgba(74,72,72,0.3)]
+			">
 			<div class="flex flex-row w-full md:w-[45%]">
 				<div class="w-[80%] min-w-[50px] pl-2.5">
 					<h1 class="font-Lora  text-white lg:text-5xl flex flex-row items-center">
@@ -38,12 +39,12 @@
 
 				<div class="w-[15%] text-white text-xl flex items-center justify-end">
 					<!--  abrir menú hamb  -->
-					<button class="md:hidden" id="abrir">
+					<button class="md:hidden" id="abrir" aria-label="Abrir menú">
 						<i class="fa fa-bars" aria-hidden="true"></i>
 					</button>
 
 					<!--  cerrar menú hamb  -->
-					<button class="hidden md:hidden" id="cerrar">
+					<button class="hidden md:hidden" id="cerrar" aria-label="Cerrar menú">
 						<i class="fa fa-times-circle" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -126,7 +127,7 @@
 								<div class="w-[30%]">Ganancias</div>
 								<div class="w-[69%] flex justify-end items-center dark:text-cyan-800"
 									id="balance-ganancias">
-									+$999.123.123,00
+									+$0,00
 								</div>
 							</div>
 							<div class="flex my-3">
@@ -151,17 +152,17 @@
 							<h2 class="w-[40%] text-colSec dark:text-black font-Lora text-4xl font-bold my-3">
 								Filtros
 							</h2>
-							<a href="#" class="w-[58%] text-sm flex justify-end items-center" id="ocultar-filtros"><i
-									class="fa-regular fa-eye"></i>
+							<a href="#" class="w-[58%] text-sm flex justify-end items-center" id="ocultar-filtros">
+								<i class="fa-regular fa-eye"></i>
 								<p class="ml-1 w-[40px] sm:w-[100px]">Mostrar Filtros</p>
 							</a>
 						</div>
 						<!-- contenedor FILTROS (se oculta) -->
 						<div class="hidden" id="contenedor-filtros">
 							<div class="my-3">
-								<h4 class="font-bold">Tipo</h4>
-								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
-									<select
+								<label class="font-bold" for="filtro-tipo">Tipo</label>
+								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px] cursor-pointer focus:outline-none">
+									<select name=""
 										class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
 										id="filtro-tipo" aria-label="Seleccionar por tipo operación">
 										<option value="TODO" selected>TODO</option>
@@ -172,8 +173,8 @@
 							</div>
 
 							<div class="my-3">
-								<h4 class="font-bold">Categorías</h4>
-								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
+								<label class="font-bold" for="filtro-categoria">Categorías</label>
+								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px] cursor-pointer focus:outline-none">
 									<select
 										class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
 										id="filtro-categoria" aria-label="Seleccionar por categoría">
@@ -184,7 +185,7 @@
 							</div>
 
 							<div class="my-3">
-								<h4 class="font-bold">Fecha desde</h4>
+								<label class="font-bold" for="filtro-fecha-desde">Fecha desde</label>
 								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
 									<input
 										class="rounded-[3px] bg-zinc-200 dark:bg-gray-400 flex items-center h-[30px] w-full"
@@ -193,20 +194,20 @@
 								</div>
 							</div>
 							<div class="my-3">
-								<h4 class="font-bold">Fecha hasta</h4>
+								<label class="font-bold" for="filtro-fecha-hasta">Fecha hasta</label>
 								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
 									<input
 										class="rounded-[3px] bg-zinc-200 dark:bg-gray-400 flex items-center h-[30px] w-full"
 										type="date" value="" id="filtro-fecha-hasta"
-										aria-label="Seleccionar por fecha desde" />
+										aria-label="Seleccionar por fecha hasta" />
 								</div>
 							</div>
 
 							<div class="my-3">
-								<h4 class="font-bold">Ordenar por</h4>
-								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px]">
+								<label class="font-bold" for="filtro-orden">Ordenar por</label>
+								<div class="rounded-[3px] bg-zinc-100 dark:bg-gray-400 flex items-center h-[30px] cursor-pointer focus:outline-none">
 									<select
-										class="rounded-[3px] outline-0 bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
+										class="rounded-[3px]  bg-zinc-200 dark:bg-gray-400 w-full h-[30px] cursor-pointer"
 										id="filtro-orden" aria-label="Seleccionar por ordenar por">
 										<option value="mas_reciente">Más reciente</option>
 										<option value="menos_reciente">Menos reciente</option>
@@ -228,10 +229,10 @@
 							Operaciones
 						</h2>
 						<button id="btn-ing-op"
-							class="flex-shrink-0 h-9 px-4  flex flex-row justify-center items-center rounded-lg bg-cyan-700/25 border-2 dark:border-2 dark:border-solid dark:blue-indigo-400/75 dark:bg-cyan-200/50 hover:bg-blue-indigo-400/75 focus:bg-blue-200 shadow-inner:lg hover:dark:bg-cyan-700/25 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+							class="flex-shrink-0 h-9 px-4  flex flex-row justify-center items-center rounded-lg bg-cyan-700/25 border-2 dark:border-2 dark:border-solid dark:blue-indigo-400/75 dark:bg-cyan-200/50 hover:bg-blue-indigo-400/75 focus:bg-blue-200 shadow-inner:lg hover:dark:bg-cyan-700/25 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md hover:font-semibold">
 							<!-- <i class="fa fa-trash-o fa-lg hidden md:inline"></i> -->
-							<span class="inline mx-1  text-xl">+ </span>
-							<span class="hidden  justify-center sm:flex text-md">Nueva Operación </span>
+							<span class="inline mx-1  text-xl hover:font-bold">+ </span>
+							<span class="hidden  justify-center sm:flex text-md hover:font-semibold">Nueva Operación </span>
 							<!-- <span class="lg:hidden text-lg">+</span> -->
 						</button>
 					</div>
@@ -251,10 +252,17 @@
 						</h3>
 					</div>
 
-					<!-- contenedor CON OPERACIONES -->
-					<div class="hidden flex-col " id="cont-con-oper">
+					<!-- contenedor CON OPERACIONES    fixed top-40 left-40 right-0  -->
+					<div class="hidden flex-col " id="cont-con-oper">	<!-- AGREGAR HIDDEN -->
+						<div class="hidden w-full h-auto animate-bounce text-[red] dark:text-red-900 text-sm sm:text-base border-2 border-indigo-100 dark:border-gray-400 mt-5 mt-[10px]"
+							id="mensaje-filtros-5seg">
+							<p>
+								Recuerde cambiar la opciones de "Filtros" para visualizar las
+								"Operaciones" deseadas.
+							</p>
+						</div>
 						<div
-							class="hidden sm:flex justify-between border-b-2 border-indigo-100 dark:border-gray-400 mt-5 mt-[10px] gap-3 columns-5 w-full">
+							class="hidden sm:flex justify-between border-b-2 border-indigo-100 dark:border-gray-400 mt-5 mt-[10px] gap-3 columns-5 w-full" id="encab-tabla">
 							<div class="w-4/12 flex justify-start sm:text-xs md:text-1xl">Descripción</div>
 							<div class="w-2/12 flex justify-center sm:text-xs md:text-1xl">Categoría</div>
 							<div class="w-2/12  flex justify-end sm:text-xs md:text-1xl">Fecha</div>
@@ -285,9 +293,7 @@
 					</p>
 				</div>
 				<div class="campo-ing flex flex-col">
-					<label class="etiqueta my-2" for="descripcion-oper-input">Descripción <span class="text-xs">(hasta
-							25
-							caracteres)</span> </label>
+					<label class="etiqueta my-2" for="descripcion-oper-input">Descripción <span class="text-xs">(hasta 25 caracteres)</span> </label>
 					<input class="flex-grow border border-gray-300 rounded-lg w-full py-2 px-4 mr-1 text-xs mb-5"
 						type="text" id="descripcion-oper-input" placeholder="Ej.: cuota">
 				</div>
@@ -348,12 +354,28 @@
 			<div id="mje-monto-cero"
 				class="hidden absolute flex bottom-32 h-36 px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
 				<p class="text-center">
-					Las nuevas operaciones deben contener monto positivo y descripción. Modifique los datos ingresados.
+					Las nuevas operaciones deben contener monto positivo y descripción. Ingrese los datos solicitados.
 				</p>
 				<button id="cerrar-monto-cero"
 					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
 					Cerrar ventana
 				</button>
+			</div>
+			<div id="mje-confirm-borrar-op"
+				class="hidden absolute flex justify-center items-center bottom-32 h-auto px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 min-w-[259px] max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
+				<p class="text-center  text-[#C11414] font-bold mt-2 mb-1">¡Cuidado!
+				<p class="text-center m-3">Usted solicitó eliminar la siguiente operación: </p>
+				<div class="flex flex-col items-center" id="op-borrar"></div>
+				<p class="text-center m-3">Confirme la eliminación de la operación o cancele la petición.</p>
+				<div class="flex  justify-center items-center gap-2 max-w-[201px]" id="si-no-borrar-op">
+					<button id="si-borrar-op"
+						class="flex h-9 px-2 items-center justify-center rounded-lg bg-blue-100 w-[90px] mx-auto mb-4 mt-2 min-w-[90px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+						Eliminar
+					</button>
+					<button id="no-borrar-op" class="flex h-9 px-2 items-center rounded-lg bg-blue-100 w-[90px] mx-auto mb-4 mt-2 min-w-[90px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+						Cancelar
+					</button>
+				</div>
 			</div>
 		</div>
 		
@@ -377,7 +399,7 @@
 						class="flex-grow border border-gray-300 rounded-lg w-4/5 py-2 px-4 mr-2 text-xs h-9 hover:h-10 active:h-10"
 						type="text" placeholder="Ej. OCIO" />
 					<button id="boton-ingreso-categoria"
-						class="flex-shrink-0 h-9 px-6 rounded-lg bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+						class="flex-shrink-0 h-9 px-6 rounded-lg bg-cyan-700/25 border-2 dark:border-2 dark:border-solid dark:blue-indigo-400/75 dark:bg-cyan-200/50 hover:bg-blue-indigo-400  hover:shadow-md  hover:dark:bg-cyan-700/25 hover:font-semibold focus:bg-blue-200 shadow-inner:lg  focus:dark:bg-gray-400  focus:shadow-md ">
 						<!-- <i class="fa fa-trash-o fa-lg hidden md:inline"></i> -->
 						<span class="hidden md:inline text-xl">AGREGAR</span>
 						<span class="md:hidden text-lg">+</span>
@@ -409,15 +431,15 @@
 		</div>
 
 		<div id="mje-confirm-borrar-cat"
-			class="hidden absolute flex bottom-32 h-auto px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 min-w-[259px] max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
+			class="hidden absolute flex items-center bottom-32 h-auto px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 min-w-[259px] max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
 			<p class="text-center m-3">Confirme la eliminación de la categoría o cancele la petición.</p>
-			<div id="si-no-borrar-categ" class="flex">
+			<div id="si-no-borrar-categ" class="flex justify-center items-center gap-1 max-w-[201px]">
 				<button id="si-borrar-cat"
-					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto mb-4 mt-2 min-w-[152px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto mb-4 mt-2 min-w-[90px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
 					Eliminar
 				</button>
 				<button id="no-borrar-cat"
-					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto mb-4 mt-2 min-w-[152px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
+					class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto mb-4 mt-2 min-w-[90px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
 					Cancelar
 				</button>
 			</div>
@@ -425,9 +447,7 @@
 
 		<div id="mje-negacion-borrar-cat"
 			class="hidden absolute flex bottom-32 h-auto px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 min-w-[259px] max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
-			<p class="text-center m-3">La categoría que desea borrar tiene operaciones asociadas. Edite o elimine las
-				operaciones
-				asociadas y luego podrá eliminar la categoría.</p>
+			<p class="text-center m-3">La categoría que desea borrar tiene operaciones asociadas. Edite o elimine las operaciones asociadas y luego podrá eliminar la categoría.</p>
 			<button id="cerrar-negacion-borrar-cat"
 				class="flex h-9 px-6 items-center rounded-lg bg-blue-100 w-auto mx-auto mb-4 mt-2 min-w-[152px] hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md">
 				Cerrar ventana
@@ -436,7 +456,7 @@
 
 		<!-- =================== CONTENEDOR Sub-Menú: Editar Categorías  =================== -->
 		<div id="cont-editar-categoria"
-			class="hidden absolute block h-36 w-4/5 lg:w-3/5 md:w-3/5 sm:w-3/5 px-2 max-w-[1100px] top-36 z-10">
+			class="hidden absolute block h-36 w-4/5 lg:w-3/5 md:w-3/5 sm:w-3/5 px-2 max-w-[1100px] top-56 z-10">
 			<div class="bg-zinc-50 dark:bg-gray-300 h-36 w-full px-2 rounded-lg shadow-2xl visible z-10">
 				<h2 class="text-center mb-3 pt-4">EDITAR CATEGORIA</h2>
 				<!--5 mt-28 -->
@@ -529,7 +549,6 @@
 					</div>
 
 					<!--  ============================   -->
-
 					<div
 						class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row border-b-2 border-indigo-100 dark:border-gray-400">
 						<div class="w-full sm:w-[40%]">Categoría con mayor balance:</div>
@@ -551,13 +570,13 @@
 					<div
 						class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row border-b-2 border-indigo-100 dark:border-gray-400">
 						<div class="w-full sm:w-[40%]">Mes con mayor ganancia:</div>
-
+					
 						<div class="w-full sm:w-[59%] flex flex-row">
 							<div class="w-[50%] text-balance pl-1 flex justify-center items-center rounded-lg bg-blue-100 dark:bg-gray-400"
 								id="mes-may-gana-nom">
 								xx
 							</div>
-
+					
 							<div class="w-[49%] flex justify-end dark:text-cyan-800 items-center" id="mes-may-gana-imp">
 								99
 							</div>

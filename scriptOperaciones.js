@@ -176,6 +176,8 @@ let fechaFormateada;
 // Función para mostrar fecha en input con formato dd/MM/aaaa desde LS (que está en formato aaaa)
 // ----------------------------------------------------------------------------------------------
 const formatearFecha = (fecha) => {
+    //   let fechaNueva = tomarFechaInput(fecha, "ingreso", "DIA")
+    //   console.log(fechaNueva);
     let partes = fecha.split('/');
     let fechaNueva = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
     return fechaNueva;
@@ -218,6 +220,7 @@ const completarTablaOperaciones = (array) => {
     $conOperListado.innerHTML = " ";
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
+        // Revisar lo que sigue fue desde la bajada de magui
         document.getElementById("cont-con-oper").classList.remove("hidden");
         document.getElementById("contenedor-filtros").classList.remove("hidden");
         let i = 0;
@@ -284,8 +287,10 @@ const completarTablaOperaciones = (array) => {
             btnBorrarOper.name = `btn-borrar-oper`;
             btnBorrarOper.id = `${operacionIdBorr}`;
             btnBorrarOper.classList.add("flex-shrink-0", "h-8", "px-2", "lg:px-2", "rounded-lg", "bg-zinc-200", "border-2", "dark:bg-gray-200", "shadow-inner", "hover:bg-cyan-700/25", "focus:bg-blue-200", "shadow-inner:lg", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
-            btnBorrarOper.addEventListener("click", () =>
-                borrarOperacion(operacionIdBorr)
+            btnBorrarOper.addEventListener("click", () => {
+                // borrarOperacion(operacionIdBorr);
+                confirmBorrarOper(btnBorrarOper.id);}
+
             );
             let celdaAcciones = document.getElementById(`celdaAcciones${i + 1}`);
             celdaAcciones.appendChild(btnEditarOper);
@@ -328,14 +333,48 @@ $btnGrabarOp.addEventListener('click', () => {
 })
 
 // ______________________________________________________
+// Función Confirmación Borrar Operación
+// ------------------------------------------------------
+let $mjeConfirmBorrarOp = document.getElementById("mje-confirm-borrar-op");
+let $opBorrar = document.getElementById("op-borrar");
+const confirmBorrarOper = (id) =>{
+    operaciones_LS = recuperar ("operaciones");
+    operacion = operaciones_LS.find((op) => op.id === id);
+    console.log (id, operacion, operacion.descripcion)
+    operacion.fecha = tomarFechaInput(operacion.fecha, "ingreso", "DIA");
+    $opBorrar.innerHTML = `<div id="op-borrar">
+					<p class="text-center">Descripcion: ${operacion.descripcion}</p>
+					<p class="text-center">Monto: ${formatPesos(operacion.monto)}</p>
+					<p class="text-center">Fecha: ${operacion.fecha}</p>
+				</div>`;
+    activarVentMod($mjeConfirmBorrarOp)
+    // $contVentanaModal.classList.remove("hidden");
+    // $mjeConfirmBorrarOp.classList.remove("hidden");
+    let $noBorrarOp = document.getElementById("no-borrar-op");
+    $noBorrarOp.addEventListener('click', () => {
+        $contVentanaModal.classList.add("hidden");
+        $mjeConfirmBorrarOp.classList.add("hidden");
+    })
+    let $siBorrarOp = document.getElementById("si-borrar-op");
+    $siBorrarOp.addEventListener('click', () => {
+        $contVentanaModal.classList.add("hidden");
+        $mjeConfirmBorrarOp.classList.add("hidden");
+        borrarOperacion(id)});
+}
+
+// ______________________________________________________
 // Evento boton Borrar Operación
 // ------------------------------------------------------
 const borrarOperacion = (id) => {
+    
+    operaciones_LS = recuperar("operaciones");
+    console.log(id, operaciones_LS);
     operaciones_LS = operaciones_LS.filter(operacion => operacion.id !== id);
+    console.log(operaciones_LS)
     grabar("operaciones", operaciones_LS);
     mostrar($conten_menuBalance);
-    completarTablaOperaciones(operaciones_LS);
     filtrar_oper(); //VER SCRIPT.JS
+    completarTablaOperaciones(operaciones_LS);
 }
 
 
@@ -381,18 +420,6 @@ const editarOperacion = (idOp) => {
         }
     });
 };
-
-
-// // ____________________________________
-// // Evento botón activar el Menú Balance
-// // ------------------------------------
-// $menuBalance.addEventListener('click', () => {
-//     operaciones_LS = recuperar("operaciones");
-//     if (operaciones_LS) {
-//         completarTablaOperaciones(operaciones_LS);
-//     }
-// })
-
 
 // _______________________________________
 // llamado de funcion mostrar de script.js
