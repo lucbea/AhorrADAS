@@ -176,6 +176,8 @@ let fechaFormateada;
 // Función para mostrar fecha en input con formato dd/MM/aaaa desde LS (que está en formato aaaa)
 // ----------------------------------------------------------------------------------------------
 const formatearFecha = (fecha) => {
+    //   let fechaNueva = tomarFechaInput(fecha, "ingreso", "DIA")
+    //   console.log(fechaNueva);
     let partes = fecha.split('/');
     let fechaNueva = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
     return fechaNueva;
@@ -215,37 +217,27 @@ let array;
 // Función que arma la tabla con los datos del LS
 // ----------------------------------------------
 const completarTablaOperaciones = (array) => {
-	// console.log('estoy en completar tabla operaciones', array);
-	$conOperListado.innerHTML = " ";
-	if (array.length > 0) {
-		document.getElementById("cont-sin-oper").classList.add("hidden");
-	//	document.getElementById("cont-con-oper").classList.remove("hidden");
-		//document.getElementById("contenedor-filtros").classList.remove("hidden");
-		let i = 0;
-		let fechaMostrar;
-		categorias_LS = recuperar("categorias");
-		// console.log('estoy en completarTablaFecha')
-		array.forEach((operacion) => {
-			fechaMostrar = manipulacFecha(operacion.fecha, "mostrar desde LS", "D");
-			// console.log('estoy en completarTablaFecha     fechaMostrar: ', fechaMostrar);
-			i++;
-			categorias_LS.forEach((categoria) => {
-				// console.log('convertir categoria')
-				console.log(categoria.id, operacion.categoria);
-				if (categoria.id === operacion.categoria) {
-					console.log(
-						"convertir categoria",
-						"categoria.id",
-						categoria.id,
-						"operacion.categoria",
-						operacion.categoria
-					);
-					operacion.categoria = categoria.nombre;
+    $conOperListado.innerHTML = " ";
+    if (array.length > 0) {
+        document.getElementById("cont-sin-oper").classList.add("hidden");
+        // Revisar lo que sigue fue desde la bajada de magui
+        document.getElementById("cont-con-oper").classList.remove("hidden");
+        document.getElementById("contenedor-filtros").classList.remove("hidden");
+        let i = 0;
+        let fechaMostrar;
+        categorias_LS = recuperar("categorias");
+        array.forEach((operacion) => {
+            fechaMostrar = tomarFechaInput(operacion.fecha, 'mostrar desde LS', 'DIA');
+            i++;
+            categorias_LS.forEach((categoria) => {
+                if (categoria.id === operacion.categoria) {
+                    operacion.categoria = categoria.nombre;
+                    return operacion.categoria;
+                }
+            });
 
-					return operacion.categoria;
-				}
-			});
-			$conOperListado.innerHTML += `        
+            if (operacion.tipo === "GANANCIA") {
+                $conOperListado.innerHTML += `        
                 <div class="h-[2px] bg-slate-100 my-[4px]"></div>    
                 <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 w-full h-[70px] sm:h-[40px]">
                     <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
@@ -257,188 +249,223 @@ const completarTablaOperaciones = (array) => {
                         <div id="celdaMonto" class="w-[220px] flex items-center sm:justify-end text-[15px]">${operacion.monto}</div>
                         <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end lg:gap-1"></div>
                     </div>
-                </div>
-            `;
-		});
-		for (let i = 0; i < array.length; i++) {
-			let btnEditarOper = document.createElement("button");
-			btnEditarOper.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-			let operacionIdEdit = array[i].id;
-			btnEditarOper.name = `btn-editar-oper`;
-			btnEditarOper.id = `${operacionIdEdit}`;
-			btnEditarOper.classList.add(
-				"flex-shrink-0",
-				"h-8",
-				"px-2",
-				"lg:px-2",
-				"rounded-lg",
-				"bg-blue-100",
-				"hover:bg-blue-200",
-				"focus:bg-blue-200",
-				"shadow-inner:lg",
-				"hover:dark:bg-gray-400",
-				"focus:dark:bg-gray-400",
-				"hover:shadow-md",
-				"focus:shadow-md"
-			);
-			btnEditarOper.addEventListener("click", () =>
-				editarOperacion(btnEditarOper.id)
-			);
-			let btnBorrarOper = document.createElement("button");
-			btnBorrarOper.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-			let operacionIdBorr = array[i].id;
-			btnBorrarOper.name = `btn-borrar-oper`;
-			btnBorrarOper.id = `${operacionIdBorr}`;
-			btnBorrarOper.classList.add(
-				"flex-shrink-0",
-				"h-8",
-				"px-2",
-				"lg:px-2",
-				"rounded-lg",
-				"bg-blue-100",
-				"hover:bg-blue-200",
-				"focus:bg-blue-200",
-				"shadow-inner:lg",
-				"hover:dark:bg-gray-400",
-				"focus:dark:bg-gray-400",
-				"hover:shadow-md",
-				"focus:shadow-md"
-			);
-			btnBorrarOper.addEventListener("click", () =>
-				borrarOperacion(operacionIdBorr)
-			);
-			let celdaAcciones = document.getElementById(`celdaAcciones${i + 1}`);
-			celdaAcciones.appendChild(btnEditarOper);
-			celdaAcciones.appendChild(btnBorrarOper);
-		}
-	} else {
-		document.getElementById("cont-con-oper").classList.add("hidden");
-		//document.getElementById("cont-sin-oper").classList.remove("hidden");
-		//document.getElementById("contenedor-filtros").classList.add("hidden");
-	}
+                </div>`;
+            } else {
+                $conOperListado.innerHTML += `        
+                <div class="h-[2px] bg-slate-100 my-[4px]"></div>
+                <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 sm:gap-2 w-full h-[72px] sm:h-[40px]">
+                    <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
+                        <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[12px] sm:text[15px]">${operacion.descripcion}</div>
+                        <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[106px] flex justify-center items-center text-[10px] bg-zinc-200 dark:bg-gray-200 p-1 rounded-lg shadow-inner text-cyan-700 font-bold"> ${operacion.categoria}</div>
+                    </div>
+                    <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[70px] flex justify-end text-[12px]">${fechaMostrar}</div>
+                    <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[220px] gap-3">
+                        <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#C11414] font-bold">
+                            <span class="text-[12px]">-</span>$${formatPesos(operacion.monto)}
+                        </div>
+                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1"></div>
+                    </div>
+                </div>`;
+            };
+        });
+
+        for (let i = 0; i < array.length; i++) {
+            let btnEditarOper = document.createElement("button");
+            btnEditarOper.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+            let operacionIdEdit = array[i].id;
+            btnEditarOper.name = `btn-editar-oper`;
+            btnEditarOper.id = `${operacionIdEdit}`;
+            btnEditarOper.classList.add("flex-shrink-0", "h-8", "px-2", "lg:px-2", "rounded-lg", "bg-zinc-200", "border-2", "dark:bg-gray-200", "shadow-inner", "hover:bg-cyan-700/25", "focus:bg-blue-200", "shadow-inner:lg", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
+            btnEditarOper.addEventListener("click", () =>
+                editarOperacion(btnEditarOper.id)
+            );
+            let btnBorrarOper = document.createElement("button");
+            btnBorrarOper.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+            let operacionIdBorr = array[i].id;
+            btnBorrarOper.name = `btn-borrar-oper`;
+            btnBorrarOper.id = `${operacionIdBorr}`;
+            btnBorrarOper.classList.add("flex-shrink-0", "h-8", "px-2", "lg:px-2", "rounded-lg", "bg-zinc-200", "border-2", "dark:bg-gray-200", "shadow-inner", "hover:bg-cyan-700/25", "focus:bg-blue-200", "shadow-inner:lg", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
+            btnBorrarOper.addEventListener("click", () => {
+                // borrarOperacion(operacionIdBorr);
+                confirmBorrarOper(btnBorrarOper.id);
+            }
+
+            );
+            let celdaAcciones = document.getElementById(`celdaAcciones${i + 1}`);
+            celdaAcciones.appendChild(btnEditarOper);
+            celdaAcciones.appendChild(btnBorrarOper);
+        }
+    } else {
+        document.getElementById("cont-con-oper").classList.add("hidden");
+        document.getElementById("cont-sin-oper").classList.remove("hidden");
+        document.getElementById("contenedor-filtros").classList.add("hidden");
+    }
 };
 
 
-    // _________________________________________________________
-    // Función controles monto !== 0 y descripcion con contenido
-    // ---------------------------------------------------------
-    const controlMontoDescripcion = () => {
-        const monto = parseFloat($montoOperInput.value);
-        const descripcion = $descripcionOperInput.value.trim();
-        return monto > 0 && descripcion !== "";
-    }
+// _________________________________________________________
+// Función controles monto !== 0 y descripcion con contenido
+// ---------------------------------------------------------
+const controlMontoDescripcion = () => {
+    const monto = parseFloat($montoOperInput.value);
+    const descripcion = $descripcionOperInput.value.trim();
+    return monto > 0 && descripcion !== "";
+}
 
-    // ______________________________
-    // Evento botón  grabar operacion
-    // ------------------------------
-    $btnGrabarOp.addEventListener('click', () => {
-        operaciones_LS = recuperar("operaciones");
-        operacion.id = uuidv4();
-        operacion = tomarData(operacion.id, 'ingreso');
-        let puedoGrabar = controlMontoDescripcion();
-        if (puedoGrabar) {
-            operaciones_LS.push(operacion);
-            grabar("operaciones", operaciones_LS);
-            mostrar($conten_menuBalance);
-            filtrar_oper(); //VER SCRIPT.JS
-        } else {
-            $conten_menuOperaciones.classList.remove("hidden");
-            activarVentMod($mjeMontoCero);
-        }
-    })
-
-    // ______________________________________________________
-    // Evento boton Borrar Operación
-    // ------------------------------------------------------
-    const borrarOperacion = (id) => {
-        operaciones_LS = operaciones_LS.filter(operacion => operacion.id !== id);
+// ______________________________
+// Evento botón  grabar operacion
+// ------------------------------
+$btnGrabarOp.addEventListener('click', () => {
+    operaciones_LS = recuperar("operaciones");
+    operacion.id = uuidv4();
+    operacion = tomarData(operacion.id, 'ingreso');
+    let puedoGrabar = controlMontoDescripcion();
+    if (puedoGrabar) {
+        operaciones_LS.push(operacion);
         grabar("operaciones", operaciones_LS);
         mostrar($conten_menuBalance);
-        completarTablaOperaciones(operaciones_LS);
         filtrar_oper(); //VER SCRIPT.JS
+    } else {
+        $conten_menuOperaciones.classList.remove("hidden");
+        activarVentMod($mjeMontoCero);
     }
+})
 
-
-    // ______________________________________________________
-    // Evento boton Editar Operación
-    // ------------------------------------------------------
-    let arrayListo;
-    const editarOperacion = (idOp) => {
-        ingresarCategSelect(); //Muestra las categorias del LS en el select
-        mostrar($conten_menuOperaciones);
-        $titNuevaOp.classList.add("hidden");
-        $titEditOp.classList.remove("hidden");
-        $btnsEditOp.classList.remove("hidden");
-        $btnsNuevaOp.classList.add("hidden");
-        let operaciones_LSEdit = recuperar("operaciones");
-        mostrarDataInput(idOp);
-        index = "";
-        idEnCurso = "";
-        $btnModificarOp.addEventListener("click", () => {
-            index = operaciones_LSEdit.findIndex(
-                (operacion) => operacion.id === idOp
-            );
-            idEnCurso = operaciones_LSEdit[index].id;
-            if (index !== -1) {
-                // Verifica si se encontró el objeto con el id dado
-                let operacionEdit = tomarData(idOp, "ingreso");
-                let puedoGrabar = controlMontoDescripcion();
-                if (puedoGrabar) {
-                    arrayListo = [
-                        ...operaciones_LSEdit.slice(0, index), // elementos antes del índice
-                        operacionEdit, // elemento que quieres insertar/reemplazar
-                        ...operaciones_LSEdit.slice(index + 1), // elementos después del índice
-                    ];
-                    grabar("operaciones", arrayListo);
-                    mostrar($conten_menuBalance);
-                    filtrar_oper(); // en script.js --> si modifico feecha por ejemplo vuelve a filtrar para mostrar
-                    // completarTablaOperaciones(arrayListo);
-                }
-                else {
-                    $conten_menuOperaciones.classList.remove("hidden");
-                    activarVentMod($mjeMontoCero);
-                }
-            }
-        });
-    };
-
-
-    // // ____________________________________
-    // // Evento botón activar el Menú Balance
-    // // ------------------------------------
-    // $menuBalance.addEventListener('click', () => {
-    //     operaciones_LS = recuperar("operaciones");
-    //     if (operaciones_LS) {
-    //         completarTablaOperaciones(operaciones_LS);
-    //     }
-    // })
-
-
-    // _______________________________________
-    // llamado de funcion mostrar de script.js
-    // ---------------------------------------
-    document.addEventListener('DOMContentLoaded', function () {
-        mostrar($contenedorMenuInicio); // Llama a la función desde script.js
+// ______________________________________________________
+// Función Confirmación Borrar Operación
+// ------------------------------------------------------
+let $mjeConfirmBorrarOp = document.getElementById("mje-confirm-borrar-op");
+let $opBorrar = document.getElementById("op-borrar");
+const confirmBorrarOper = (id) => {
+    operaciones_LS = recuperar("operaciones");
+    operacion = operaciones_LS.find((op) => op.id === id);
+    console.log(id, operacion, operacion.descripcion)
+    operacion.fecha = tomarFechaInput(operacion.fecha, "ingreso", "DIA");
+    $opBorrar.innerHTML = `<div id="op-borrar">
+					<p class="text-center">Descripcion: ${operacion.descripcion}</p>
+					<p class="text-center">Monto: ${formatPesos(operacion.monto)}</p>
+					<p class="text-center">Fecha: ${operacion.fecha}</p>
+				</div>`;
+    activarVentMod($mjeConfirmBorrarOp)
+    // $contVentanaModal.classList.remove("hidden");
+    // $mjeConfirmBorrarOp.classList.remove("hidden");
+    let $noBorrarOp = document.getElementById("no-borrar-op");
+    $noBorrarOp.addEventListener('click', () => {
+        $contVentanaModal.classList.add("hidden");
+        $mjeConfirmBorrarOp.classList.add("hidden");
+    })
+    let $siBorrarOp = document.getElementById("si-borrar-op");
+    $siBorrarOp.addEventListener('click', () => {
+        $contVentanaModal.classList.add("hidden");
+        $mjeConfirmBorrarOp.classList.add("hidden");
+        borrarOperacion(id)
     });
+}
+
+// ______________________________________________________
+// Evento boton Borrar Operación
+// ------------------------------------------------------
+const borrarOperacion = (id) => {
+
+    operaciones_LS = recuperar("operaciones");
+    console.log(id, operaciones_LS);
+    operaciones_LS = operaciones_LS.filter(operacion => operacion.id !== id);
+    console.log(operaciones_LS)
+    grabar("operaciones", operaciones_LS);
+    mostrar($conten_menuBalance);
+    filtrar_oper(); //VER SCRIPT.JS
+    completarTablaOperaciones(operaciones_LS);
+}
 
 
-
-    // ________________________________________________________________
-    // Muestra opciones de categorias en el select para elegir la categ
-    // ----------------------------------------------------------------
-    const ingresarCategSelect = () => {
-        categorias_LS = recuperar("categorias");
-        $categoriaOperSelect.innerHTML = "";
-        for (let i = 0; i < categorias_LS.length; i++) {
-            $categoriaOperSelect.innerHTML += `<option value =" ${categorias_LS[i].nombre}">${categorias_LS[i].nombre}</option>`;
+// ______________________________________________________
+// Evento boton Editar Operación
+// ------------------------------------------------------
+let arrayListo;
+const editarOperacion = (idOp) => {
+    ingresarCategSelect(); //Muestra las categorias del LS en el select
+    mostrar($conten_menuOperaciones);
+    $titNuevaOp.classList.add("hidden");
+    $titEditOp.classList.remove("hidden");
+    $btnsEditOp.classList.remove("hidden");
+    $btnsNuevaOp.classList.add("hidden");
+    let operaciones_LSEdit = recuperar("operaciones");
+    mostrarDataInput(idOp);
+    index = "";
+    idEnCurso = "";
+    $btnModificarOp.addEventListener("click", () => {
+        index = operaciones_LSEdit.findIndex(
+            (operacion) => operacion.id === idOp
+        );
+        idEnCurso = operaciones_LSEdit[index].id;
+        if (index !== -1) {
+            // Verifica si se encontró el objeto con el id dado
+            let operacionEdit = tomarData(idOp, "ingreso");
+            let puedoGrabar = controlMontoDescripcion();
+            if (puedoGrabar) {
+                arrayListo = [
+                    ...operaciones_LSEdit.slice(0, index), // elementos antes del índice
+                    operacionEdit, // elemento que quieres insertar/reemplazar
+                    ...operaciones_LSEdit.slice(index + 1), // elementos después del índice
+                ];
+                grabar("operaciones", arrayListo);
+                mostrar($conten_menuBalance);
+                filtrar_oper(); // en script.js --> si modifico feecha por ejemplo vuelve a filtrar para mostrar
+                // completarTablaOperaciones(arrayListo);
+            }
+            else {
+                $conten_menuOperaciones.classList.remove("hidden");
+                activarVentMod($mjeMontoCero);
+            }
         }
+    });
+};
+
+
+// // ____________________________________
+// // Evento botón activar el Menú Balance
+// // ------------------------------------
+// $menuBalance.addEventListener('click', () => {
+//     operaciones_LS = recuperar("operaciones");
+//     if (operaciones_LS) {
+//         completarTablaOperaciones(operaciones_LS);
+//     }
+// })
+
+
+// _______________________________________
+// llamado de funcion mostrar de script.js
+// ---------------------------------------
+document.addEventListener('DOMContentLoaded', function () {
+    mostrar($contenedorMenuInicio); // Llama a la función desde script.js
+});
+
+
+// _______________________________________
+// llamado de funcion mostrar de script.js
+// ---------------------------------------
+document.addEventListener('DOMContentLoaded', function () {
+    mostrar($contenedorMenuInicio); // Llama a la función desde script.js
+});
+
+
+
+// ________________________________________________________________
+// Muestra opciones de categorias en el select para elegir la categ
+// ----------------------------------------------------------------
+const ingresarCategSelect = () => {
+    categorias_LS = recuperar("categorias");
+    $categoriaOperSelect.innerHTML = "";
+    for (let i = 0; i < categorias_LS.length; i++) {
+        $categoriaOperSelect.innerHTML += `<option value =" ${categorias_LS[i].nombre}">${categorias_LS[i].nombre}</option>`;
     }
+}
 
 
-    // _____________________________________________________
-    // Inicialización de opciones de categorías en el select
-    // -----------------------------------------------------
-    ingresarCategSelect();
+// _____________________________________________________
+// Inicialización de opciones de categorías en el select
+// -----------------------------------------------------
+ingresarCategSelect();
 
 
 
