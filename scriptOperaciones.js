@@ -441,15 +441,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// _______________________________________
-// llamado de funcion mostrar de script.js
-// ---------------------------------------
-document.addEventListener('DOMContentLoaded', function () {
-    mostrar($contenedorMenuInicio); // Llama a la función desde script.js
-});
-
-
-
 // ________________________________________________________________
 // Muestra opciones de categorias en el select para elegir la categ
 // ----------------------------------------------------------------

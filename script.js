@@ -344,9 +344,6 @@ function filtrar_oper() {
 	document.getElementById("balance-total").innerHTML = `${totBal}`;
 }
 	
-
-
-
 /* ----------------------------------------------------------------------------------- */
 
 /* MENSAJE que DESAPARECE DSPS DE 5segundos,  en Operaciones */

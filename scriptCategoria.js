@@ -365,6 +365,7 @@ const borrarCategoria = (id) => {
         // $contVentanaModal.classList.remove("hidden");
         // $mjeNegacionBorrarCat.classList.remove("hidden");
     }
+
     // ____________________________________
     // Evento - Boton si eliminar categoría
     // ------------------------------------
@@ -377,8 +378,6 @@ const borrarCategoria = (id) => {
         $mjeConfirmBorrarCat.classList.add("hidden");
     })
 
-
-
     // ____________________________________
     // Evento - Boton no eliminar categoría
     // ------------------------------------
@@ -387,12 +386,6 @@ const borrarCategoria = (id) => {
         $mjeConfirmBorrarCat.classList.add("hidden");
     })
 };
-
-
-
-
-
-
 
 // _______________________________________________________________
 // Evento - Boton cerrar mensaje negación eliminación de categoría
@@ -405,7 +398,6 @@ $cerrarNegacionBorrarCat.addEventListener('click', () => {
     // $inpCategoria.value = " ";
 });
 
-
 // ________________________________
 // Function capturar largo pantalla
 // --------------------------------
@@ -413,7 +405,6 @@ const largoVent = () => {
     const altoVentana = document.documentElement.scrollHeight;
     console.log('alto ventana', altoVentana)
     return (altoVentana);
-
 }
 
 // ______________________________
@@ -434,7 +425,6 @@ const activarVentMod = (contenAActivar) => {
 
     // Establecer la posición de "caja" a 100px del margen inferior
     contenAActivar.style.bottom = `${window.innerHeight - margenInferior + 300}px`;
-   
     contenAActivar.classList.remove("hidden");
     return alto;
 }
