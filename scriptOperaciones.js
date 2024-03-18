@@ -63,6 +63,7 @@ let $celdaFecha = document.getElementById("celda-fecha");
 let $celdaMonto = document.getElementById("celda-monto");
 let $celdaAcciones = document.getElementById("celda-acciones");
 
+
 // _______________________________________________________
 // Función que inicializa el array de operaciones en el LS
 // -------------------------------------------------------
@@ -72,10 +73,12 @@ const inicializarOperaciones = () => {
     }
 }
 
+
 // __________________________________________
 // Llamado a inicializar el array Operaciones en LS
 // ------------------------------------------
 inicializarOperaciones();
+
 
 // _____________________________
 // Funcion borrar Inputs, select
@@ -84,7 +87,6 @@ const borrarInputs = () => {
     $descripcionOperInput.value = "";
     $montoOperInput.value = "";
     $fechaOperInput.value = "";
-    // $fechaOperInput.valueAsDate = new Date(); 
     $fechaOperInput.value = inicializarFechaInput("fecha-oper-input", "noRestarMes");  //  input date con fecha actual
 }
 
@@ -110,6 +112,7 @@ $btnIngOp.addEventListener("click", () => {
 $fechaOperInput.addEventListener('change', () => {  // cambie input por change 13de marzo
     tomarFechaInput($fechaOperInput.value, 'ingreso', 'DIA');
 });
+
 
 // ________________________________
 // Función tomar datos de los input
@@ -158,7 +161,6 @@ $btnCancOp2.addEventListener('click', () => { mostrar($conten_menuBalance) });
 const mostrarDataInput = (id) => {
     operaciones_LS = recuperar("operaciones");
     categorias_LS = recuperar("categorias");
-    // Usar find en lugar de filter, ya que filter devuelve un array y find devuelve el primer elemento que cumple la condición
     let operacion = operaciones_LS.find((operacion) => operacion.id === id);
     if (!operacion) { return }
     $descripcionOperInput.value = operacion.descripcion;
@@ -176,8 +178,6 @@ let fechaFormateada;
 // Función para mostrar fecha en input con formato dd/MM/aaaa desde LS (que está en formato aaaa)
 // ----------------------------------------------------------------------------------------------
 const formatearFecha = (fecha) => {
-    //   let fechaNueva = tomarFechaInput(fecha, "ingreso", "DIA")
-    //   console.log(fechaNueva);
     let partes = fecha.split('/');
     let fechaNueva = `${partes[2]}-${partes[1].padStart(2, '0')}-${partes[0].padStart(2, '0')}`;
     return fechaNueva;
@@ -220,7 +220,6 @@ const completarTablaOperaciones = (array) => {
     $conOperListado.innerHTML = " ";
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
-        // Revisar lo que sigue fue desde la bajada de magui
         document.getElementById("cont-con-oper").classList.remove("hidden");
         document.getElementById("contenedor-filtros").classList.remove("hidden");
         let i = 0;
@@ -245,9 +244,11 @@ const completarTablaOperaciones = (array) => {
                         <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[33,3%] flex justify-center items-center text-[10px] bg-zinc-100 dark:bg-gray-200 p-1 rounded-lg shadow-inner"> ${operacion.categoria}</div>
                     </div>
                     <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[130px] flex justify-end text-[12px]">${fechaMostrar}</div>
-                    <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[29%] gap-3">
-                        <div id="celdaMonto" class="w-[220px] flex items-center sm:justify-end text-[15px]">${operacion.monto}</div>
-                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end lg:gap-1"></div>
+                    <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[220px] gap-3">
+                        <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#339433] font-bold">
+                            <span class="text-[12px]">+</span>$${formatPesos(operacion.monto)}
+                        </div>
+                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1"></div>
                     </div>
                 </div>`;
             } else {
@@ -286,7 +287,6 @@ const completarTablaOperaciones = (array) => {
             btnBorrarOper.id = `${operacionIdBorr}`;
             btnBorrarOper.classList.add("flex-shrink-0", "h-8", "px-2", "lg:px-2", "rounded-lg", "bg-zinc-200", "border-2", "dark:bg-gray-200", "shadow-inner", "hover:bg-cyan-700/25", "focus:bg-blue-200", "shadow-inner:lg", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
             btnBorrarOper.addEventListener("click", () => {
-                // borrarOperacion(operacionIdBorr);
                 confirmBorrarOper(btnBorrarOper.id);
             }
 
@@ -311,6 +311,7 @@ const controlMontoDescripcion = () => {
     const descripcion = $descripcionOperInput.value.trim();
     return monto > 0 && descripcion !== "";
 }
+
 
 // ______________________________
 // Evento botón  grabar operacion
@@ -339,7 +340,6 @@ let $opBorrar = document.getElementById("op-borrar");
 const confirmBorrarOper = (id) => {
     operaciones_LS = recuperar("operaciones");
     operacion = operaciones_LS.find((op) => op.id === id);
-    console.log(id, operacion, operacion.descripcion)
     operacion.fecha = tomarFechaInput(operacion.fecha, "ingreso", "DIA");
     $opBorrar.innerHTML = `<div id="op-borrar">
 					<p class="text-center">Descripcion: ${operacion.descripcion}</p>
@@ -362,15 +362,13 @@ const confirmBorrarOper = (id) => {
     });
 }
 
+
 // ______________________________________________________
 // Evento boton Borrar Operación
 // ------------------------------------------------------
 const borrarOperacion = (id) => {
-
     operaciones_LS = recuperar("operaciones");
-    console.log(id, operaciones_LS);
     operaciones_LS = operaciones_LS.filter(operacion => operacion.id !== id);
-    console.log(operaciones_LS)
     grabar("operaciones", operaciones_LS);
     mostrar($conten_menuBalance);
     filtrar_oper(); //VER SCRIPT.JS
@@ -420,17 +418,6 @@ const editarOperacion = (idOp) => {
         }
     });
 };
-
-
-// // ____________________________________
-// // Evento botón activar el Menú Balance
-// // ------------------------------------
-// $menuBalance.addEventListener('click', () => {
-//     operaciones_LS = recuperar("operaciones");
-//     if (operaciones_LS) {
-//         completarTablaOperaciones(operaciones_LS);
-//     }
-// })
 
 
 // _______________________________________

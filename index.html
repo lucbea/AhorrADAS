@@ -64,14 +64,12 @@
 						<i class="fa-solid fa-chart-line" aria-hidden="true"></i>
 						Balance
 					</a>
-
 					<a href="#"
 						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 						id="menu-categorias">
 						<i class="fa-solid fa-list" aria-hidden="true"></i>
 						Categorías
 					</a>
-
 					<a href="#"
 						class="px-3 my-1 md:mx-1 md:my-0 py-1 rounded-lg hover:bg-blue-200 focus:bg-blue-200 hover:dark:bg-gray-400 focus:dark:bg-gray-400 hover:shadow-md focus:shadow-md"
 						id="menu-reportes">
@@ -89,7 +87,6 @@
 	</header>
 
 	<main class="w-full h-full items-center flex flex-col">
-		<!-- quitar flex-col -->
 		<!-- ***************************************************************** -->
 		<!-- =================== CONTENEDOR Menú: Inicio  =================== -->
 		<div class="hidden font-Lora flex flex-col items-center justify-center max-w-[1200px]" id="cont-menu-inicio">
@@ -104,9 +101,9 @@
 					Control de Gastos e Ingresos
 				</p>
 			</div>
-
 			<p class="tamanio-frase font-black lg:text-3xl">AhorrADAs</p>
 		</div>
+
 		<!-- ***************************************************************** -->
 		<!-- =================== CONTENEDOR Menú: Balance  =================== -->
 		<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
@@ -120,7 +117,6 @@
 						<h2 class="text-colSec dark:text-black font-Lora text-4xl font-bold my-3">
 							Balance
 						</h2>
-
 						<div class="text-base sm:text-lg">
 							<div class="flex mt-5 mb-3">
 								<div class="w-[30%]">Ganancias</div>
@@ -203,7 +199,6 @@
 										aria-label="Seleccionar por fecha hasta" />
 								</div>
 							</div>
-
 							<div class="my-3">
 								<label class="font-bold" for="filtro-orden">Ordenar por</label>
 								<div
@@ -257,11 +252,9 @@
 
 					<!-- contenedor CON OPERACIONES -->
 					<div class="hidden flex-col " id="cont-con-oper">
-						<div class="hidden w-full h-auto animate-bounce text-[red] dark:text-red-900 text-sm sm:text-base border-2 border-indigo-100 dark:border-gray-400 mt-5 mt-[10px]"
+						<div class="hidden w-full h-auto animate-bounce text-[red] text-center dark:text-red-900 text-sm sm:text-base border-2 border-indigo-100 dark:border-gray-400 mt-5 mt-[10px]"
 							id="mensaje-filtros-5seg">
-							<p>
-								Recuerde cambiar la opciones de "Filtros" para visualizar las "Operaciones" deseadas.
-							</p>
+							<p>Recuerde cambiar las opciones de "Filtros" para visualizar las "Operaciones" deseadas.</p>
 						</div>
 						<div class="hidden sm:flex justify-between border-b-2 border-indigo-100 dark:border-gray-400 mt-5 mt-[10px] gap-3 columns-5 w-full"
 							id="encab-tabla">
@@ -275,6 +268,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- =================== CONTENEDOR Sub-Menú: Ingresar - Editar Operación =================== -->
 			<div id="cont-menu-operaciones"
 				class="hidden bg-zinc-50 dark:bg-gray-300 h-[auto] flex flex-col justify-center flex-col lg:w-3/5 md:w-5/6 lg:px-12 m-4 mt-10 p-5 rounded-lg shadow-2xl max-w-[1100px] min-w-[279px] relative">
@@ -352,8 +346,8 @@
 						<span class="hidden sm:inline md:inline lg:inline text-sm">CANCELAR</span>
 					</button>
 				</div>
-
 			</div>
+
 			<div id="mje-monto-cero"
 				class="hidden absolute flex bottom-32 h-36 px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
 				<p class="text-center">
@@ -364,6 +358,7 @@
 					Cerrar ventana
 				</button>
 			</div>
+
 			<div id="mje-confirm-borrar-op"
 				class="hidden absolute flex justify-center items-center bottom-32 h-auto px-7 bg-zinc-50 dark:bg-gray-300 rounded-lg shadow-2xl w-4/5 sm:w-2/5 md:w-2/5 lg:w-2/5 min-w-[259px] max-w-[1100px] z-10 mx-1 sm:mx-3 flex-col justify-evenly">
 				<p class="text-center  text-[#C11414] font-bold mt-2 mb-1">¡Cuidado!
@@ -382,8 +377,6 @@
 				</div>
 			</div>
 		</div>
-
-
 
 		<!-- ***************************************************************** -->
 		<!-- =================== CONTENEDOR Menú: Categorías  =================== -->
@@ -650,9 +643,6 @@
 			</div>
 		</div>
 		<!-- ***************************************************************** -->
-
-
-
 
 	</main>
 </body>

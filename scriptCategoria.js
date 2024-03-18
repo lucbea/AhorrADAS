@@ -38,7 +38,6 @@ let idCatDuplicada = '';
 let indice;
 
 
-
 // ________________________
 // Guardar en Local Storage
 // ------------------------
@@ -94,13 +93,9 @@ const mostrarDato = () => {
             divContenCat.appendChild(div1);
             divContenCat.appendChild(div2);
             $muestraCategorias.appendChild(divContenCat);
-
         }
-
     });
 };
-
-
 
 
 // _________________________
@@ -134,6 +129,7 @@ const sinAcentosMayus = (texto) => {
     }
     return texto;
 }
+
 
 // _____________________________________________
 // funcion armado del array para guardarlo en LS
@@ -171,13 +167,11 @@ const armadoArrayGuardar = (locacion, id, nombre, funcion) => {
 // Función ingreso categoría en el input (transformación en mayúscula, sin acento)
 // --------------------------------------
 let $inpCategoria = document.getElementById("categoria");
-
 const ingresarCategoria = (inputTextCateg) => {
     nombNuevaCateg = inputTextCateg.value;
     nombNuevaCateg = sinAcentosMayus(nombNuevaCateg);
     nombNuevaCateg = nombNuevaCateg.slice(0, 14); //toma hasta 14 caracteres para la categoría
     return nombNuevaCateg;
-
 };
 
 
@@ -188,7 +182,6 @@ const $contVentanaModal = document.getElementById("cont-ventana-modal");
 const $mjeCatDuplicada = document.getElementById("mje-cat-duplicada");
 const $cerrar = document.getElementById("cerrar-cat-duplicada");
 let $inpEditarCategoria = document.getElementById("editar-categoria");
-
 $cerrar.addEventListener('click', () => {
     $mjeCatDuplicada.classList.add("hidden");
     $contVentanaModal.style.zIndex = 9;
@@ -325,16 +318,6 @@ const editarCategoria = (idCat) => {
 };
 
 
-//--------------------------   
-// Función borrar categoría
-// -------------------------
-// const borrarCategoria = (id) => {
-//     const nuevasCategorias = categoriasLS.filter(categoria => categoria.id !== id);  // Filtrar las categorías, excluyendo la del id
-//     grabar("categorias", nuevasCategorias);  // Guardar las nuevas categorías en el localStorage   
-//     mostrarDato();  // Mostrar las categorías actualizadas
-// };
-
-
 //--------------------------
 // Función borrar categoría
 // -------------------------
@@ -344,7 +327,6 @@ let $mjeConfirmBorrarCat = document.getElementById("mje-confirm-borrar-cat");
 let $siBorrarCateg = document.getElementById("si-borrar-cat");
 let $noBorrarCateg = document.getElementById("no-borrar-cat");
 const borrarCategoria = (id) => {
-    // OTRA VEZ RECUPERA CATEGORIA ------------------
     const categorias = recuperar("categorias");
     const operaciones = recuperar("operaciones");
     let borrar = true;
@@ -366,17 +348,19 @@ const borrarCategoria = (id) => {
         // $mjeNegacionBorrarCat.classList.remove("hidden");
     }
 
+
     // ____________________________________
     // Evento - Boton si eliminar categoría
     // ------------------------------------
     $siBorrarCateg.addEventListener("click", () => {
         const nuevasCategorias = categorias.filter(
-            (categoria) => categoria.id !== id); // Filtrar las categorías, excluyendo la del id
-        grabar("categorias", nuevasCategorias); // Guardar las nuevas categorías en el localStorage
-        mostrarDato(); // Mostrar las categorías actualizadas
+            (categoria) => categoria.id !== id); 
+        grabar("categorias", nuevasCategorias); 
+        mostrarDato(); 
         $contVentanaModal.classList.add("hidden");
         $mjeConfirmBorrarCat.classList.add("hidden");
     })
+
 
     // ____________________________________
     // Evento - Boton no eliminar categoría
@@ -387,33 +371,30 @@ const borrarCategoria = (id) => {
     })
 };
 
+
 // _______________________________________________________________
 // Evento - Boton cerrar mensaje negación eliminación de categoría
 // ---------------------------------------------------------------
 $cerrarNegacionBorrarCat.addEventListener('click', () => {
     $mjeNegacionBorrarCat.classList.add("hidden");
     $contVentanaModal.classList.add("hidden");
-    // $inpEditarCategoria.value = nombreAEditar;
-    // if ($contEditarCategoria.classList.contains("hidden")) { $contVentanaModal.classList.add("hidden") };
-    // $inpCategoria.value = " ";
 });
+
 
 // ________________________________
 // Function capturar largo pantalla
 // --------------------------------
 const largoVent = () => {
     const altoVentana = document.documentElement.scrollHeight;
-    console.log('alto ventana', altoVentana)
     return (altoVentana);
 }
+
 
 // ______________________________
 // Función  Activar Ventana Modal
 // ------------------------------
 const activarVentMod = (contenAActivar) => {
     let alto = largoVent()
-    console.log('alto ventana', alto);
-    // console.log('entré por armadoArrayGuardar por el else')
     if (!($contVentanaModal.classList.contains("hidden"))) {
         $contVentanaModal.style.zIndex = 11;
         contenAActivar.style.zIndex=12;
@@ -422,9 +403,7 @@ const activarVentMod = (contenAActivar) => {
     $contVentanaModal.classList.remove("hidden");
     alto = alto -150;
     let margenInferior = window.innerHeight + window.scrollY; //Largo de la ventana
-
-    // Establecer la posición de "caja" a 100px del margen inferior
-    contenAActivar.style.bottom = `${window.innerHeight - margenInferior + 300}px`;
+    contenAActivar.style.bottom = `${window.innerHeight - margenInferior + 300}px`; // Establecer la posición de "caja" a 300px del margen inferior
     contenAActivar.classList.remove("hidden");
     return alto;
 }
