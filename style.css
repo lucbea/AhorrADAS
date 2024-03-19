@@ -37,3 +37,34 @@
    content: "\f186";
    /* Este valor es del icono del Luna (Font Awesome 4.7.0 Icon) */
 }
+
+/* Estilo para navegadores basados en WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+   width: 8px;
+   /* Ancho del scrollbar */
+   background-color: #f1f1f1;
+   /* Color de fondo */
+}
+
+::-webkit-scrollbar-thumb {
+   margin-left: 13px;
+   background-color: #888;
+   /* Color del thumb (barra deslizante) */
+}
+
+/* Estilo para Firefox */
+/* El valor thin hace que el scrollbar sea más delgado */
+/* El color de fondo se puede cambiar según sea necesario */
+/* El color del thumb (barra deslizante) también se puede cambiar */
+/* Se puede agregar un padding para que el thumb sea más visible */
+* {
+   scrollbar-width: thin;
+   /* Grosor del scrollbar */
+   scrollbar-color: #888 #f1f1f1;
+   /* Color del thumb y fondo */
+}
+
+/* Opcional: Padding para el thumb en Firefox */
+*::-webkit-scrollbar-thumb {
+   padding: 4px;
+}

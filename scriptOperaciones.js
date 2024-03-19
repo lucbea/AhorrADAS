@@ -248,7 +248,7 @@ const completarTablaOperaciones = (array) => {
                         <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#339433] font-bold">
                             <span class="text-[12px]">+</span>$${formatPesos(operacion.monto)}
                         </div>
-                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1"></div>
+                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1 lg:mr-3"></div>
                     </div>
                 </div>`;
             } else {
@@ -264,7 +264,7 @@ const completarTablaOperaciones = (array) => {
                         <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#C11414] font-bold">
                             <span class="text-[12px]">-</span>$${formatPesos(operacion.monto)}
                         </div>
-                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1"></div>
+                        <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1 lg:mr-3"></div>
                     </div>
                 </div>`;
             };
