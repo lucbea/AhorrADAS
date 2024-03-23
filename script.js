@@ -337,7 +337,7 @@ function filtrar_oper() {
 	if (sumaGana - sumaGasto >= 0) {
 		totBal = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
 	} else {
-		totBal = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
+		totBal = `<div class="text-rojo dark:text-red-900">	-$${formatPesos(
 			Math.abs(sumaGana - sumaGasto)
 		)} </div>`;
 	}

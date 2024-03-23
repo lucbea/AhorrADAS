@@ -240,12 +240,12 @@ const completarTablaOperaciones = (array) => {
                 <div class="h-[2px] bg-slate-100 my-[4px]"></div>    
                 <div id="fila-tabla-operaciones" class="flex flex-col sm:flex-row justify-between gap-1 w-full h-[70px] sm:h-[40px]">
                     <div id="decr-categ" class= "flex justify-between items-center w-full sm:w-[45%] gap-3">
-                        <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[15px]">${operacion.descripcion}</div>
+                        <div id="celdaDescripcion" class="sm:my-[10px] w-[66.7%] flex justify-start items-center text-[12px]">${operacion.descripcion}</div>
                         <div id="celdaCategoria" class="sm:my-[5px] h-[35px] px-2 w-[106px] flex justify-center items-center text-[10px] bg-zinc-200 dark:bg-gray-200 p-1 rounded-lg shadow-inner text-cyan-700 font-bold"> ${operacion.categoria}</div>
                     </div>
                     <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[70px] flex justify-end text-[12px]">${fechaMostrar}</div>
                     <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[220px] gap-3">
-                        <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#339433] font-bold">
+                        <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-verde font-bold">
                             <span class="text-[12px]">+</span>$${formatPesos(operacion.monto)}
                         </div>
                         <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1 lg:mr-3"></div>
@@ -261,7 +261,7 @@ const completarTablaOperaciones = (array) => {
                     </div>
                     <div id="celdaFecha" class="hidden items-center sm:flex sm:my-[10px] w-[70px] flex justify-end text-[12px]">${fechaMostrar}</div>
                     <div id="monto-botones" class="flex flex-row justify-between sm:my-[10px] mb-[17px] w-[full] sm:w-[220px] gap-3">
-                        <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-[#C11414] font-bold">
+                        <div id="celdaMonto${i}" class="w-[170px] flex items-center sm:justify-end text-[15px] text-rojo font-bold">
                             <span class="text-[12px]">-</span>$${formatPesos(operacion.monto)}
                         </div>
                         <div id="celdaAcciones${i}" class="w-[85px] flex items-center justify-end gap-1 lg:mr-3"></div>

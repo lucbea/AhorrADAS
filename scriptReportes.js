@@ -277,7 +277,7 @@ function mostrarConReportes() {
 				totCat.balance
 			)} </div>`;
 		} else {
-			x = `<div class="w-full sm:w-[33%] flex justify-end text-[red] dark:text-red-900">
+			x = `<div class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900">
 			-$${formatPesos(Math.abs(totCat.balance))} </div>`;
 		}
 
@@ -293,7 +293,7 @@ function mostrarConReportes() {
 					</div>
 
 					<div
-						class="w-full sm:w-[33%] flex justify-end text-[red] dark:text-red-900"
+						class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900"
 					>
 						-$${formatPesos(totCat.gasto)}
 					</div> 
@@ -333,7 +333,7 @@ function mostrarConReportes() {
 				totMes.balance
 			)} </div>`;
 		} else {
-			x = `<div class="w-full sm:w-[33%] flex justify-end text-[red] dark:text-red-900">
+			x = `<div class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900">
 			-$${formatPesos(Math.abs(totMes.balance))} </div>`;
 		}
 
@@ -349,7 +349,7 @@ function mostrarConReportes() {
 					</div>
 
 					<div
-						class="w-full sm:w-[33%] flex justify-end text-[red] dark:text-red-900"
+						class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900"
 					>
 						-$${formatPesos(totMes.gasto)}
 					</div> 

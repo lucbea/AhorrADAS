@@ -36,6 +36,7 @@ let idAEditar = '';
 let nombreAEditar = '';
 let idCatDuplicada = '';
 let indice;
+let nuevaCategAux;
 
 
 // ________________________
@@ -60,7 +61,7 @@ const recuperar = (locacion) => {
 let $muestraCategorias = document.getElementById("muestra-categorias");
 const mostrarDato = () => {
     $muestraCategorias.innerHTML = "";
-    categoriasLS = recuperar("categorias"); //obligatoriamente llamarla para que recupere las últimas modificaciones de LS
+    categoriasLS = recuperar("categorias");
     categoriasLS.forEach(categoria => {
         if ($muestraCategorias !== null) {
             let divContenCat = document.createElement("div");
@@ -69,7 +70,7 @@ const mostrarDato = () => {
             div1.id = "nombre-cat";
             let div2 = document.createElement("div");
             div2.id = "bot-editar-borrar"
-            divContenCat.classList.add("flex", "justify-between", "my-2", "w-full");
+            divContenCat.classList.add("flex", "justify-between", "my-2", "w-full", "gap-2");
             div1.classList.add("flex", "items-center");
             let spanCategoria = document.createElement("span");
             spanCategoria.classList.add("span-categoria");
@@ -77,14 +78,14 @@ const mostrarDato = () => {
 
             let btnEditarCat = document.createElement("button");
             btnEditarCat.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-            btnEditarCat.id = `btn-editar-${categoria.id}`; // Identificador único para el botón de editar
-            btnEditarCat.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "mx-1", "md:mx-4", "lg:mx-4", "shadow-inner:lg", "border-2", "hover:bg-blue-200", "focus:bg-blue-200", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
+            btnEditarCat.id = `btn-editar-${categoria.id}`;
+            btnEditarCat.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "mr-2", "md:mx-4", "lg:mx-4", "shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)]", "border-2", "hover:bg-cyan-800/25", "focus:bg-blue-200", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)]", "focus:shadow-md");
             btnEditarCat.addEventListener("click", () => editarCategoria(categoria.id));
 
             let btnBorrar = document.createElement("button");
             btnBorrar.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-            btnBorrar.id = `btn-borrar-${categoria.id}`; // Identificador único para el botón de borrar
-            btnBorrar.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "shadow-inner:lg", "border-2", "hover:bg-blue-200", "focus:bg-blue-200", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-md", "focus:shadow-md");
+            btnBorrar.id = `btn-borrar-${categoria.id}`;
+            btnBorrar.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)]", "border-2", "hover:bg-cyan-800/25", "focus:bg-blue-200", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)]", "focus:shadow-md");
             btnBorrar.addEventListener("click", () => borrarCategoria(categoria.id));
 
             div1.appendChild(spanCategoria);
@@ -171,6 +172,7 @@ const ingresarCategoria = (inputTextCateg) => {
     nombNuevaCateg = inputTextCateg.value;
     nombNuevaCateg = sinAcentosMayus(nombNuevaCateg);
     nombNuevaCateg = nombNuevaCateg.slice(0, 14); //toma hasta 14 caracteres para la categoría
+    console.log("estoy en ingresarCategoria", nombNuevaCateg);
     return nombNuevaCateg;
 };
 
@@ -184,11 +186,21 @@ const $cerrar = document.getElementById("cerrar-cat-duplicada");
 let $inpEditarCategoria = document.getElementById("editar-categoria");
 $cerrar.addEventListener('click', () => {
     $mjeCatDuplicada.classList.add("hidden");
-    $contVentanaModal.style.zIndex = 9;
-    $contEditarCategoria.style.zIndex = 10;
+    $contVentanaModal.style.zIndex = 4;
+    // $contEditarCategoria.style.zIndex = 6;
     $inpEditarCategoria.value = nombreAEditar;
-    if ($contEditarCategoria.classList.contains("hidden")) { $contVentanaModal.classList.add("hidden") };
-    $inpCategoria.value = "";
+    if ($contEditarCategoria.classList.contains("hidden")) {
+        console.log('contenedor de edición NOOOO activo')
+        $contVentanaModal.classList.add("hidden");
+        $inpCategoria.value = ""
+        // $contVentanaModal.style.zIndex = 4;
+    }
+    // else {
+    // $contVentanaModal.style.zIndex = 9;
+
+    // };
+     return $inpEditarCategoria.value = nombreAEditar;     // VEER antes = ""
+   
 });
 
 
@@ -204,14 +216,19 @@ $inpCategoria.addEventListener('input', (e) => $inpCategoria.value = ingresarCat
 const $cerrarCatVacia = document.getElementById("cerrar-cat-vacia");
 const $mjeCatVacia = document.getElementById("mje-cat-vacia");
 $cerrarCatVacia.addEventListener('click', () => {
+    console.log('evento boton cerrar')
     $mjeCatVacia.classList.add("hidden");
-    $contVentanaModal.style.zIndex = 9;
-    $contEditarCategoria.style.zIndex = 10;
+    $contVentanaModal.style.zIndex = 7;
+    $contEditarCategoria.style.zIndex = 8;
     if ($contEditarCategoria.classList.contains("hidden")) {
         $contVentanaModal.classList.add("hidden");
     }
+
     $inpEditarCategoria.value = nombreAEditar;
-    $inpCategoria.value = "";
+    console.log(nombreAEditar, $inpEditarCategoria.value);
+   
+    // $inpCategoria.value = "";
+   
 });
 
 
@@ -265,11 +282,13 @@ $botonIngresoCategoria.addEventListener('click', (e) => {
 // ---------------------------------------
 const $contEditarCategoria = document.getElementById("cont-editar-categoria");
 const cerrarVentEdicion = () => {
-    $inpEditarCategoria.value = "";
+    // $inpEditarCategoria.value = "";
     $contEditarCategoria.classList.add("hidden");
     $contVentanaModal.classList.add("hidden");
     if (!($mjeCatDuplicada.classList.contains("hidden"))) {
         $mjeCatDuplicada.classList.add("hidden");
+        $contVentanaModal.style.zIndex = 4;
+        $contEditarCategoria.style.zIndex = 6;
     }
 }
 
@@ -277,45 +296,99 @@ const cerrarVentEdicion = () => {
 // ________________________
 // Función editar categoría
 // ------------------------
+
 const $btnCancEditCateg = document.getElementById("boton-cancelar-editar-categoria");
 const $btnGrabarEditCateg = document.getElementById("boton-grabar-editar-categoria");
 const editarCategoria = (idCat) => {
-    idAEditar = idCat;
+
+    // idAEditar = idCat;
+    // console.log("ingresé a editarCategoria", idCat);
     activarVentMod($contEditarCategoria); //Activa la ventana modal con espacio de edicion;  
     categoriasLS = recuperar("categorias");  //Obtener categorías del localStorage  
-    indice = categoriasLS.findIndex(categoria => categoria.id === idAEditar);
+    // console.log('el array categorias es', categoriasLS)
+    indice = categoriasLS.findIndex(categoria => categoria.id === idCat);
     let categoriaAEditar = categoriasLS.find(categoria => categoria.id === idCat);
+    // console.log('la categoria que voy a editar es' ,categoriaAEditar, categoriaAEditar.nombre);
     nombreAEditar = categoriaAEditar.nombre;
     $inpEditarCategoria.value = categoriaAEditar.nombre;   //Mostrar el nombre de la categoría a editar en el input
+    // console.log($inpEditarCategoria.value)
     $inpEditarCategoria.addEventListener('input', (e) => $inpEditarCategoria.value = ingresarCategoria($inpEditarCategoria));
+    // console.log('volví de ingresarCategoria, este valor recibió el input $inpEditarCategoria.value:', $inpEditarCategoria.value)
+    nuevaCategAux = $inpEditarCategoria.value;
+    // console.log($inpEditarCategoria.value, nuevaCategAux);
 
     $btnCancEditCateg.addEventListener('click', () => cerrarVentEdicion());
 
     $btnGrabarEditCateg.addEventListener('click', () => {
-        nombNuevaCateg = $inpEditarCategoria.value;
-        if (nombNuevaCateg !== "") {
-            if (nombNuevaCateg === categoriaAEditar.nombre) { //Es el mismo nombre en el mismo ID
-                cerrarVentEdicion();
-            } else {
-                let categoriaEditada = { id: idCat, nombre: nombNuevaCateg };
-                let categoriaDuplicada = revisarDatosDuplicados(idCat, nombNuevaCateg);
-                if (!categoriaDuplicada) { // Ingresa al if si no hay duplicados
-                    if (indice !== -1) {  // Verifica si se encontró el objeto con el id dado
-                        arrayListo = [...categoriasLS.slice(0, indice), // Objetos antes del objeto a modificar
-                        { ...categoriasLS[indice], nombre: nombNuevaCateg }, // Objeto modificado
-                        ...categoriasLS.slice(indice + 1) // Objetos después del objeto a modificar
-                        ];
-                    }
-                    grabar("categorias", arrayListo);
-                    mostrarDato();
-                    cerrarVentEdicion();
-                } else {
-                    activarVentMod($mjeCatDuplicada);
-                }
-            }
-        } else {activarVentMod ($mjeCatVacia)}
+        categoriaAEditar = categoriasLS.find(categoria => categoria.id === idCat);
+        // console.log('llamo a ctrlGrabarEditarCateg, paso', idCat, categoriaAEditar)
+        ctrlGrabarEditarCateg(idCat, categoriaAEditar);
+        
     });
+    $inpEditarCategoria.value = categoriaAEditar.nombre;
 };
+
+
+// _____________________________________________________
+// Funcion Controles y grabación de edición de categoria
+// -----------------------------------------------------
+const ctrlGrabarEditarCateg = (idCat, categoriaAEditar) => {
+    console.log('entre a ctrlGrabarEditarCateg, me llegaron estos parámetros: ', idCat, categoriaAEditar.nombre)
+    categoriasLS = recuperar("categorias");
+    let nuevaCateg = $inpEditarCategoria.value;
+    // console.log('el nombre ingresado por input es ', $inpEditarCategoria.value, nuevaCateg);
+    if (nuevaCateg !== "") {
+        // console.log("Estoy editando categoria NO vacía", categoriaAEditar, 'lo ingresado por nuevo nombre es', nuevaCateg, $inpEditarCategoria.value)
+        if (nuevaCateg === categoriaAEditar.nombre) { //Es el mismo nombre en el mismo ID
+            cerrarVentEdicion();
+            // console.log("es el mismo nombre y terminé proceso dejando todo igual")
+            console.log("========================")
+            return;
+        } else {
+            let categoriaEditada = { id: idCat, nombre: nuevaCateg };
+            console.log("se cambió el nombre, voy a llamar categoria duplicada")
+            let categoriaDuplicada = revisarDatosDuplicados(idCat, nuevaCateg);
+            console.log("volví de categoría duplicada", categoriaDuplicada)
+            if (!categoriaDuplicada) {
+                console.log("entre al if y no es categoria duplicada"); // Ingresa al if si no hay duplicados
+                if (indice !== -1) {
+                    console.log('encontró categoría, le pondré este nombre: ', nuevaCateg) // Verifica si se encontró el objeto con el id dado
+                    arrayListo = [...categoriasLS.slice(0, indice), // Objetos antes del objeto a modificar
+                    { ...categoriasLS[indice], nombre: nuevaCateg }, // Objeto modificado
+                    ...categoriasLS.slice(indice + 1) // Objetos después del objeto a modificar
+                    ];
+                }
+                grabar("categorias", arrayListo);
+                mostrarDato();
+                cerrarVentEdicion();
+                // $inpEditarCategoria.value = "";
+                console.log("========================")
+                return;
+            }
+            if (categoriaDuplicada) {
+                console.log("entre al if y es categoria duplicada");
+                activarVentMod($mjeCatDuplicada);
+                console.log('ingreso la categoriaAEditar.nombre al input', categoriaAEditar.nombre)
+                $contEditarCategoria.value = categoriaAEditar.nombre;
+                console.log("========================")
+                return;
+            }
+        }
+    }
+    if (nuevaCateg === "") {
+        // if ($inpEditarCategoria.value === "") {
+        console.log("estoy en el if !== porque es categ vacía");
+        activarVentMod($mjeCatVacia)
+        console.log('ingreso la categoriaAEditar.nombre al input', categoriaAEditar.nombre)
+        $contEditarCategoria.value = categoriaAEditar.nombre;
+        console.log("========================")
+        return;
+        // }
+    }
+    // $inpEditarCategoria.value = "";
+}
+
+
 
 
 //--------------------------
@@ -354,9 +427,9 @@ const borrarCategoria = (id) => {
     // ------------------------------------
     $siBorrarCateg.addEventListener("click", () => {
         const nuevasCategorias = categorias.filter(
-            (categoria) => categoria.id !== id); 
-        grabar("categorias", nuevasCategorias); 
-        mostrarDato(); 
+            (categoria) => categoria.id !== id);
+        grabar("categorias", nuevasCategorias);
+        mostrarDato();
         $contVentanaModal.classList.add("hidden");
         $mjeConfirmBorrarCat.classList.add("hidden");
     })
@@ -384,24 +457,30 @@ $cerrarNegacionBorrarCat.addEventListener('click', () => {
 // ________________________________
 // Function capturar largo pantalla
 // --------------------------------
-const largoVent = () => {
-    const altoVentana = document.documentElement.scrollHeight;
-    return (altoVentana);
-}
+// const largoVent = () => {
+// const altoVentana = 
+// return (altoVentana);
+// }
 
 
 // ______________________________
 // Función  Activar Ventana Modal
 // ------------------------------
 const activarVentMod = (contenAActivar) => {
-    let alto = largoVent()
+    let alto = document.documentElement.scrollHeight;
+    console.log('ventana modal está oculta:', $contVentanaModal.classList.contains("hidden"))
     if (!($contVentanaModal.classList.contains("hidden"))) {
-        $contVentanaModal.style.zIndex = 11;
-        contenAActivar.style.zIndex=12;
+        console.log('SIIII está visible la ventana modal');
+        $contVentanaModal.style.zIndex = 8;
+        contenAActivar.style.zIndex = 10;
+    } else {
+        console.log('NOOOO está visible la ventana modal');
+        $contVentanaModal.style.zIndex = 4;
+        contenAActivar.style.zIndex = 6;
     }
     $contVentanaModal.style.height = `${alto}px`;
     $contVentanaModal.classList.remove("hidden");
-    alto = alto -150;
+    alto = alto - 150;
     let margenInferior = window.innerHeight + window.scrollY; //Largo de la ventana
     contenAActivar.style.bottom = `${window.innerHeight - margenInferior + 300}px`; // Establecer la posición de "caja" a 300px del margen inferior
     contenAActivar.classList.remove("hidden");
