@@ -42,8 +42,8 @@
 
 Las aplicaciones web, comúnmente conocidas como apps, se han convertido en una parte esencial de nuestra vida cotidiana. Desde simplificar tareas diarias hasta ofrecer entretenimiento. <br>
 La app `AhorrADAs` es una app web, que permite que cualquier usuario pueda realizar registro de operaciones personales o de una PYME, y de esta manera pasar de un proceso manual a uno digital, lo que conlleva un gran ahorro de tiempo. Además, esto simplifica el trabajo y genera una reducción en el costo de las rendiciones de gastos.<br>
-Por medio de la app `AhorrADAs` el usuario acceder de forma sencilla a reportes e información de gastos, ganancias y sus balances.
-Por su sencillez, `AhorrADAs` es una gran herramienta que ayuda a simplificar el control de las rendiciones, a llevar un exhaustivo control gastos y ganancias, y así evitar realizar operaciones innecesarias, que llevarían a un déficit personal o empresarial.<br>
+Por medio de la app `AhorrADAs` el usuario accede de forma sencilla a reportes e información de gastos, ganancias y sus balances.
+Por su simple interfaz, `AhorrADAs` es una potente herramienta que ayuda a simplificar el control de las rendiciones, a llevar un exhaustivo control gastos y ganancias, y así evitar realizar operaciones innecesarias, que llevarían a un déficit personal o empresarial.<br>
 
 La app `AhorrADAs`, fue diseñada de tal manera que puede ser utilizada en diferentes dispositivos, lo que implica un correcto diseño responsive. 
 
@@ -60,7 +60,7 @@ La app `AhorrADAs`, fue diseñada de tal manera que puede ser utilizada en difer
 Fue desarrollado como Trabajo Final del "Módulo 3 - JavaScript", de la capacitación de `"Desarrollo Frontend"` dictado por [ADA ITW](https://www.linkedin.com/school/ada-itw/), y se encuentra incluido en nuestros `Portfolios`, de tal manera de reflejar el grado de avance, apropiación y uso de los conocimiento adquiridos y asimilados durante la capacitación.
 
 > [!NOTE]
-> Visite nuestros portafolios: [PORTFOLIO MAGUI](https://maguibrollo.github.io/ADA_Portafolio_mod01_tf/)  -  [PORTFOLIO LUCÍA]().
+> Visite nuestros portafolios: [PORTFOLIO MAGUI](https://maguibrollo.github.io/ADA_Portafolio_mod01_tf/)  -  [PORTFOLIO LUCÍA](https://lucbea.github.io/Portafolio-Frontend/).
 
 
 <br>
@@ -135,9 +135,21 @@ CATEGORÍAS: seleccionar una categoría en especial, o seleccionar todas las cat
 FECHA DESDE: seleccionar a partir de qué fecha se desea visualizar las operaciones.<br>
 FECHA HASTA: seleccionar hasta qué fecha se desea visualizar las operaciones.<br>
 ORDENAR POR: seleccionar el orden de visualización, por fecha, por monto o por descripción.<br>
-
 <br>
-- Operaciones:......
+
+- **Operaciones**: Esta sección permite:
+   - Ingreso de nuevas operaciones. <br>
+   - Conocer las operaciones que se han registrado. <br>
+   - Modificar los datos que contienen las operaciones registradas. <br>
+   - Proceder a eliminar operaciones guardadas. <br>
+   Para el ingreso de nuevas operaciones, el sistema AhorrADAS presenta los siguientes controles:
+      - Necesidad de ingreso de descripción para una nueva operación.
+      - Solicitud de que el monto sea positivo, que luego podrá discriminarse como ganancia o gasto. No se permite el ingreso de montos menores o iguales a cero.
+      - En caso de que el tipo de operación, la fecha y la catogoría de la misma no sean ingresadas se tomarán los valores por defecto para cada uno de esos datos.<br>
+
+   Para el proceso de edición de una operación ya registrada, el sistema AhorrADAS presenta las siguientes funcionalidades y controles:
+   
+      - 
 
 
 <br>
@@ -225,5 +237,6 @@ Todas los menús explicados anteriormente, se encuentran disponibles para dispos
 <a href="https://www.linkedin.com/in/magui-brollo/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Magdalena%20Brollo-blue?style=flat-square&logo=linkedin"></a>
 <a href="mailto:maguieb@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Gmail-maguieb@gmail.com-blue?style=flat-square&logo=gmail"></a>
 
-(Falta Lucía)
+<a href="https://www.linkedin.com/in/lucía-ferrer-49ba53189/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Magdalena%20Brollo-blue?style=flat-square&logo=linkedin"></a>
+<a href="mailto:maguieb@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Gmail-maguieb@gmail.com-blue?style=flat-square&logo=gmail"></a>
 --- 
