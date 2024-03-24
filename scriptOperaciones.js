@@ -221,7 +221,8 @@ const completarTablaOperaciones = (array) => {
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
         document.getElementById("cont-con-oper").classList.remove("hidden");
-        document.getElementById("contenedor-filtros").classList.remove("hidden");
+       
+        console.log("pasa por aqui");
         let i = 0;
         let fechaMostrar;
         categorias_LS = recuperar("categorias");
@@ -297,8 +298,6 @@ const completarTablaOperaciones = (array) => {
         }
     } else {
         document.getElementById("cont-con-oper").classList.add("hidden");
-        document.getElementById("cont-sin-oper").classList.remove("hidden");
-        document.getElementById("contenedor-filtros").classList.add("hidden");
     }
 };
 

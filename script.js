@@ -266,15 +266,6 @@ function ordenarOperaciones(operaFiltro, orden) {
 	}
 }
 
-/* Busca nombre de las Categorías para mostrar */
-function nombreCat(id) {
-	const resultado = categFiltro.find((c) => c.id === id);
-	if (resultado === undefined) {
-		return "Sin categoría.";
-	} else {
-		return resultado.nombre;
-	}
-}
 
 /* === Función ppal que llmanan TODOS los FILTROS cada vez que hay un cambio ===== */
 function filtrar_oper() {
@@ -287,7 +278,7 @@ function filtrar_oper() {
 	//Si antes de filtrar hay Operaciones
 	if (operaFiltro.length > 0) {
 		ocultar_filtros.classList.remove("hidden");
-		//contenedor - filtros;
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1"> Mostrar Filtros </p>`;
 	} else {
 		ocultar_filtros.classList.add("hidden");
 	}
