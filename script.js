@@ -45,7 +45,7 @@ function mostrar(mostrar) {
 	contenedor_menuOperaciones.classList.add("hidden");
 	contenedor_menuCategorias.classList.add("hidden");
 	contenedor_menuReportes.classList.add("hidden");
-	
+
 	mostrar.classList.remove("hidden");
 }
 
@@ -68,7 +68,7 @@ menuBalance.addEventListener("click", () => {
 		cargarCategorias();
 		mns_aviso_seleccionar_filtros();
 		filtrar_oper();
-		
+
 	} else {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
@@ -166,7 +166,7 @@ function inicializarFechaInput(id_del_input, que_hago) {
 	}
 
 	var fecParaInput = fecha.getFullYear() + "-";
-	
+
 	fecha.getMonth() + 1 < 10
 		? (fecParaInput += "0" + (fecha.getMonth() + 1) + "-")
 		: (fecParaInput += fecha.getMonth() + 1 + "-");
@@ -335,7 +335,7 @@ function filtrar_oper() {
 	}
 	document.getElementById("balance-total").innerHTML = `${totBal}`;
 }
-	
+
 /* ----------------------------------------------------------------------------------- */
 
 /* MENSAJE que DESAPARECE DSPS DE 5segundos,  en Operaciones */
@@ -352,5 +352,55 @@ function funcionesAEjecutar() {
 	modoClaroOscuro();
 	mostrar(contenedor_menuInicio);
 }
+
+/* ================================================================================= */
+const $pie = document.getElementById('pie');
+const $pieNombres = document. getElementById('pieNombres');
+const $pieRedes = document.getElementById('pieRedes');
+const $pieDerechos = document.getElementById('pieDerechos')
+const ampliarFooter = () => {
+	$pie.classList.toggle('closed');
+
+	if ($pie.classList.contains('closed')) {
+		console.log('estoy en footer oculto')
+		$pieNombres.classList.add('lg:hidden');
+		$pieRedes.classList.add('lg:hidden');
+		$pieDerechos.classList.add('lg:hidden');
+		console.log($pieDerechos);
+	} else {
+		console.log('estoy en footer ampliado')
+		$pieNombres.classList.remove('lg:hidden');
+		$pieRedes.classList.remove('lg:hidden');
+		$pieDerechos.classList.remove('lg:hidden');
+		console.log($pieDerechos);
+	}
+}
+
+const mostrarFooter = () => {
+	console.log('estoy en footer entero');
+	$pie.classList.remove('absolute');
+	$pie.classList.remove('closed');
+	$pie.classList.add('relative');
+	$pieNombres.classList.remove('lg:hidden');
+	$pieRedes.classList.remove('lg:hidden');
+	$pieDerechos.classList.remove('lg:hidden');
+	console.log($pieDerechos);
+}
+
+const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+if (mediaQuery.matches) {
+	document.addEventListener('DOMContentLoaded', function () {
+		$pie.addEventListener('click', ampliarFooter);
+		console.log('opción de ampliar el footer')
+	});
+} else {
+	
+	document.addEventListener('DOMContentLoaded', function () {
+		console.log('mostrar el footer completo')
+		mostrarFooter();
+	});
+}
+
 
 window.onload = funcionesAEjecutar;

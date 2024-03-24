@@ -71,7 +71,7 @@ const mostrarDato = () => {
             let div2 = document.createElement("div");
             div2.id = "bot-editar-borrar"
             divContenCat.classList.add("flex", "justify-between", "my-2", "w-full", "gap-2");
-            div1.classList.add("flex", "items-center");
+            div1.classList.add("flex", "items-center", "text-xs", "sm:text-sm", "font-bold");
             let spanCategoria = document.createElement("span");
             spanCategoria.classList.add("span-categoria");
             spanCategoria.innerHTML = categoria.nombre.trim();

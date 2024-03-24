@@ -17,8 +17,7 @@
 
 @layer utilities {
    .tamanio-ADA {
-      /* font-size: clamp(1rem, 0.1713rem + 4.4199vw, 3rem); */
-      font-size: clamp(0.8rem, 0.1713rem + 3.1199vw, 2rem)
+      font-size: clamp(1.5rem, 0.1713rem + 4.4199vw, 3rem);
    }
 
    .tamanio-frase {
@@ -42,9 +41,7 @@
 /* Estilo para navegadores basados en WebKit (Chrome, Safari, etc.) */
 ::-webkit-scrollbar {
    width: 8px;
-   /* Ancho del scrollbar */
    background-color: #f1f1f1;
-   /* Color de fondo */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -53,19 +50,39 @@
    /* Color del thumb (barra deslizante) */
 }
 
-/* Estilo para Firefox */
-/* El valor thin hace que el scrollbar sea más delgado */
-/* El color de fondo se puede cambiar según sea necesario */
-/* El color del thumb (barra deslizante) también se puede cambiar */
-/* Se puede agregar un padding para que el thumb sea más visible */
+
 * {
    scrollbar-width: thin;
-   /* Grosor del scrollbar */
    scrollbar-color: #888 #f1f1f1;
-   /* Color del thumb y fondo */
 }
 
 /* Opcional: Padding para el thumb en Firefox */
 *::-webkit-scrollbar-thumb {
    padding: 4px;
+}
+
+footer a:hover {
+   text-shadow: 0px 0px 6px black;
+}
+
+#pie {
+   transition: max-height 0.3s ease-out;
+   max-height: 300px;
+   
+   overflow: hidden;
+}
+
+#pie.closed {
+   max-height: 35px;
+}
+
+#contenedor-menu-balance {
+   /* width: 400px; */
+   /* Ancho ajustado para el zoom del 100% */
+   /* height: auto; */
+   /* Altura ajustada automáticamente */
+   /* transform: scaleY(0.8); */
+   /* Escala para ajustar al zoom del 100% */
+   /* transform-origin: 0 0; */
+   /* Cambia el origen de la transformación al esquina superior izquierda */
 }
