@@ -26,6 +26,7 @@
 - [Tecnologías](#tecnologías)
 - [Construcción](#construcción)
 - [Menús](#menus)
+- [Footer] (#footer)
 - [Mobile](#mobile)
 - [Contáctanos](#contáctanos)
 
@@ -102,6 +103,7 @@ Además, dispone del botón `Modo claro` / `Modo Oscuro` que permite intercambia
 
 - [Inicio](#inicio)
 - [Balance](#balance)
+- [Operaciones](#operaciones)
 - [Categorías](#categorías)
 - [Reportes](#reportes)
 
@@ -137,32 +139,110 @@ FECHA HASTA: seleccionar hasta qué fecha se desea visualizar las operaciones.<b
 ORDENAR POR: seleccionar el orden de visualización, por fecha, por monto o por descripción.<br>
 <br>
 
-- **Operaciones**: Esta sección permite:
+Al ingresar a la sección Balance y Filtros aparece un mensaje momentáneo que le recuerda al usuario que puede mofificar los filtros para que se visualicen distintos grupos de operaciones registradas en la tabla de Operaciones.
+Este mensaje posee movimiento a fin de captar la atención del usuario del sistema. Luego de 5 segundos el mensaje se oculta.
+
+<p align="center" >
+   <img src="./img/operacionesFiltroLista.png" width="400px" alt-text="Panel de Imagen">
+</p>
+
+
+
+---
+
+#### Operaciones
+[:top:](#menús)
+<p align="center" >
+   <img src="img/operacionesListado.png" width="400px" alt-text="Panel de Operaciones">
+</p>
+
+ Esta sección permite:
    - Ingreso de nuevas operaciones. <br>
    - Conocer las operaciones que se han registrado. <br>
    - Modificar los datos que contienen las operaciones registradas. <br>
    - Proceder a eliminar operaciones guardadas. <br>
-   Para el ingreso de nuevas operaciones, el sistema AhorrADAS presenta los siguientes controles:
-      - Necesidad de ingreso de descripción para una nueva operación.
-      - Solicitud de que el monto sea positivo, que luego podrá discriminarse como ganancia o gasto. No se permite el ingreso de montos menores o iguales a cero.
-      - En caso de que el tipo de operación, la fecha y la catogoría de la misma no sean ingresadas se tomarán los valores por defecto para cada uno de esos datos.<br>
+   Para el ingreso de nuevas operaciones, el sistema AhorrADAS presenta las siguientes funcionalidades
+      - Se permite el ingreso de descripciones hasta 25 caracteres.
+      - El ingreso de los montos permite sumas considerables del orden de la centena de millón.
+      - Los valores decimales se redondean al orden de la centésima.
+      - Para mejor legibilidad se destacan en diferentes colores los montos que corresponden a ingresos -verdes- de aquellos relacionados con egresos -rojos-.
+      - El dato de la categoría asociada se encuentra destacado, de tal manera de proporcionar información sobre el tipo de ingreso o gasto. Hay relación entre las modificaciones que puedan producirse en el nombre de la categoría, apreciándose en este listado de manera automática.
+      - Las fechas se visualizan con el formato dd/mm/aaaa, que es el que se utiliza en la región.
+      - En formato ordenador, la barra de desplazamiento verical anexada a la tabla de operaciones permite una mejor interpretación de los datos registrados debido a que en todo momento aparece el encabezado que aporta información del tipo de dato que se muestra.
 
-   Para el proceso de edición de una operación ya registrada, el sistema AhorrADAS presenta las siguientes funcionalidades y controles:
-   
-      - 
+<p align="center" >
+   <img src="img/operacionesFuncion.png" width="400px" alt-text="Panel de Operaciones">
+</p>
+<br>
 
+   También, para el ingreso de nuevas operaciones, el sistema AhorrADAS presenta los siguientes controles:
 
+   - En caso de que el tipo de operación, la fecha y la categoría de la misma no sean ingresadas se tomarán los valores por defecto para cada uno de esos datos.
+   - Necesidad de ingreso de descripción para una nueva operación.
+   - Solicitud de que el monto sea positivo, que luego podrá discriminarse como ganancia o gasto. No se permite el ingreso de montos menores o iguales a cero.
+<p align="center" >
+   <img src="img/montoDescripcionOperacionVacia.png" width="300px" alt-text="Panel de Operaciones">
+</p>
+<br>
+
+   Para el proceso de edición de una operación ya registrada, el sistema AhorrADAS presenta las mismas funcionalidades y controles que han sido descriptos en el apartado anterior en relación al ingreso de una nueva operación.
+
+   En el momento de optar por la eliminación de una operación registrada, el sistema AhorrADAS permite la revisión de la decisión solicitada a través de un mensaje de control, que le indica al usuario que confirme o anule la solicitud de borrado de la operación.
+
+<p align="center" >
+   <img src="img/confirmBorradoOper.png" width="400px" alt-text="Panel de Operaciones">
+</p>
+<br>
 <br>
 
 > [!NOTE]
 > Si se minimiza el tamaño de la ventana, horizontalmente, la sección `Operaciones` se visualizará en la parte inferior (ver [Mobile](#mobile)).
+<p align="center" >
+   <img src="img/operacionResponsive.png" width="400px" alt-text="Panel de Operaciones">
+</p>
+<br>
 
 ---
 
 #### Categorías
 [:top:](#menús)
+<p align="center" >
+   <img src="img/categoriaPpal.png" width="400px" alt-text="Panel de Operaciones">
+</p>
+ Esta sección permite:
 
+   - Ingreso de nuevas categorías. <br>
+   - Conocer las categoríass que se han registrado, mediante el listado de las mismas. <br>
+   - Modificar el nombre de la categoría registrada. <br>
+   - Eliminar categorías guardadas. <br>
 
+Para el ingreso de nuevas categorías, el sistema AhorrADAS presenta las siguientes funcionalidades:
+   - Se exige el ingreso de nombre -que pueden ser frases- hasta 14 caracteres.
+   - En formato ordenador, la barra de desplazamiento verical anexada a la tabla de categorías permite una rápida búsqueda de las categorías registradas sin tener que prescindir del lugar de ingreso de la nueva categoría, lo que aporta practicidad en el momento del nuevo registro, evitando duplicaciones.
+<br>
+
+Tanto para el ingreso de nueva categoría como para la edición de alguna de las ya registradas, el sistema AhorrADAS presenta los siguientes controles:
+
+   - Imposibilidad de anexar categoría sin nombre.
+   - Imposibilidad de registrar categorías duplicadas.
+      
+<p align="center">
+   <img src="img/categoriaVacia.png" width="300px" height="100px" alt-text="Panel de Operaciones">
+   <img src="img/categDuplic.png" width="300px" height="100px" alt-text="Panel de Operaciones">
+</p>
+
+Además, toda modificación del nombre de la categoría impacta automáticamente en el listado de operaciones donde se muestra la categoría actualizada en tiempo real.
+
+<br>
+
+En cuanto a la eliminación de alguna categoría registrada, este sistema presenta los siguientes controles:
+   - Imposibilidad de eliminar categorías que tengan operaciones asociadas. El sistema solicita se eliminen previamente las operaciones relacionadas con la categoría a eliminar.
+   - Aquellas categorías que no cuenten con operaciones asociadas y se desean eliminar tienen un paso de revisión de la decisión solicitada a través de un mensaje de control, que le indica al usuario que confirme o anule la solicitud de borrado de la categoría.
+            
+<p align="center">
+   <img src="img/borrarCategCOper.png" width="300px" height="100px" alt-text="Panel de Operaciones">
+   <img src="img/borrarCategSOper.png" width="300px" height="100px" alt-text="Panel de Operaciones">
+</p>
 <br>
 
 ---
@@ -189,7 +269,18 @@ El menú reportes organiza los datos de las operaciones, para mostrar toda la in
 </p>
 
 ---
+## *Footer:*
+[:top:](#tabla-de-contenidos) <br>
+En el footer se encuentran las referencias de las creadoras de este contenido, nombres y contactos.
+En el formato ordenador, el footer tiene la posibilidad de expandirse o contraerse.
+<p align="center">
+   <img src="img/footerCont.png"  height="300px" alt-text="Panel de Operaciones">
+   <img src="img/footerExp.png" height="300px" alt-text="Panel de Operaciones">
+</p>
+<br>
 
+
+---
 ## *Mobile:*
 [:top:](#tabla-de-contenidos) <br>
 Todas los menús explicados anteriormente, se encuentran disponibles para dispositivos móviles:
@@ -237,6 +328,5 @@ Todas los menús explicados anteriormente, se encuentran disponibles para dispos
 <a href="https://www.linkedin.com/in/magui-brollo/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Magdalena%20Brollo-blue?style=flat-square&logo=linkedin"></a>
 <a href="mailto:maguieb@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Gmail-maguieb@gmail.com-blue?style=flat-square&logo=gmail"></a>
 
-<a href="https://www.linkedin.com/in/lucía-ferrer-49ba53189/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Magdalena%20Brollo-blue?style=flat-square&logo=linkedin"></a>
-<a href="mailto:maguieb@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Gmail-maguieb@gmail.com-blue?style=flat-square&logo=gmail"></a>
+
 --- 
