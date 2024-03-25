@@ -3,13 +3,12 @@
 // -------------------
 const $contenedorMenuInicio = document.getElementById("cont-menu-inicio");
 let $btnIngOp = document.getElementById("btn-ing-op");
-// boton para activar pantalla de ingreso de nueva operación
 let $descripcionOperInput = document.getElementById("descripcion-oper-input");
 let $montoOperInput = document.getElementById("monto-oper-input");
 let $tipoOperSelect = document.getElementById("tipo-oper-select");
 let $categoriaOperSelect = document.getElementById("categoria-oper-select");
 let $fechaOperInput = document.getElementById("fecha-oper-input");
-$fechaOperInput.valueAsDate = new Date(); //  input date con fecha actual
+$fechaOperInput.valueAsDate = new Date(); 
 let $btnGrabarOp = document.getElementById("btn-grabar-op");
 let $btnCancOp = document.getElementById("btn-canc-op");
 const $contEditarOperacion = document.getElementById("cont-editar-operacion");
@@ -68,8 +67,10 @@ let $celdaAcciones = document.getElementById("celda-acciones");
 // Función que inicializa el array de operaciones en el LS
 // -------------------------------------------------------
 const inicializarOperaciones = () => {
-    if (localStorage.getItem("operaciones") === null) {
-        localStorage.setItem("operaciones", JSON.stringify(operaciones));
+    let hayOper = recuperar("operaciones");
+
+    if (hayOper === null) {
+        grabar("operaciones", operaciones)
     }
 }
 
@@ -109,7 +110,7 @@ $btnIngOp.addEventListener("click", () => {
 // ________________________________
 // Evento Ingreso fecha en el input
 // --------------------------------
-$fechaOperInput.addEventListener('change', () => {  // cambie input por change 13de marzo
+$fechaOperInput.addEventListener('change', () => {  
     tomarFechaInput($fechaOperInput.value, 'ingreso', 'DIA');
 });
 
@@ -212,6 +213,7 @@ const tomarFechaInput = (fecha, tarea, orden) => {
     return formatoFecha;
 }
 
+
 let array;
 // ______________________________________________
 // Función que arma la tabla con los datos del LS
@@ -221,8 +223,6 @@ const completarTablaOperaciones = (array) => {
     if (array.length > 0) {
         document.getElementById("cont-sin-oper").classList.add("hidden");
         document.getElementById("cont-con-oper").classList.remove("hidden");
-       
-        console.log("pasa por aqui");
         let i = 0;
         let fechaMostrar;
         categorias_LS = recuperar("categorias");
@@ -345,9 +345,7 @@ const confirmBorrarOper = (id) => {
 					<p class="text-center">Monto: ${formatPesos(operacion.monto)}</p>
 					<p class="text-center">Fecha: ${operacion.fecha}</p>
 				</div>`;
-    activarVentMod($mjeConfirmBorrarOp)
-    // $contVentanaModal.classList.remove("hidden");
-    // $mjeConfirmBorrarOp.classList.remove("hidden");
+    activarVentMod($mjeConfirmBorrarOp);
     let $noBorrarOp = document.getElementById("no-borrar-op");
     $noBorrarOp.addEventListener('click', () => {
         $contVentanaModal.classList.add("hidden");
@@ -380,7 +378,7 @@ const borrarOperacion = (id) => {
 // ------------------------------------------------------
 let arrayListo;
 const editarOperacion = (idOp) => {
-    ingresarCategSelect(); //Muestra las categorias del LS en el select
+    ingresarCategSelect(); 
     mostrar($conten_menuOperaciones);
     $titNuevaOp.classList.add("hidden");
     $titEditOp.classList.remove("hidden");
@@ -396,19 +394,17 @@ const editarOperacion = (idOp) => {
         );
         idEnCurso = operaciones_LSEdit[index].id;
         if (index !== -1) {
-            // Verifica si se encontró el objeto con el id dado
             let operacionEdit = tomarData(idOp, "ingreso");
             let puedoGrabar = controlMontoDescripcion();
             if (puedoGrabar) {
                 arrayListo = [
-                    ...operaciones_LSEdit.slice(0, index), // elementos antes del índice
-                    operacionEdit, // elemento que quieres insertar/reemplazar
-                    ...operaciones_LSEdit.slice(index + 1), // elementos después del índice
+                    ...operaciones_LSEdit.slice(0, index), 
+                    operacionEdit, 
+                    ...operaciones_LSEdit.slice(index + 1), 
                 ];
                 grabar("operaciones", arrayListo);
                 mostrar($conten_menuBalance);
-                filtrar_oper(); // en script.js --> si modifico feecha por ejemplo vuelve a filtrar para mostrar
-                // completarTablaOperaciones(arrayListo);
+                filtrar_oper(); 
             }
             else {
                 $conten_menuOperaciones.classList.remove("hidden");
@@ -423,7 +419,7 @@ const editarOperacion = (idOp) => {
 // llamado de funcion mostrar de script.js
 // ---------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
-    mostrar($contenedorMenuInicio); // Llama a la función desde script.js
+    mostrar($contenedorMenuInicio); 
 });
 
 

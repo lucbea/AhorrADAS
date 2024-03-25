@@ -362,29 +362,23 @@ const ampliarFooter = () => {
 	$pie.classList.toggle('closed');
 
 	if ($pie.classList.contains('closed')) {
-		console.log('estoy en footer oculto')
 		$pieNombres.classList.add('lg:hidden');
 		$pieRedes.classList.add('lg:hidden');
 		$pieDerechos.classList.add('lg:hidden');
-		console.log($pieDerechos);
 	} else {
-		console.log('estoy en footer ampliado')
 		$pieNombres.classList.remove('lg:hidden');
 		$pieRedes.classList.remove('lg:hidden');
 		$pieDerechos.classList.remove('lg:hidden');
-		console.log($pieDerechos);
 	}
 }
 
 const mostrarFooter = () => {
-	console.log('estoy en footer entero');
 	$pie.classList.remove('absolute');
 	$pie.classList.remove('closed');
 	$pie.classList.add('relative');
 	$pieNombres.classList.remove('lg:hidden');
 	$pieRedes.classList.remove('lg:hidden');
 	$pieDerechos.classList.remove('lg:hidden');
-	console.log($pieDerechos);
 }
 
 const mediaQuery = window.matchMedia('(min-width: 1024px)');
@@ -392,12 +386,10 @@ const mediaQuery = window.matchMedia('(min-width: 1024px)');
 if (mediaQuery.matches) {
 	document.addEventListener('DOMContentLoaded', function () {
 		$pie.addEventListener('click', ampliarFooter);
-		console.log('opción de ampliar el footer')
 	});
 } else {
 	
 	document.addEventListener('DOMContentLoaded', function () {
-		console.log('mostrar el footer completo')
 		mostrarFooter();
 	});
 }

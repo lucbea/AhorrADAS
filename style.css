@@ -47,7 +47,6 @@
 ::-webkit-scrollbar-thumb {
    margin-left: 13px;
    background-color: #888;
-   /* Color del thumb (barra deslizante) */
 }
 
 
@@ -74,15 +73,4 @@ footer a:hover {
 
 #pie.closed {
    max-height: 35px;
-}
-
-#contenedor-menu-balance {
-   /* width: 400px; */
-   /* Ancho ajustado para el zoom del 100% */
-   /* height: auto; */
-   /* Altura ajustada automáticamente */
-   /* transform: scaleY(0.8); */
-   /* Escala para ajustar al zoom del 100% */
-   /* transform-origin: 0 0; */
-   /* Cambia el origen de la transformación al esquina superior izquierda */
 }

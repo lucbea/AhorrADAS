@@ -30,9 +30,7 @@ tailwind.config = {
           			top: '130px',
 					height: '150px',
         		},
-			},
-
-			
+			},			
 		},
 	},
 };
