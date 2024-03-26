@@ -240,8 +240,8 @@ En cuanto a la eliminación de alguna categoría registrada, este sistema presen
    - Aquellas categorías que no cuenten con operaciones asociadas y se desean eliminar tienen un paso de revisión de la decisión solicitada a través de un mensaje de control, que le indica al usuario que confirme o anule la solicitud de borrado de la categoría.
             
 <p align="center">
-   <img src="img/borrarCategCOper.png" width="300px" height="100px" alt-text="Panel de Operaciones">
-   <img src="img/borrarCategSOper.png" width="300px" height="100px" alt-text="Panel de Operaciones">
+   <img src="img/borrarCategCOper.png" height="100px" alt-text="Panel de Operaciones">
+   <img src="img/borrarCategSOper.png" height="100px" alt-text="Panel de Operaciones">
 </p>
 <br>
 
@@ -272,7 +272,7 @@ El menú reportes organiza los datos de las operaciones, para mostrar toda la in
 ## *Footer:*
 [:top:](#tabla-de-contenidos) <br>
 En el footer se encuentran las referencias de las creadoras de este contenido, nombres y contactos.
-En el formato ordenador, el footer tiene la posibilidad de expandirse o contraerse.
+En el formato ordenador, el footer tiene la posibilidad de contraerse o expandirse.
 <p align="center">
    <img src="img/footerCont.png"  height="300px" alt-text="Panel de Operaciones">
    <img src="img/footerExp.png" height="300px" alt-text="Panel de Operaciones">
@@ -327,6 +327,11 @@ Todas los menús explicados anteriormente, se encuentran disponibles para dispos
 
 <a href="https://www.linkedin.com/in/magui-brollo/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Magdalena%20Brollo-blue?style=flat-square&logo=linkedin"></a>
 <a href="mailto:maguieb@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Gmail-maguieb@gmail.com-blue?style=flat-square&logo=gmail"></a>
+
+
+<a href="https://www.linkedin.com/in/lucía-ferrer-49ba53189/"><img alt="LinkedIn" src="https://img.shields.io/badge/Luc%C3%ADa_Ferrer-blue?style=flat-square&logo=linkedin&logoColor=white&label=Linkedin&labelColor=grey&link=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fluc%C3%ADa-ferrer-49ba53189%2F"></a>
+<a href="mailto:ferrerlb@gmail.com"><img alt="Gmail" src="https://img.shields.io/badge/ferrerlb@gmail.com-blue?style=flat-square&logo=gmail&label=Gmail&labelColor=grey&link=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fluc%C3%ADa-ferrer-49ba53189%2F"></a>
+
 
 
 --- 
