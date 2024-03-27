@@ -17,7 +17,7 @@
 
 @layer utilities {
    .tamanio-ADA {
-      font-size: clamp(1rem, 0.1713rem + 4.4199vw, 3rem);
+      font-size: clamp(1.5rem, 0.1713rem + 4.4199vw, 3rem);
    }
 
    .tamanio-frase {
@@ -36,4 +36,41 @@
 .fa-moon-o:before {
    content: "\f186";
    /* Este valor es del icono del Luna (Font Awesome 4.7.0 Icon) */
+}
+
+/* Estilo para navegadores basados en WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+   width: 8px;
+   background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+   margin-left: 13px;
+   background-color: #888;
+}
+
+
+* {
+   scrollbar-width: thin;
+   scrollbar-color: #888 #f1f1f1;
+}
+
+/* Opcional: Padding para el thumb en Firefox */
+*::-webkit-scrollbar-thumb {
+   padding: 4px;
+}
+
+footer a:hover {
+   text-shadow: 0px 0px 6px black;
+}
+
+#pie {
+   transition: max-height 0.3s ease-out;
+   max-height: 300px;
+   
+   overflow: hidden;
+}
+
+#pie.closed {
+   max-height: 35px;
 }

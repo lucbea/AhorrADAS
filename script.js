@@ -1,8 +1,6 @@
 /* ================== DECLARAR LOS ARRAY  categorías y operaciones  ================ */
-/* OOOOOOOOOOOOOOO jjjjjjjjj oooooooooooooo ver con que nombre usa Lucía */
 let categFiltro = [];
 let operaFiltro = [];
-/* ----------------------------------------------------------------------------------- */
 
 /* ================== Menú  - y Menú Hambburguesa  ================ */
 const nav = document.getElementById("nav");
@@ -46,9 +44,8 @@ function mostrar(mostrar) {
 	contenedor_menuOperaciones.classList.add("hidden");
 	contenedor_menuCategorias.classList.add("hidden");
 	contenedor_menuReportes.classList.add("hidden");
+
 	mostrar.classList.remove("hidden");
-	// mostrar.classList.add("hidden"); //Sacar 1de marzo 
-	// contenedor_menuBalance.classList.remove("hidden");  //sacer 1 de marzo
 }
 
 menuInicio.addEventListener("click", () => {
@@ -58,22 +55,23 @@ menuInicio.addEventListener("click", () => {
 const cont_con_oper = document.getElementById("cont-con-oper");
 menuBalance.addEventListener("click", () => {
 	mostrar(contenedor_menuBalance);
-	inicializarFechaFiltro();
+	inicializarFechaInput("filtro-fecha-desde", "restarMes");
+	inicializarFechaInput("filtro-fecha-hasta", "noRestarMes");
 
 	if (controlarSiHayCateOper()) {
 		/* Si hay categorías y operaciones, entonces se habilita "Mostrar filtros" y 
 		permite seleccionr Filtros, y mostrar el listado, si hay operaciones*/
-		document.getElementById("ocultar-filtros").classList.remove("hidden");
+		ocultar_filtros.classList.remove("hidden");
+		contenedor_filtros.classList.add("hidden")
 		categFiltro = JSON.parse(localStorage.getItem("categorias"));
 		cargarCategorias();
+		mns_aviso_seleccionar_filtros();
 		filtrar_oper();
-		document.getElementById("cont-sin-oper").classList.add("hidden");
-		cont_con_oper.classList.remove('hidden');
-		
+
 	} else {
 		/* Si NO hay categorías/operaciones, se esconde FILTROS, y se deja 
 		el mensaje de cargar "nuevas operaciones" */
-		document.getElementById("ocultar-filtros").classList.add("hidden");
+		ocultar_filtros.classList.add("hidden");
 	}
 });
 
@@ -141,7 +139,11 @@ function controlarSiHayCateOper() {
 	}
 }
 
+// ___________________________________________________________
+// Función que carga las categorias del LS en el filtro select
+// -----------------------------------------------------------
 const filtro_categoria = document.getElementById("filtro-categoria");
+
 function cargarCategorias() {
 	filtro_categoria.innerHTML = `<option value="TODAS">TODAS</option>`;
 	categFiltro.forEach((cat) => {
@@ -150,36 +152,63 @@ function cargarCategorias() {
 	});
 }
 
-function inicializarFechaFiltro() {
-	var fecha = new Date();
+// ________________________________________________
+// Función que inicializa las fechas en los filtros
+// ------------------------------------------------
+function inicializarFechaInput(id_del_input, que_hago) {
+	var fecha;
+	if (que_hago === "restarMes") {
+		let fechaMiliseg = new Date().getTime();
+		fecha = new Date(fechaMiliseg - 2629800000);
+	} else {
+		fecha = new Date();
+	}
+
+	var fecParaInput = fecha.getFullYear() + "-";
+
+	fecha.getMonth() + 1 < 10
+		? (fecParaInput += "0" + (fecha.getMonth() + 1) + "-")
+		: (fecParaInput += fecha.getMonth() + 1 + "-");
+	fecha.getDate() < 10
+		? (fecParaInput += "0" + fecha.getDate())
+		: (fecParaInput += fecha.getDate());
 	document
-		.getElementById("filtro-fecha")
-		.setAttribute("value", fecha.toJSON().slice(0, 10));
+		.getElementById(`${id_del_input}`)
+		.setAttribute("value", fecParaInput);
+
+	return fecParaInput; //hizo falta este return porque no me tomaba la fecha correcta en el input.value al ingresar nueva operacion
 }
 
+// ___________________________________
+// Evento que oculta todos los filtros
+// -----------------------------------
 const ocultar_filtros = document.getElementById("ocultar-filtros");
 const contenedor_filtros = document.getElementById("contenedor-filtros");
+
 ocultar_filtros.addEventListener("click", () => {
 	contenedor_filtros.classList.toggle("hidden");
 	if (contenedor_filtros.classList.contains("hidden")) {
-		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Mostrar Filtros </p>`;
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1"> Mostrar Filtros </p>`;
 	} else {
-		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1 w-[40px] sm:w-[100px]"> Ocultar Filtros </p>`;
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye-slash"></i><p class="ml-1"> Ocultar Filtros </p>`;
 	}
 });
 
+//_________________________________________________________________ 
 /*--------------- Para filtrar operaciones -----------------------*/
 const filtro_tipo = document.getElementById("filtro-tipo");
 const filtro_cate = document.getElementById("filtro-categoria");
-const filtro_fecha = document.getElementById("filtro-fecha");
+const filtro_fecha_desde = document.getElementById("filtro-fecha-desde");
+const filtro_fecha_hasta = document.getElementById("filtro-fecha-hasta");
 const filtro_orden = document.getElementById("filtro-orden");
 
-// const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en ínea 67 aprox
+// const cont_con_oper = document.getElementById("cont-con-oper"); //lo necesité en línea 67 aprox
 const con_oper_listado = document.getElementById("con-oper-listado");
 
 filtro_tipo.addEventListener("change", filtrar_oper);
 filtro_cate.addEventListener("change", filtrar_oper);
-filtro_fecha.addEventListener("change", filtrar_oper);
+filtro_fecha_desde.addEventListener("change", filtrar_oper);
+filtro_fecha_hasta.addEventListener("change", filtrar_oper);
 filtro_orden.addEventListener("change", filtrar_oper);
 
 function masReciente(operaFiltro, como) {
@@ -236,107 +265,133 @@ function ordenarOperaciones(operaFiltro, orden) {
 	}
 }
 
-function formatFecha(f) {
-	let fc = new Date(f);
-	let ff;
-	fc.getDate() < 10
-		? (ff = "0" + fc.getDate() + "/")
-		: (ff = fc.getDate() + "/");
-	fc.getMonth() + 1 < 10
-		? (ff += "0" + (fc.getMonth() + 1) + "/")
-		: (ff += fc.getMonth() + 1 + "/");
-	ff += fc.getFullYear();
-	return ff;
-}
-
-/* Busca nombre de las Categorías para mostrar */
-function nombreCat(id) {
-	const resultado = categFiltro.find((c) => c.id === id);
-	if (resultado === undefined) {
-		return "Sin categoría.";
-	} else {
-		return resultado.nombre;
-	}
-}
 
 /* === Función ppal que llmanan TODOS los FILTROS cada vez que hay un cambio ===== */
 function filtrar_oper() {
-	let x;
+	let totBal;
 	let sumaGana = 0;
 	let sumaGasto = 0;
 	operaFiltro = JSON.parse(localStorage.getItem("operaciones"));
+	categFiltro = recuperar("categorias"); // trae las categorias del LS
 
+	//Si antes de filtrar hay Operaciones
+	contenedor_filtros.classList.add("hidden");
+	if (operaFiltro.length > 0) {
+		ocultar_filtros.classList.remove("hidden");
+		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1"> Mostrar Filtros </p>`;
+	} else {
+		ocultar_filtros.classList.add("hidden");
+	}
+
+	/* Obtiene los value de cada filtro */
 	const tipo = filtro_tipo.value;
 	const cate = filtro_cate.value;
-	const fechaDesde = new Date(`${filtro_fecha.value}T00:00:00`);
+	const fechaDesde = new Date(`${filtro_fecha_desde.value}T00:00:00`);
+	const fechaHasta = new Date(`${filtro_fecha_hasta.value}T00:00:00`);
 	const orden = filtro_orden.value;
 
+	/* Filtrar por Tipo */
 	if (tipo !== "TODO") {
 		operaFiltro = operaFiltro.filter((oper) => oper.tipo === tipo);
 	}
 
+	/* Filtrar por Categorías */
 	if (cate !== "TODAS") {
 		operaFiltro = operaFiltro.filter((oper) => oper.categoria === cate);
 	}
 
+	/* Filtrar por Fecha desde - Hasta*/
 	operaFiltro = operaFiltro.filter(function (op) {
-		return fechaDesde < new Date(op.fecha);
+		return fechaDesde <= new Date(op.fecha) && fechaHasta >= new Date(op.fecha);
 	});
 
+	/* Filtrar - Ordenamiento*/
 	ordenarOperaciones(operaFiltro, orden);
 
-	/* Si hay datos después de filtrar... */
-	if (operaFiltro.length > 0) {
-		document.getElementById("cont-sin-oper").classList.add("hidden");
-		cont_con_oper.classList.remove("hidden");
+	/* Volver a mostrar operacione */
+	completarTablaOperaciones(operaFiltro); //VER en scriptOperaciones.js
 
-		con_oper_listado.innerHTML = "";
+	/* Recalcular resultados para encabezado de Balance */
+	operaFiltro.forEach((op) => {
+		op.tipo === "GANANCIA"
+			? (sumaGana = sumaGana + op.monto)
+			: (sumaGasto = sumaGasto + op.monto);
+	});
 
-		operaFiltro.forEach((op) => {
-			if (op.tipo === "GANANCIA") {
-				sumaGana += op.monto;
-				x = `<div> $${formatPesos(op.monto)} </div>`;
-			} else {
-				sumaGasto += op.monto;
-				x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-					Math.abs(op.monto)
-				)} </div>`;
-			}
+	document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(
+		sumaGana
+	)}`;
+	document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(
+		sumaGasto
+	)}`;
 
-			con_oper_listado.innerHTML += `<div class="flex">
-							<div class="w-[30%]">${op.descripcion.toUpperCase() + "-" + op.tipo}</div>
-							<div class="w-[30%]">${nombreCat(op.categoria)}</div>
-							<div class="w-[15%]">${formatFecha(op.fecha)}</div>
-							<div class="w-[16%] flex justify-end">${x}</div>
-							<div class="w-[9%]  flex justify-end"> Edi-Eli</div>
-						</div>`;
-		});
-
-		document.getElementById("balance-ganancias").innerHTML = `$${formatPesos(
-			sumaGana
-		)}`;
-		document.getElementById("balance-gastos").innerHTML = `-$${formatPesos(
-			sumaGasto
-		)}`;
-
-		if (sumaGana - sumaGasto >= 0) {
-			x = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
-		} else {
-			x = `<div class="text-[red] dark:text-red-900">	-$${formatPesos(
-				Math.abs(sumaGana - sumaGasto)
-			)} </div>`;
-		}
-		document.getElementById("balance-total").innerHTML = `${x}`;
+	if (sumaGana - sumaGasto >= 0) {
+		totBal = `<div> $${formatPesos(sumaGana - sumaGasto)} </div>`;
 	} else {
-		document.getElementById("cont-sin-oper").classList.remove("hidden");
-		cont_con_oper.classList.add("hidden");
+		totBal = `<div class="text-rojo dark:text-red-900">	-$${formatPesos(
+			Math.abs(sumaGana - sumaGasto)
+		)} </div>`;
 	}
+	document.getElementById("balance-total").innerHTML = `${totBal}`;
 }
+
 /* ----------------------------------------------------------------------------------- */
+
+/* MENSAJE que DESAPARECE DSPS DE 5segundos,  en Operaciones */
+function mns_aviso_seleccionar_filtros() {
+	const mns = document.getElementById("mensaje-filtros-5seg");
+	mns.classList.remove("hidden");
+	setTimeout(function () {
+		mns.classList.add("hidden");
+	}, 5000);
+}
 
 /* ================================================================================================*/
 function funcionesAEjecutar() {
 	modoClaroOscuro();
 	mostrar(contenedor_menuInicio);
 }
+
+/* ================================================================================= */
+const $pie = document.getElementById('pie');
+const $pieNombres = document. getElementById('pieNombres');
+const $pieRedes = document.getElementById('pieRedes');
+const $pieDerechos = document.getElementById('pieDerechos')
+const ampliarFooter = () => {
+	$pie.classList.toggle('closed');
+
+	if ($pie.classList.contains('closed')) {
+		$pieNombres.classList.add('lg:hidden');
+		$pieRedes.classList.add('lg:hidden');
+		$pieDerechos.classList.add('lg:hidden');
+	} else {
+		$pieNombres.classList.remove('lg:hidden');
+		$pieRedes.classList.remove('lg:hidden');
+		$pieDerechos.classList.remove('lg:hidden');
+	}
+}
+
+const mostrarFooter = () => {
+	$pie.classList.remove('absolute');
+	$pie.classList.remove('closed');
+	$pie.classList.add('relative');
+	$pieNombres.classList.remove('lg:hidden');
+	$pieRedes.classList.remove('lg:hidden');
+	$pieDerechos.classList.remove('lg:hidden');
+}
+
+const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+if (mediaQuery.matches) {
+	document.addEventListener('DOMContentLoaded', function () {
+		$pie.addEventListener('click', ampliarFooter);
+	});
+} else {
+	
+	document.addEventListener('DOMContentLoaded', function () {
+		mostrarFooter();
+	});
+}
+
+
 window.onload = funcionesAEjecutar;
