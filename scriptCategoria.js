@@ -10,19 +10,12 @@ const crearIdDato = (nombre) => {
 // constante Categorias iniciales (para restaurar)
 // ------------------------------
 const categoriasInicio = [
-    { id: "3edb9a57-d1ac-401c-8bdd-ac8ac5d155f8", nombre: "COMIDA" },
-    { id: "5f6e93ee-65c3-4ae1-bfa2-ecf00c9b5f91", nombre: "EDUCACION" },
-    { id: "c585531d-7bed-4096-a099-baa8282300b0", nombre: "SALIDAS" },
-    { id: "a84a60e9-5c32-4381-b0da-aa120df9b90b", nombre: "SERVICIOS" },
-    { id: "4904f4f9-d770-4857-a250-5350ee8e3770", nombre: "TRANSPORTE" },
-    { id: "40e00304-2d59-4c1c-8987-b7e5de113c25", nombre: "TRABAJO" },
-
-    // crearIdDato('COMIDA'),
-    // crearIdDato('EDUCACION'),
-    // crearIdDato('SALIDAS'),
-    // crearIdDato('SERVICIOS'),
-    // crearIdDato('TRANSPORTE'),
-    // crearIdDato('TRABAJO'),
+    crearIdDato('COMIDA'),
+    crearIdDato('EDUCACION'),
+    crearIdDato('SALIDAS'),
+    crearIdDato('SERVICIOS'),
+    crearIdDato('TRANSPORTE'),
+    crearIdDato('TRABAJO'),
 ];
 
 
@@ -37,6 +30,7 @@ let nombreAEditar = '';
 let idCatDuplicada = '';
 let indice;
 let nuevaCategAux;
+let categoriaAEditar = '';
 
 
 // ________________________
@@ -80,7 +74,9 @@ const mostrarDato = () => {
             btnEditarCat.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
             btnEditarCat.id = `btn-editar-${categoria.id}`;
             btnEditarCat.classList.add("flex-shrink-0", "h-8", "px-2", "md:px-4", "lg:px-6", "rounded-lg", "bg-blue-100", "mr-2", "md:mx-4", "lg:mx-4", "shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)]", "border-2", "hover:bg-cyan-800/25", "focus:bg-blue-200", "hover:dark:bg-cyan-700/25", "focus:dark:bg-gray-400", "hover:shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)]", "focus:shadow-md");
-            btnEditarCat.addEventListener("click", () => editarCategoria(categoria.id));
+            btnEditarCat.addEventListener("click", () => {
+                editarCategoria(categoria.id)
+            });
 
             let btnBorrar = document.createElement("button");
             btnBorrar.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
@@ -106,7 +102,7 @@ let valorGuardado;
 let categorias;
 let iniciaCategorias = () => {
     valorGuardado = recuperar("categorias");
-    if (valorGuardado === null) {   
+    if (valorGuardado === null) {
         categorias = categoriasInicio;
         grabar("categorias", categorias);
         mostrarDato();
@@ -135,30 +131,24 @@ const sinAcentosMayus = (texto) => {
 // _____________________________________________
 // funcion armado del array para guardarlo en LS
 // ---------------------------------------------
-const armadoArrayGuardar = (locacion, id, nombre, funcion) => {
+const armadoArrayGuardar = (id, nombre, funcion) => {
     const nuevoObj = { id, nombre };
     let arrayListoParaGuardar = [];
     if (categoriasLS) {
-        let datoDuplicado = revisarDatosDuplicados(id, nombre);
-        if (!datoDuplicado) {
-            if (funcion === "nuevaCateg") {
-                categoriasLS.push(nuevoObj);
-                return categoriasLS;
-            }
-            if (funcion === "edicion") {
-                let nombre = nombre;
-                arrayListoParaGuardar = categoriasLS.map(categoria => {
-                    if (categoria.id === id) {
-                        return { ...categoria, nombre: nombre }; 
-                    } else {
-                        return categoria; 
-                    }
-                });
-                return arrayListoParaGuardar;
-            }
-        } else {
-            activarVentMod($mjeCatDuplicada);
-            return;
+        if (funcion === "nuevaCateg") {
+            categoriasLS.push(nuevoObj);
+            return categoriasLS;
+        }
+        if (funcion === "edicion") {
+            let nombre = nombre;
+            arrayListoParaGuardar = categoriasLS.map(categoria => {
+                if (categoria.id === id) {
+                    return { ...categoria, nombre: nombre };
+                } else {
+                    return categoria;
+                }
+            });
+            return arrayListoParaGuardar;
         }
     }
 };
@@ -171,7 +161,7 @@ let $inpCategoria = document.getElementById("categoria");
 const ingresarCategoria = (inputTextCateg) => {
     nombNuevaCateg = inputTextCateg.value;
     nombNuevaCateg = sinAcentosMayus(nombNuevaCateg);
-    nombNuevaCateg = nombNuevaCateg.slice(0, 14); 
+    nombNuevaCateg = nombNuevaCateg.slice(0, 14);
     return nombNuevaCateg;
 };
 
@@ -184,15 +174,16 @@ const $mjeCatDuplicada = document.getElementById("mje-cat-duplicada");
 const $cerrar = document.getElementById("cerrar-cat-duplicada");
 let $inpEditarCategoria = document.getElementById("editar-categoria");
 $cerrar.addEventListener('click', () => {
+
     $mjeCatDuplicada.classList.add("hidden");
     $contVentanaModal.style.zIndex = 4;
+    $contEditarCategoria.style.zIndex = 6;
     $inpEditarCategoria.value = nombreAEditar;
     if ($contEditarCategoria.classList.contains("hidden")) {
-        $contVentanaModal.classList.add("hidden");
+        $contVentanaModal.classList.add("hidden")
         $inpCategoria.value = "";
     }
-    return $inpEditarCategoria.value = nombreAEditar;     
-
+    $inpEditarCategoria.value = categoriaAEditar.nombre;
 });
 
 
@@ -214,23 +205,22 @@ $cerrarCatVacia.addEventListener('click', () => {
     if ($contEditarCategoria.classList.contains("hidden")) {
         $contVentanaModal.classList.add("hidden");
     }
-
-    $inpEditarCategoria.value = nombreAEditar;
+    if (categoriaAEditar) { $inpEditarCategoria.value = categoriaAEditar.nombre; }
 });
 
 
 // ________________________________________
 // Revisar nombres de categorias duplicados
 // ----------------------------------------
-const revisarDatosDuplicados = (id, nombre) => {  
-    for (let i = 0; i < categoriasLS.length; i++) {
-        if (categoriasLS[i].nombre === nombre) {
-            categoriaDuplicada = true;
-            idCatDuplicada = categoriasLS[i].id;
-            return categoriaDuplicada;
-        }
+const revisarDatosDuplicados = (id, nombre) => {
+    categoriasLS = recuperar("categorias");
+    let duplicado = categoriasLS.find(categoria => categoria.nombre === nombre)
+    if (duplicado) {
+        categoriaDuplicada = true
     }
-    categoriaDuplicada = false;
+    else {
+        categoriaDuplicada = false;
+    }
     return categoriaDuplicada;
 };
 
@@ -241,14 +231,14 @@ const revisarDatosDuplicados = (id, nombre) => {
 let $botonIngresoCategoria = document.getElementById('boton-ingreso-categoria');
 $botonIngresoCategoria.addEventListener('click', (e) => {
     let valorCategoria = ingresarCategoria($inpCategoria);
-    valorCategoria = $inpCategoria.value.trim();     
-    if (valorCategoria !== "") {  
+    valorCategoria = $inpCategoria.value.trim();
+    if (valorCategoria !== "") {
         let nuevaCategEncrip = crearIdDato(valorCategoria);
         nombNuevaCateg = nuevaCategEncrip.nombre;
         idNuevaCateg = nuevaCategEncrip.id;
         let datoDuplicado = revisarDatosDuplicados(idNuevaCateg, nombNuevaCateg);
         if (!datoDuplicado) {
-            let categoriasParaGuardar = armadoArrayGuardar("categorias", idNuevaCateg, nombNuevaCateg, "nuevaCateg");
+            let categoriasParaGuardar = armadoArrayGuardar(idNuevaCateg, nombNuevaCateg, "nuevaCateg");
             grabar("categorias", categoriasParaGuardar);
             mostrarDato();
             $inpCategoria.value = "";
@@ -284,63 +274,71 @@ const cerrarVentEdicion = () => {
 // ------------------------
 const $btnCancEditCateg = document.getElementById("boton-cancelar-editar-categoria");
 const $btnGrabarEditCateg = document.getElementById("boton-grabar-editar-categoria");
-const editarCategoria = (idCat) => {
-    activarVentMod($contEditarCategoria);  
-    categoriasLS = recuperar("categorias");  
-    indice = categoriasLS.findIndex(categoria => categoria.id === idCat);
-    let categoriaAEditar = categoriasLS.find(categoria => categoria.id === idCat);
-    nombreAEditar = categoriaAEditar.nombre;
-    $inpEditarCategoria.value = categoriaAEditar.nombre;  
+const editarCategoria = (id) => {
+    let idCateg = id;
+    activarVentMod($contEditarCategoria);
+    let categoriasLS = recuperar("categorias");
+    indice = categoriasLS.findIndex(categoria => categoria.id === idCateg);
+    categoriaAEditar = categoriasLS.find(categoria => categoria.id === idCateg);
+    $inpEditarCategoria.value = categoriaAEditar.nombre;
     $inpEditarCategoria.addEventListener('input', (e) => $inpEditarCategoria.value = ingresarCategoria($inpEditarCategoria));
     nuevaCategAux = $inpEditarCategoria.value;
-
     $btnCancEditCateg.addEventListener('click', () => cerrarVentEdicion());
-
-    $btnGrabarEditCateg.addEventListener('click', () => {
-        categoriaAEditar = categoriasLS.find(categoria => categoria.id === idCat);
-        ctrlGrabarEditarCateg(idCat, categoriaAEditar);
-    });
-    $inpEditarCategoria.value = categoriaAEditar.nombre;
+    $btnGrabarEditCateg.setAttribute("data-id", id); // Agregar id como atributo data
+    console.log(id, '//', $contEditarCategoria, '//', categoriasLS, '//', categoriaAEditar, '//',)
 };
+
+
+// ______________________________________________
+// Evento - Boton Grabar la edición de categoría
+// ----------------------------------------------
+$btnGrabarEditCateg.addEventListener('click', () => {
+    const idCat = $btnGrabarEditCateg.getAttribute("data-id");
+    ctrlGrabarEditarCateg(idCat);
+});
 
 
 // _____________________________________________________
 // Funcion Controles y grabación de edición de categoria
 // -----------------------------------------------------
-const ctrlGrabarEditarCateg = (idCat, categoriaAEditar) => {
+const ctrlGrabarEditarCateg = (idCat) => {
     categoriasLS = recuperar("categorias");
+    categoriaAEditar = categoriasLS.find(categoria => categoria.id === idCat);
     let nuevaCateg = $inpEditarCategoria.value;
     if (nuevaCateg !== "") {
-        if (nuevaCateg === categoriaAEditar.nombre) { 
-            cerrarVentEdicion();
-            return;
-        } else {
-            let categoriaDuplicada = revisarDatosDuplicados(idCat, nuevaCateg);
-            if (!categoriaDuplicada) {
-                if (indice !== -1) { 
-                    arrayListo = [...categoriasLS.slice(0, indice), 
-                    { ...categoriasLS[indice], nombre: nuevaCateg }, 
-                    ...categoriasLS.slice(indice + 1) 
-                    ];
-                }
-                grabar("categorias", arrayListo);
-                mostrarDato();
+        if (categoriaAEditar) {
+            if (nuevaCateg === categoriaAEditar.nombre) {
                 cerrarVentEdicion();
                 return;
-            }
-            if (categoriaDuplicada) {
-                activarVentMod($mjeCatDuplicada);
-                $contEditarCategoria.value = categoriaAEditar.nombre;
-                return;
+            } else {
+                let categoriaDuplicada = revisarDatosDuplicados(idCat, nuevaCateg);
+                if (!categoriaDuplicada) {
+                    if (indice !== -1) {
+                        arrayListo = [...categoriasLS.slice(0, indice),
+                        { ...categoriasLS[indice], nombre: nuevaCateg },
+                        ...categoriasLS.slice(indice + 1)
+                        ];
+                    }
+                    grabar("categorias", arrayListo);
+                    mostrarDato();
+                    cerrarVentEdicion();
+                    return;
+                }
+                if (categoriaDuplicada) {
+                    activarVentMod($mjeCatDuplicada);
+                    $inpEditarCategoria.value = categoriaAEditar.nombre;
+                    return;
+                }
             }
         }
     }
     if (nuevaCateg === "") {
-        activarVentMod($mjeCatVacia);
-        $contEditarCategoria.value = categoriaAEditar.nombre;
-        return;
+        if (categoriaAEditar) {
+            activarVentMod($mjeCatVacia);
+            return;
+        }
     }
-}
+};
 
 
 //--------------------------
@@ -411,15 +409,15 @@ const activarVentMod = (contenAActivar) => {
         $contVentanaModal.style.zIndex = 8;
         contenAActivar.style.zIndex = 10;
     } else {
+        $contVentanaModal.classList.remove("hidden");
         $contVentanaModal.style.zIndex = 4;
         contenAActivar.style.zIndex = 6;
     }
     $contVentanaModal.style.height = `${alto}px`;
-    $contVentanaModal.classList.remove("hidden");
-    alto = alto - 150;
-    let margenInferior = window.innerHeight + window.scrollY; 
-    contenAActivar.style.bottom = `${window.innerHeight - margenInferior + 300}px`; 
+    let margenInferior = window.innerHeight + window.scrollY;
+    contenAActivar.style.bottom = `${window.innerHeight - margenInferior + 300}px`;
     contenAActivar.classList.remove("hidden");
+    alto = alto - 150;
     return alto;
 }
 
