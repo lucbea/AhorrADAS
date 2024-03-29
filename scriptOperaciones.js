@@ -311,6 +311,7 @@ $btnGrabarOp.addEventListener('click', () => {
 // ------------------------------------------------------
 let $mjeConfirmBorrarOp = document.getElementById("mje-confirm-borrar-op");
 let $opBorrar = document.getElementById("op-borrar");
+let $contSinOper = document.getElementById("cont-sin-oper");
 const confirmBorrarOper = (id) => {
     operaciones_LS = recuperar("operaciones");
     operacion = operaciones_LS.find((op) => op.id === id);
@@ -330,7 +331,12 @@ const confirmBorrarOper = (id) => {
     $siBorrarOp.addEventListener('click', () => {
         $contVentanaModal.classList.add("hidden");
         $mjeConfirmBorrarOp.classList.add("hidden");
-        borrarOperacion(id)
+        borrarOperacion(id);
+        operaciones_LS = recuperar("operaciones");
+        if (operaciones_LS.length < 1) {
+            ocultar_filtros.classList.remove("hidden");
+            $contSinOper.classList.remove("hidden");
+        }
     });
 }
 
