@@ -276,7 +276,7 @@ function filtrar_oper() {
 	categFiltro = recuperar("categorias"); // trae las categorias del LS
 
 	//Si antes de filtrar hay Operaciones
-	contenedor_filtros.classList.add("hidden");
+	//debe mostrar
 	if (operaFiltro.length > 0) {
 		ocultar_filtros.classList.remove("hidden");
 		ocultar_filtros.innerHTML = `<i class="fa-regular fa-eye"></i><p class="ml-1"> Mostrar Filtros </p>`;

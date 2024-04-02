@@ -5,18 +5,6 @@
    <img src="img/bienvenidos.png" width="800px" alt-text="Título: AhorrADAs">
 </p>
 
-<div align="center">
-
-[![ahorradas - link](https://img.shields.io/static/v1?label=ahorradas&message=link&color=yellow&logo=EA4335&logoColor=yellow)](https://lucbea.github.io/AhorrADAS/ "Visitá AhorrADAs")
-[![GitHub tag](https://img.shields.io/github/tag/MaguiBrollo/ADA_Meme_mod02_tf?include_prereleases=&sort=semver&color=yellow)](https://github.com/MaguiBrollo/ADA_Meme_mod02_tf/releases/ "Versión")
-
-</div>
-
-***
-
-<p align="center">
-   <img src="img/ahorradas_ppal_claro.png" width="300px" alt-text="Título: AhorrADAs">
-</p>
 
 ***
 
@@ -27,7 +15,6 @@
 - [Construcción](#construcción)
 - [Menús](#menus)
 - [Footer] (#footer)
-- [Mobile](#mobile)
 - [Contáctanos](#contáctanos)
 
 ---
@@ -49,22 +36,12 @@ Por su simple interfaz, `AhorrADAs` es una potente herramienta que ayuda a simpl
 La app `AhorrADAs`, fue diseñada de tal manera que puede ser utilizada en diferentes dispositivos, lo que implica un correcto diseño responsive. 
 
 
-( FALTA imagen )
-
-
-<p align="center" >
-   <img src="" width="600px" alt-text="Presentación">
-</p>
-
-<br>
-
 Fue desarrollado como Trabajo Final del "Módulo 3 - JavaScript", de la capacitación de `"Desarrollo Frontend"` dictado por [ADA ITW](https://www.linkedin.com/school/ada-itw/), y se encuentra incluido en nuestros `Portfolios`, de tal manera de reflejar el grado de avance, apropiación y uso de los conocimiento adquiridos y asimilados durante la capacitación.
 
 > [!NOTE]
 > Visite nuestros portafolios: [PORTFOLIO MAGUI](https://maguibrollo.github.io/ADA_Portafolio_mod01_tf/)  -  [PORTFOLIO LUCÍA](https://lucbea.github.io/Portafolio-Frontend/).
 
 
-<br>
 
 ## *Tecnologías*
 [:top:](#tabla-de-contenidos) <br>
@@ -121,11 +98,6 @@ Da la bienvenida a la aplicación. <br>
 #### Balance
 [:top:](#menús)
 El menú `Balance`, presenta tres secciones: Balance, Filtros y Operaciones.
-
-(.....  imagen ..........)
-<p align="center" >
-   <img src="" width="400px" alt-text="Panel de Imagen">
-</p>
 
 Secciones:
 - **Balance**: Permite conocer el total de Ganancias, el total de Gastos y el Total del balance, positivo o negativo, de las operaciones visibles, que dependen de lo que se ha seleccionado en la sección "Filtros". 
@@ -196,7 +168,7 @@ Este mensaje posee movimiento a fin de captar la atención del usuario del siste
 <br>
 
 > [!NOTE]
-> Si se minimiza el tamaño de la ventana, horizontalmente, la sección `Operaciones` se visualizará en la parte inferior (ver [Mobile](#mobile)).
+> Si se minimiza el tamaño de la ventana, horizontalmente, la sección `Operaciones` se visualizará en la parte inferior.
 <p align="center" >
    <img src="img/operacionResponsive.png" width="400px" alt-text="Panel de Operaciones">
 </p>
@@ -279,46 +251,6 @@ En el formato ordenador, el footer tiene la posibilidad de expandirse o contraer
 </p>
 <br>
 
-
----
-## *Mobile:*
-[:top:](#tabla-de-contenidos) <br>
-Todas los menús explicados anteriormente, se encuentran disponibles para dispositivos móviles:
-
-<div align="center">
-
-|Modo Oscuro| Modo Claro|
-|:---:|:---:|
-|<img src="" width="200px">|<img src="" width="200px" >|
-
-</div>
-
-<br>
-
-<div align="center">
-
-|Menú | Menú |
-|:---:|:---:|
-|<img src="" width="200px">|<img src="" width="200px" >|
-
-</div>
-
-<br>
-
-<div align="center">
-
-|Pantalla Horizontal| 
-|:---:|
-|<img src="" width="420px">|
-
-
-| Edición Horizontal|
-|:---:|
-|<img src="" width="420px">|
-
-</div>
-
-<br>
 
 ---
 
