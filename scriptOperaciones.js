@@ -86,7 +86,6 @@ $btnIngOp.addEventListener("click", () => {
 // --------------------------------
 $descripcionOperInput.addEventListener('input', () => {
     $descripcionOperInput.value = $descripcionOperInput.value.slice(0, 25);
-    console.log($descripcionOperInput.value)
 });
 // ________________________________
 // Evento Ingreso fecha en el input
