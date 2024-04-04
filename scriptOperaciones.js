@@ -81,7 +81,12 @@ $btnIngOp.addEventListener("click", () => {
     borrarInputs();
 });
 
-
+// ________________________________
+// Evento Ingreso descripcion en el input
+// --------------------------------
+$descripcionOperInput.addEventListener('input', () => {
+    $descripcionOperInput.value = $descripcionOperInput.value.slice(0, 25);
+});
 // ________________________________
 // Evento Ingreso fecha en el input
 // --------------------------------

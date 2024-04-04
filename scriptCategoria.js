@@ -64,7 +64,7 @@ const mostrarDato = () => {
             div1.id = "nombre-cat";
             let div2 = document.createElement("div");
             div2.id = "bot-editar-borrar"
-            divContenCat.classList.add("flex", "justify-between", "my-2", "w-full", "gap-2");
+            divContenCat.classList.add("flex", "justify-between", "my-1", "w-full", "gap-2");
             div1.classList.add("flex", "items-center", "text-xs", "sm:text-sm", "font-bold");
             let spanCategoria = document.createElement("span");
             spanCategoria.classList.add("span-categoria");
@@ -285,7 +285,6 @@ const editarCategoria = (id) => {
     nuevaCategAux = $inpEditarCategoria.value;
     $btnCancEditCateg.addEventListener('click', () => cerrarVentEdicion());
     $btnGrabarEditCateg.setAttribute("data-id", id); // Agregar id como atributo data
-    console.log(id, '//', $contEditarCategoria, '//', categoriasLS, '//', categoriaAEditar, '//',)
 };
 
 

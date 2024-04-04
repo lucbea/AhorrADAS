@@ -14,7 +14,6 @@
 - [Tecnologías](#tecnologías)
 - [Construcción](#construcción)
 - [Menús](#menus)
-- [Footer] (#footer)
 - [Contáctanos](#contáctanos)
 
 ---
@@ -83,6 +82,7 @@ Además, dispone del botón `Modo claro` / `Modo Oscuro` que permite intercambia
 - [Operaciones](#operaciones)
 - [Categorías](#categorías)
 - [Reportes](#reportes)
+- [Footer](#footer)
 
 ---
 
@@ -241,7 +241,7 @@ El menú reportes organiza los datos de las operaciones, para mostrar toda la in
 </p>
 
 ---
-## *Footer:*
+#### Footer:
 [:top:](#tabla-de-contenidos) <br>
 En el footer se encuentran las referencias de las creadoras de este contenido, nombres y contactos.
 En el formato ordenador, el footer tiene la posibilidad de contraerse o expandirse.
