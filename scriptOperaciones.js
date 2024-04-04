@@ -86,6 +86,7 @@ $btnIngOp.addEventListener("click", () => {
 // --------------------------------
 $descripcionOperInput.addEventListener('input', () => {
     $descripcionOperInput.value = $descripcionOperInput.value.slice(0, 25);
+    console.log($descripcionOperInput.value)
 });
 // ________________________________
 // Evento Ingreso fecha en el input
@@ -278,6 +279,7 @@ const completarTablaOperaciones = (array) => {
         }
     } else {
         document.getElementById("cont-con-oper").classList.add("hidden");
+        document.getElementById("cont-sin-oper").classList.remove("hidden");
     }
 };
 
