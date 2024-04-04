@@ -278,6 +278,7 @@ const completarTablaOperaciones = (array) => {
         }
     } else {
         document.getElementById("cont-con-oper").classList.add("hidden");
+        document.getElementById("cont-sin-oper").classList.remove("hidden");
     }
 };
 
